@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 30 25% 97%;
+    --foreground: 220 20% 18%;
+
+    --card: 30 20% 99%;
+    --card-foreground: 220 20% 18%;
+
+    --popover: 30 20% 99%;
+    --popover-foreground: 220 20% 18%;
+
+    --primary: 5 65% 65%;
+    --primary-foreground: 30 20% 99%;
+
+    --secondary: 30 15% 92%;
+    --secondary-foreground: 220 20% 18%;
+
+    --muted: 30 15% 94%;
+    --muted-foreground: 220 10% 45%;
+
+    --accent: 15 60% 72%;
+    --accent-foreground: 220 20% 18%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 30 15% 88%;
+    --input: 30 15% 88%;
+    --ring: 5 65% 65%;
+
+    --radius: 0.5rem;
+
+    /* Custom tokens */
+    --salt-pink: 5 65% 75%;
+    --salt-coral: 15 60% 68%;
+    --salt-blush: 10 50% 90%;
+    --salt-cream: 35 30% 96%;
+    --salt-dark: 220 20% 18%;
+    --salt-warm: 25 25% 50%;
+
+    --gradient-hero: linear-gradient(135deg, hsl(5 65% 75% / 0.15), hsl(35 30% 96%));
+    --gradient-accent: linear-gradient(135deg, hsl(5 65% 65%), hsl(15 60% 72%));
+    --shadow-soft: 0 4px 20px -4px hsl(5 65% 65% / 0.15);
+    --shadow-elevated: 0 20px 50px -12px hsl(220 20% 18% / 0.15);
+  }
+
+  /* Radial gradient utility */
+  .bg-gradient-radial {
+    background: radial-gradient(circle, var(--tw-gradient-stops));
+  }
+
+  .dark {
+    --background: 220 20% 10%;
+    --foreground: 30 20% 95%;
+
+    --card: 220 20% 12%;
+    --card-foreground: 30 20% 95%;
+
+    --popover: 220 20% 12%;
+    --popover-foreground: 30 20% 95%;
+
+    --primary: 5 65% 65%;
+    --primary-foreground: 30 20% 99%;
+
+    --secondary: 220 15% 18%;
+    --secondary-foreground: 30 20% 95%;
+
+    --muted: 220 15% 20%;
+    --muted-foreground: 30 10% 60%;
+
+    --accent: 15 60% 72%;
+    --accent-foreground: 220 20% 10%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 15% 22%;
+    --input: 220 15% 22%;
+    --ring: 5 65% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer base {
+  :root {
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --dur-hover: 180ms;
+    --dur-reveal: 400ms;
+  }
+
+  /* Reveal: hidden until observed, then settles 16px up. */
+  .reveal {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+    transition:
+      opacity var(--dur-reveal) var(--ease-out),
+      transform var(--dur-reveal) var(--ease-out);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  /* Stagger: direct children settle in sequence once the group is observed.
+     Each child sets its own --reveal-delay. */
+  .reveal-group > * {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+    transition:
+      opacity var(--dur-reveal) var(--ease-out),
+      transform var(--dur-reveal) var(--ease-out);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .reveal-group.is-visible > * {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  /* Media: blur-to-clear on load. */
+  .media-load {
+    filter: blur(12px);
+    transform: scale(1.02);
+    transition:
+      filter var(--dur-reveal) var(--ease-out),
+      transform var(--dur-reveal) var(--ease-out);
+  }
+
+  .media-load.is-loaded {
+    filter: blur(0);
+    transform: scale(1);
+  }
+}
+
+/* Anyone who asks for less motion gets none of it. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.is-visible,
+  .reveal-group > *,
+  .reveal-group.is-visible > *,
+  .media-load,
+  .media-load.is-loaded {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
