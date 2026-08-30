@@ -77,12 +77,12 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-salt-cream">
+    <section id="contact" className="py-28 md:py-36 bg-salt-cream">
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Contact Info */}
           <div ref={info} className="reveal">
-            <p className="text-primary font-medium mb-4">Get in Touch</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-primary mb-5">Get in Touch</p>
             <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-6">
               Ready to Order?
             </h2>
@@ -129,7 +129,7 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <div ref={formCard} className="reveal bg-card rounded-3xl p-8 md:p-12 shadow-elevated" style={{ "--reveal-delay": "60ms" } as React.CSSProperties}>
+          <div ref={formCard} className="reveal bg-card rounded-lg p-8 md:p-12 shadow-elevated" style={{ "--reveal-delay": "60ms" } as React.CSSProperties}>
             <h3 className="font-serif text-2xl font-semibold text-foreground mb-6">
               Request a Quote
             </h3>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Shield, Leaf, FlaskConical, Building2 } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
-import saltPacking from "@/assets/salt-packing.png";
+import saltPacking from "@/assets/salt-packing.jpg";
 import bannerImage from "@/assets/banner-clean.jpg";
 
 const features = [
@@ -34,7 +34,7 @@ const About = () => {
   const [imgLoaded, setImgLoaded] = useState(false);
 
   return (
-    <section id="about" className="py-32 bg-salt-cream relative overflow-hidden">
+    <section id="about" className="py-28 md:py-36 bg-salt-cream relative overflow-hidden">
       {/* Decorative Background */}
       <div className="absolute top-0 right-0 w-1/2 h-full opacity-5">
         <img src={bannerImage} alt="" className="w-full h-full object-cover" />
@@ -43,8 +43,8 @@ const About = () => {
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div ref={header} className="reveal text-center max-w-3xl mx-auto mb-20">
-          <p className="text-primary font-semibold mb-4 tracking-widest uppercase text-sm">Why AAA Trade House</p>
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+          <p className="text-xs uppercase tracking-[0.2em] text-primary mb-5">Why AAA Trade House</p>
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.05] tracking-tight mb-6">
             Our Heritage & Strength
           </h2>
           <p className="text-muted-foreground text-lg">
@@ -58,11 +58,11 @@ const About = () => {
           {features.map((feature, index) => (
             <div
               key={feature.title}
-              className="relative bg-card p-8 rounded-3xl shadow-soft hover:shadow-elevated transition-all duration-[180ms] ease-[var(--ease-out)] hover:-translate-y-1 hover:border-primary/30 group border border-border/50"
+              className="relative bg-card p-8 rounded-lg shadow-soft hover:shadow-elevated transition-all duration-[180ms] ease-[var(--ease-out)] hover:-translate-y-1 hover:border-primary/30 group border border-border/50"
               style={{ "--reveal-delay": `${Math.min(index, 3) * 60}ms` } as React.CSSProperties}
             >
               <div className="absolute -top-4 -right-4 w-20 h-20 bg-salt-coral/10 rounded-full blur-2xl group-hover:bg-salt-coral/20 transition-colors" />
-              <div className="w-16 h-16 rounded-2xl bg-gradient-accent flex items-center justify-center mb-6 shadow-lg">
+              <div className="w-16 h-16 rounded-md bg-gradient-accent flex items-center justify-center mb-6 shadow-lg">
                 <feature.icon className="w-8 h-8 text-primary-foreground" />
               </div>
               <h3 className="font-serif text-xl font-bold text-foreground mb-3">
@@ -78,7 +78,7 @@ const About = () => {
         {/* Story Section */}
         <div ref={story} className="reveal grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <p className="text-primary font-semibold mb-4 tracking-widest uppercase text-sm">Our Story</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-primary mb-5">Our Story</p>
             <h3 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-8">
               In salt since 1994.
             </h3>
@@ -117,7 +117,7 @@ const About = () => {
           </div>
           
           <div className="relative">
-            <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
+            <div className="aspect-[4/5] rounded-lg overflow-hidden shadow-2xl">
               <img
                 src={saltPacking}
                 alt="AAA Trade House salt packing process"
@@ -126,7 +126,7 @@ const About = () => {
               />
             </div>
             {/* Floating Badge */}
-            <div className="absolute -bottom-6 -left-6 bg-card p-6 rounded-2xl shadow-elevated border border-border">
+            <div className="absolute -bottom-6 -left-6 bg-card p-6 rounded-md shadow-elevated border border-border">
               <p className="font-serif text-2xl font-bold text-primary">PMDC</p>
               <p className="text-sm text-muted-foreground">Certified edible grade</p>
             </div>

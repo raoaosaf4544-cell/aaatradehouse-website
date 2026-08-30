@@ -8,48 +8,51 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 30 25% 97%;
-    --foreground: 220 20% 18%;
+    /* Warm neutral paper, brand charcoal ink. */
+    --background: 36 18% 97%;
+    --foreground: 0 3% 13%;
 
-    --card: 30 20% 99%;
-    --card-foreground: 220 20% 18%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 3% 13%;
 
-    --popover: 30 20% 99%;
-    --popover-foreground: 220 20% 18%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 3% 13%;
 
-    --primary: 5 65% 65%;
-    --primary-foreground: 30 20% 99%;
+    /* Brand navy #32527B - the swoosh in the logo. */
+    --primary: 214 42% 34%;
+    --primary-foreground: 36 18% 98%;
 
-    --secondary: 30 15% 92%;
-    --secondary-foreground: 220 20% 18%;
+    --secondary: 30 12% 93%;
+    --secondary-foreground: 0 3% 13%;
 
-    --muted: 30 15% 94%;
-    --muted-foreground: 220 10% 45%;
+    --muted: 30 12% 94%;
+    --muted-foreground: 220 8% 42%;
 
-    --accent: 15 60% 72%;
-    --accent-foreground: 220 20% 18%;
+    /* Salt terracotta - rare accent only. */
+    --accent: 12 45% 58%;
+    --accent-foreground: 36 18% 98%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 30 15% 88%;
-    --input: 30 15% 88%;
-    --ring: 5 65% 65%;
+    --border: 30 10% 87%;
+    --input: 30 10% 87%;
+    --ring: 214 42% 34%;
 
-    --radius: 0.5rem;
+    --radius: 0.25rem;
 
     /* Custom tokens */
-    --salt-pink: 5 65% 75%;
-    --salt-coral: 15 60% 68%;
-    --salt-blush: 10 50% 90%;
-    --salt-cream: 35 30% 96%;
-    --salt-dark: 220 20% 18%;
-    --salt-warm: 25 25% 50%;
+    --salt-pink: 8 50% 74%;
+    --salt-coral: 12 45% 62%;
+    --salt-blush: 10 40% 92%;
+    --salt-cream: 36 24% 96%;
+    --salt-dark: 220 26% 7%;
+    --salt-warm: 25 18% 46%;
 
-    --gradient-hero: linear-gradient(135deg, hsl(5 65% 75% / 0.15), hsl(35 30% 96%));
-    --gradient-accent: linear-gradient(135deg, hsl(5 65% 65%), hsl(15 60% 72%));
-    --shadow-soft: 0 4px 20px -4px hsl(5 65% 65% / 0.15);
-    --shadow-elevated: 0 20px 50px -12px hsl(220 20% 18% / 0.15);
+    --gradient-hero: linear-gradient(135deg, hsl(214 42% 34% / 0.12), hsl(36 24% 96%));
+    --gradient-accent: linear-gradient(135deg, hsl(214 42% 34%), hsl(214 44% 24%));
+    --shadow-soft: 0 2px 12px -2px hsl(220 20% 12% / 0.08);
+    --shadow-elevated: 0 16px 40px -12px hsl(220 20% 12% / 0.18);
   }
 
   /* Radial gradient utility */
@@ -105,8 +108,13 @@ All colors MUST be HSL.
     --dur-reveal: 400ms;
   }
 
-  /* Reveal: hidden until observed, then settles 16px up. */
-  .reveal {
+  /* Reveal.
+     FAIL-SAFE BY DESIGN: content is visible by default. JS adds
+     `reveal-armed` on mount to opt in to hiding, then `is-visible` to
+     reveal. If JS never runs, or a ref never attaches, the content
+     simply shows - it can never be stranded invisible. */
+  .reveal.reveal-armed,
+  .reveal-group.reveal-armed > * {
     opacity: 0;
     transform: translate3d(0, 16px, 0);
     transition:
@@ -116,23 +124,8 @@ All colors MUST be HSL.
     will-change: opacity, transform;
   }
 
-  .reveal.is-visible {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-
-  /* Stagger: direct children settle in sequence once the group is observed.
-     Each child sets its own --reveal-delay. */
-  .reveal-group > * {
-    opacity: 0;
-    transform: translate3d(0, 16px, 0);
-    transition:
-      opacity var(--dur-reveal) var(--ease-out),
-      transform var(--dur-reveal) var(--ease-out);
-    transition-delay: var(--reveal-delay, 0ms);
-  }
-
-  .reveal-group.is-visible > * {
+  .reveal.reveal-armed.is-visible,
+  .reveal-group.reveal-armed.is-visible > * {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
@@ -155,9 +148,11 @@ All colors MUST be HSL.
 /* Anyone who asks for less motion gets none of it. */
 @media (prefers-reduced-motion: reduce) {
   .reveal,
-  .reveal.is-visible,
+  .reveal.reveal-armed,
+  .reveal.reveal-armed.is-visible,
   .reveal-group > *,
-  .reveal-group.is-visible > *,
+  .reveal-group.reveal-armed > *,
+  .reveal-group.reveal-armed.is-visible > *,
   .media-load,
   .media-load.is-loaded {
     opacity: 1 !important;

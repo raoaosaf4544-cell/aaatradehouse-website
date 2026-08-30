@@ -48,7 +48,7 @@ const Products = () => {
   const packs = useReveal<HTMLDivElement>();
 
   return (
-    <section id="products" className="py-32 bg-background relative">
+    <section id="products" className="py-28 md:py-36 bg-background relative">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-[0.02]" style={{
         backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--foreground)) 1px, transparent 0)`,
@@ -58,8 +58,8 @@ const Products = () => {
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div ref={header} className="reveal text-center max-w-3xl mx-auto mb-20">
-          <p className="text-primary font-semibold mb-4 tracking-widest uppercase text-sm">Product Portfolio</p>
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+          <p className="text-xs uppercase tracking-[0.2em] text-primary mb-5">Product Portfolio</p>
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.05] tracking-tight mb-6">
             Complete Salt Solutions
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
@@ -75,7 +75,7 @@ const Products = () => {
             <div
               key={product.name}
               style={{ "--reveal-delay": `${Math.min(index, 3) * 60}ms` } as React.CSSProperties}
-              className="group relative bg-card rounded-3xl overflow-hidden shadow-soft hover:shadow-elevated transition-all duration-[180ms] ease-[var(--ease-out)] hover:-translate-y-1 border border-transparent hover:border-primary/30"
+              className="group relative bg-card rounded-lg overflow-hidden shadow-soft hover:shadow-elevated transition-all duration-[180ms] ease-[var(--ease-out)] hover:-translate-y-1 border border-transparent hover:border-primary/30"
             >
               {/* Gradient Header */}
               <div className={`h-32 bg-gradient-to-br ${product.gradient} flex items-center justify-center relative overflow-hidden`}>
@@ -112,7 +112,7 @@ const Products = () => {
         </div>
 
         {/* Packaging Info */}
-        <div ref={packs} className="reveal mt-20 bg-salt-cream rounded-3xl p-10 md:p-14">
+        <div ref={packs} className="reveal mt-20 bg-salt-cream rounded-lg p-10 md:p-14">
           <p className="text-primary font-semibold mb-3 tracking-widest uppercase text-sm">Packaging</p>
           <h3 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-3">
             Any bulk size you need.
@@ -128,24 +128,24 @@ const Products = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-card rounded-2xl border border-border/50 p-6 transition-all duration-[180ms] ease-[var(--ease-out)] hover:-translate-y-1 hover:border-primary/30 hover:shadow-soft">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-accent flex items-center justify-center mb-4">
+            <div className="bg-card rounded-md border border-border/50 p-6 transition-all duration-[180ms] ease-[var(--ease-out)] hover:-translate-y-1 hover:border-primary/30 hover:shadow-soft">
+              <div className="w-14 h-14 rounded-md bg-gradient-accent flex items-center justify-center mb-4">
                 <Package className="w-7 h-7 text-primary-foreground" />
               </div>
               <h4 className="font-serif text-xl font-bold text-foreground mb-1">25 / 50 kg</h4>
               <p className="text-sm font-medium text-foreground/70 mb-2">PP export bags</p>
               <p className="text-muted-foreground text-sm">Standard distribution sizes.</p>
             </div>
-            <div className="bg-card rounded-2xl border border-border/50 p-6 transition-all duration-[180ms] ease-[var(--ease-out)] hover:-translate-y-1 hover:border-primary/30 hover:shadow-soft">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-accent flex items-center justify-center mb-4">
+            <div className="bg-card rounded-md border border-border/50 p-6 transition-all duration-[180ms] ease-[var(--ease-out)] hover:-translate-y-1 hover:border-primary/30 hover:shadow-soft">
+              <div className="w-14 h-14 rounded-md bg-gradient-accent flex items-center justify-center mb-4">
                 <Boxes className="w-7 h-7 text-primary-foreground" />
               </div>
               <h4 className="font-serif text-xl font-bold text-foreground mb-1">1000 kg</h4>
               <p className="text-sm font-medium text-foreground/70 mb-2">Jumbo bags</p>
               <p className="text-muted-foreground text-sm">For large-scale operations.</p>
             </div>
-            <div className="bg-card rounded-2xl border border-border/50 p-6 transition-all duration-[180ms] ease-[var(--ease-out)] hover:-translate-y-1 hover:border-primary/30 hover:shadow-soft">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-accent flex items-center justify-center mb-4">
+            <div className="bg-card rounded-md border border-border/50 p-6 transition-all duration-[180ms] ease-[var(--ease-out)] hover:-translate-y-1 hover:border-primary/30 hover:shadow-soft">
+              <div className="w-14 h-14 rounded-md bg-gradient-accent flex items-center justify-center mb-4">
                 <Ruler className="w-7 h-7 text-primary-foreground" />
               </div>
               <h4 className="font-serif text-xl font-bold text-foreground mb-1">Custom</h4>
@@ -159,8 +159,8 @@ const Products = () => {
             <span className="h-px flex-1 bg-border" />
           </div>
 
-          <div className="md:max-w-sm rounded-2xl border border-dashed border-border p-6 opacity-70">
-            <div className="w-14 h-14 rounded-2xl border border-border flex items-center justify-center mb-4">
+          <div className="md:max-w-sm rounded-md border border-dashed border-border p-6 opacity-70">
+            <div className="w-14 h-14 rounded-md border border-border flex items-center justify-center mb-4">
               <Tag className="w-7 h-7 text-muted-foreground" />
             </div>
             <h4 className="font-serif text-xl font-bold text-foreground mb-1">500 g / 1 kg</h4>

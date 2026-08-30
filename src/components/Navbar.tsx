@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import logo from "@/assets/logo.png";
+import logoLight from "@/assets/logo-light.png";
+import logoDark from "@/assets/logo-dark.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,17 +27,17 @@ const Navbar = () => {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
       scrolled 
-        ? "bg-background/95 backdrop-blur-md border-b border-border shadow-lg" 
+        ? "bg-background/90 backdrop-blur-lg border-b border-border" 
         : "bg-transparent border-b border-transparent"
     }`}>
       <div className="container mx-auto px-6">
-        <div className="flex items-center justify-between h-24">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <a href="#home" className="flex items-center gap-2">
-            <img 
-              src={logo} 
-              alt="AAA Trade House" 
-              className="h-16 w-auto object-contain"
+            <img
+              src={scrolled ? logoDark : logoLight}
+              alt="AAA Trade House"
+              className="h-12 md:h-14 w-auto object-contain transition-opacity duration-300"
             />
           </a>
 

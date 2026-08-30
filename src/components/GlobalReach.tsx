@@ -29,16 +29,16 @@ const GlobalReach = () => {
   const feats = useReveal<HTMLDivElement>();
 
   return (
-    <section id="global" className="py-24 bg-salt-dark text-primary-foreground overflow-hidden">
+    <section id="global" className="py-28 md:py-36 bg-salt-dark text-primary-foreground overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Content */}
           <div ref={intro} className="reveal">
-            <p className="text-salt-coral font-medium mb-4">Export Capability</p>
-            <h2 className="font-serif text-4xl md:text-5xl font-bold mb-6">
+            <p className="text-xs uppercase tracking-[0.2em] text-accent mb-5">Export Capability</p>
+            <h2 className="font-serif text-4xl md:text-5xl font-bold leading-[1.05] tracking-tight mb-6">
               From the mine to your container.
             </h2>
-            <p className="text-salt-coral/80 text-lg mb-12">
+            <p className="text-primary-foreground/60 text-base md:text-lg leading-relaxed mb-12">
               We source on a PMDC lease, grade to order, and pack for bulk shipment.
               Because there is no trading layer, the people arranging your container
               are the people who know the mine.
@@ -51,12 +51,12 @@ const GlobalReach = () => {
                   style={{ "--reveal-delay": `${Math.min(index, 3) * 60}ms` } as React.CSSProperties}
                   className="flex gap-4"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-salt-coral/20 flex items-center justify-center flex-shrink-0">
-                    <feature.icon className="w-6 h-6 text-salt-coral" />
+                  <div className="w-11 h-11 rounded-md bg-primary-foreground/5 border border-primary-foreground/10 flex items-center justify-center flex-shrink-0">
+                    <feature.icon className="w-5 h-5 text-accent" />
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-1">{feature.title}</h3>
-                    <p className="text-sm text-salt-coral/70">{feature.description}</p>
+                    <h3 className="font-medium mb-1.5">{feature.title}</h3>
+                    <p className="text-sm text-primary-foreground/50 leading-relaxed">{feature.description}</p>
                   </div>
                 </div>
               ))}
@@ -65,8 +65,8 @@ const GlobalReach = () => {
 
           {/* Map/Visual */}
           <div className="relative">
-            <div className="aspect-square rounded-full border-2 border-salt-coral/20 flex items-center justify-center">
-              <div className="w-3/4 h-3/4 rounded-full border-2 border-salt-coral/30 flex items-center justify-center animate-pulse">
+            <div className="aspect-square rounded-full border border-primary-foreground/10 flex items-center justify-center">
+              <div className="w-3/4 h-3/4 rounded-full border border-primary-foreground/15 flex items-center justify-center animate-pulse">
                 <div className="w-1/2 h-1/2 rounded-full bg-gradient-accent flex items-center justify-center">
                   <Mountain className="w-16 h-16 text-primary-foreground" />
                 </div>
@@ -74,16 +74,16 @@ const GlobalReach = () => {
             </div>
             
             {/* Floating Fact Markers */}
-            <div className="absolute top-10 right-10 px-3 py-1.5 bg-salt-coral/20 rounded-full text-sm text-salt-coral animate-float">
+            <div className="absolute top-10 right-10 px-3 py-1.5 bg-primary-foreground/5 border border-primary-foreground/15 backdrop-blur-sm rounded-full text-xs uppercase tracking-wider text-primary-foreground/70 animate-float">
               PMDC lease
             </div>
-            <div className="absolute top-1/4 left-0 px-3 py-1.5 bg-salt-coral/20 rounded-full text-sm text-salt-coral animate-float" style={{ animationDelay: "1s" }}>
+            <div className="absolute top-1/4 left-0 px-3 py-1.5 bg-primary-foreground/5 border border-primary-foreground/15 backdrop-blur-sm rounded-full text-xs uppercase tracking-wider text-primary-foreground/70 animate-float" style={{ animationDelay: "1s" }}>
               100 t / month
             </div>
-            <div className="absolute bottom-1/4 right-0 px-3 py-1.5 bg-salt-coral/20 rounded-full text-sm text-salt-coral animate-float" style={{ animationDelay: "2s" }}>
+            <div className="absolute bottom-1/4 right-0 px-3 py-1.5 bg-primary-foreground/5 border border-primary-foreground/15 backdrop-blur-sm rounded-full text-xs uppercase tracking-wider text-primary-foreground/70 animate-float" style={{ animationDelay: "2s" }}>
               4 grades
             </div>
-            <div className="absolute bottom-10 left-10 px-3 py-1.5 bg-salt-coral/20 rounded-full text-sm text-salt-coral animate-float" style={{ animationDelay: "0.5s" }}>
+            <div className="absolute bottom-10 left-10 px-3 py-1.5 bg-primary-foreground/5 border border-primary-foreground/15 backdrop-blur-sm rounded-full text-xs uppercase tracking-wider text-primary-foreground/70 animate-float" style={{ animationDelay: "0.5s" }}>
               PCSIR on request
             </div>
           </div>
