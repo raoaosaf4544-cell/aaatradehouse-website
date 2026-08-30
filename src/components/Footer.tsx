@@ -93,7 +93,7 @@ const Footer = () => {
           <div>
             <h4 className="text-xs uppercase tracking-[0.2em] text-primary-foreground/40 mb-6">Products</h4>
             <ul className="space-y-3">
-              {["Coarse", "Fine", "Edible", "Chunks"].map((product) => (
+              {["Edible Salt", "Industrial Salt", "Animal Lick Salt", "Wellness & Décor", "Bulk & Raw Sourcing", "Private Label"].map((product) => (
                 <li key={product}>
                   <a href="#products" className="text-primary-foreground/55 hover:text-primary-foreground transition-colors text-sm">
                     {product}

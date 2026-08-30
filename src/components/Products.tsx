@@ -1,44 +1,65 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Layers, Utensils, ShieldCheck, Mountain, Package, Boxes, Ruler, Tag } from "lucide-react";
+import { ArrowRight, Utensils, Factory, PawPrint, Lamp, Package, Boxes, Ruler, Tag } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
 import { LucideIcon } from "lucide-react";
 
 interface Product {
   name: string;
   description: string;
+  specs: string;
   uses: string;
   icon: LucideIcon;
-  gradient: string;
 }
 
 const products: Product[] = [
   {
-    name: "Coarse",
-    description: "Coarse-ground Himalayan pink salt, supplied in bulk for processing and resale.",
-    uses: "Industrial processing, bulk resale, further grading",
-    icon: Layers,
-    gradient: "from-slate-600 to-slate-800",
-  },
-  {
-    name: "Fine",
-    description: "Fine-ground Himalayan pink salt for food manufacturing and table use.",
-    uses: "Food manufacturing, seasoning, table salt",
+    name: "Edible Salt",
+    description:
+      "Fine, coarse and granular grades for gourmet food brands and culinary applications.",
+    // Granulation figures are NOT on the site until a lab report exists.
+    specs: "Grades available on request",
+    uses: "Gourmet food, table salt, seasoning, baking",
     icon: Utensils,
-    gradient: "from-rose-500 to-pink-600",
   },
   {
-    name: "Edible",
-    description: "Food-grade Himalayan pink salt. Carries PMDC certification at product level.",
-    uses: "Food brands — carries PMDC certification",
-    icon: ShieldCheck,
-    gradient: "from-amber-500 to-orange-600",
+    name: "Industrial Salt",
+    description:
+      "High-grade salt for industrial, chemical and manufacturing applications.",
+    specs: "Custom specifications available",
+    uses: "Chemical processing, manufacturing, water treatment",
+    icon: Factory,
   },
   {
-    name: "Chunks",
-    description: "Raw salt chunks and rock, supplied direct from the mine.",
-    uses: "Lamp and décor manufacturers, animal licks, processing",
-    icon: Mountain,
-    gradient: "from-blue-600 to-indigo-700",
+    name: "Animal Lick Salt",
+    description:
+      "Natural mineral blocks for livestock and farming, promoting animal health.",
+    specs: "Blocks and chunks in various weights",
+    uses: "Livestock, farming, equestrian, animal health",
+    icon: PawPrint,
+  },
+  {
+    name: "Wellness & Décor",
+    description:
+      "Hand-crafted salt lamps and decorative slabs for homes and spas.",
+    specs: "Lamps, tiles, slabs, custom carvings",
+    uses: "Home décor, wellness, spas, gifts",
+    icon: Lamp,
+  },
+  {
+    name: "Bulk & Raw Sourcing",
+    description:
+      "Direct supply of raw salt rocks for large-scale importers and manufacturers.",
+    specs: "1000kg jumbo bags | 25kg/50kg PP bags",
+    uses: "Importers, wholesalers, private label brands",
+    icon: Package,
+  },
+  {
+    name: "Private Label",
+    description:
+      "Your branding on bulk packaging and 500 g / 1 kg retail packs, under a registered brand.",
+    specs: "Custom packaging and branding",
+    uses: "Retail brands, distributors, wholesalers",
+    icon: Tag,
   },
 ];
 
@@ -63,50 +84,56 @@ const Products = () => {
             Complete Salt Solutions
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Four grades of Himalayan pink salt — coarse, fine, edible and chunks — supplied
-            in bulk from Khewra and other Pakistani mines, with packaging and private
-            labelling to your specification. PCSIR lab report available on request.
+            Himalayan pink salt from Khewra and other Pakistani mines, supplied in bulk
+            with packaging and private labelling to your specification. PCSIR lab report
+            available on request.
           </p>
         </div>
 
         {/* Products Grid */}
-        <div ref={grid} className="reveal-group grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div ref={grid} className="reveal-group grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border rounded-lg overflow-hidden">
           {products.map((product, index) => (
             <div
               key={product.name}
               style={{ "--reveal-delay": `${Math.min(index, 3) * 60}ms` } as React.CSSProperties}
-              className="group relative bg-card rounded-lg overflow-hidden shadow-soft hover:shadow-elevated transition-all duration-[180ms] ease-[var(--ease-out)] hover:-translate-y-1 border border-transparent hover:border-primary/30"
+              className="group relative bg-card p-8 lg:p-10 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40"
             >
-              {/* Gradient Header */}
-              <div className={`h-32 bg-gradient-to-br ${product.gradient} flex items-center justify-center relative overflow-hidden`}>
-                <div className="absolute inset-0 bg-black/10" />
-                <product.icon className="w-16 h-16 text-white/90 relative z-10 group-hover:scale-110 transition-transform duration-500" />
-                {/* Decorative circles */}
-                <div className="absolute -right-8 -top-8 w-32 h-32 rounded-full bg-white/10" />
-                <div className="absolute -left-4 -bottom-4 w-24 h-24 rounded-full bg-white/5" />
+              <div className="flex items-start justify-between mb-6">
+                <span className="font-serif text-3xl font-bold text-border tabular-nums leading-none">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <product.icon className="w-5 h-5 text-primary/60 group-hover:text-primary transition-colors" />
               </div>
-              
-              {/* Content */}
-              <div className="p-8">
-                <h3 className="font-serif text-2xl font-bold text-foreground mb-3">
-                  {product.name}
-                </h3>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  {product.description}
-                </p>
-                <div className="space-y-3 mb-6">
-                  <div className="flex items-start gap-2">
-                    <span className="text-xs font-semibold text-salt-warm uppercase tracking-wide w-16 flex-shrink-0">Uses:</span>
-                    <span className="text-sm text-muted-foreground">{product.uses}</span>
-                  </div>
+
+              <h3 className="font-serif text-2xl font-bold text-foreground mb-3 leading-tight">
+                {product.name}
+              </h3>
+              <p className="text-muted-foreground leading-relaxed mb-8">
+                {product.description}
+              </p>
+
+              <dl className="mt-auto space-y-4 mb-8">
+                <div className="border-t border-border pt-3">
+                  <dt className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground/70 mb-1">
+                    Specs
+                  </dt>
+                  <dd className="text-sm text-foreground/80">{product.specs}</dd>
                 </div>
-                <Button asChild variant="outline" className="w-full group/btn justify-center">
-                  <a href="#contact">
-                    Request Samples
-                    <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                  </a>
-                </Button>
-              </div>
+                <div className="border-t border-border pt-3">
+                  <dt className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground/70 mb-1">
+                    Uses
+                  </dt>
+                  <dd className="text-sm text-foreground/80">{product.uses}</dd>
+                </div>
+              </dl>
+
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:gap-3 transition-all duration-[180ms] ease-[var(--ease-out)]"
+              >
+                Request samples
+                <ArrowRight className="w-4 h-4" />
+              </a>
             </div>
           ))}
         </div>
@@ -127,7 +154,7 @@ const Products = () => {
             <span className="h-px flex-1 bg-border" />
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="bg-card rounded-md border border-border/50 p-6 transition-all duration-[180ms] ease-[var(--ease-out)] hover:-translate-y-1 hover:border-primary/30 hover:shadow-soft">
               <div className="w-14 h-14 rounded-md bg-gradient-accent flex items-center justify-center mb-4">
                 <Package className="w-7 h-7 text-primary-foreground" />
@@ -152,22 +179,14 @@ const Products = () => {
               <p className="text-sm font-medium text-foreground/70 mb-2">To your specification</p>
               <p className="text-muted-foreground text-sm">Name the size, we pack to it.</p>
             </div>
-          </div>
-
-          <div className="flex items-center gap-4 mt-12 mb-6">
-            <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">In development</span>
-            <span className="h-px flex-1 bg-border" />
-          </div>
-
-          <div className="md:max-w-sm rounded-md border border-dashed border-border p-6 opacity-70">
-            <div className="w-14 h-14 rounded-md border border-border flex items-center justify-center mb-4">
-              <Tag className="w-7 h-7 text-muted-foreground" />
+            <div className="bg-card rounded-md border border-border/50 p-6 transition-all duration-[180ms] ease-[var(--ease-out)] hover:-translate-y-1 hover:border-primary/30 hover:shadow-soft">
+              <div className="w-14 h-14 rounded-md bg-gradient-accent flex items-center justify-center mb-4">
+                <Tag className="w-7 h-7 text-primary-foreground" />
+              </div>
+              <h4 className="font-serif text-xl font-bold text-foreground mb-1">500 g / 1 kg</h4>
+              <p className="text-sm font-medium text-foreground/70 mb-2">Branded retail packs</p>
+              <p className="text-muted-foreground text-sm">Private labelling, registered brand.</p>
             </div>
-            <h4 className="font-serif text-xl font-bold text-foreground mb-1">500 g / 1 kg</h4>
-            <p className="text-sm font-medium text-foreground/70 mb-2">Branded retail packs</p>
-            <p className="text-muted-foreground text-sm">
-              Private labelling. Arrives with the Rashide plant.
-            </p>
           </div>
 
           <div className="text-center mt-12">

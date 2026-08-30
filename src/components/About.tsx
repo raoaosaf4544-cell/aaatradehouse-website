@@ -89,13 +89,13 @@ const About = () => {
                 direct from a PMDC-leased mine.
               </p>
               <p>
-                There is no trading layer between the mine and your container. We hold 100
-                tonnes a month across coarse, fine, edible and chunk grades, with PMDC
+                There is no trading layer between the mine and your container. We hold over
+                100 tonnes a month across coarse, fine, edible and chunk grades, with PMDC
                 certification on the edible grade.
               </p>
               <p>
-                Our facility near Rashide, Multan is under construction and has begun
-                processing, bringing crushing and grading in-house.
+                Our facility near Rashide, Multan is operational, handling crushing and
+                grading in-house.
               </p>
             </div>
             
@@ -106,7 +106,7 @@ const About = () => {
                 <p className="text-sm text-muted-foreground mt-1">Family in salt since</p>
               </div>
               <div>
-                <p className="font-serif text-3xl font-bold text-primary">100</p>
+                <p className="font-serif text-3xl font-bold text-primary">100+</p>
                 <p className="text-sm text-muted-foreground mt-1">Tonnes per month</p>
               </div>
               <div>

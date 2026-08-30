@@ -4,7 +4,7 @@ import heroStill from "@/assets/hero-salt.jpg";
 
 /* Editorial spec column. Values are confirmed facts - do not invent rows. */
 const specs = [
-  { value: "100", label: "Tonnes per month capacity" },
+  { value: "100+", label: "Tonnes per month capacity" },
   { value: "4", label: "Salt grades" },
   { value: "0", label: "Middlemen" },
 ];

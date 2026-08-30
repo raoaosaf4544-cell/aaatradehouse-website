@@ -87,7 +87,7 @@ const VideoShowcase = () => {
               <span className="text-2xl">🏭</span>
             </div>
             <h3 className="text-primary-foreground font-medium mb-2">In-House Processing</h3>
-            <p className="text-primary-foreground/50 text-sm leading-relaxed">Rashide facility under construction and processing</p>
+            <p className="text-primary-foreground/50 text-sm leading-relaxed">Rashide facility operational, crushing and grading in-house</p>
           </div>
         </div>
       </div>
