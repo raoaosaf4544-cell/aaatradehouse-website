@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Shield, Leaf, FlaskConical, Building2 } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
+import { CountUp } from "@/components/CountUp";
 import saltPacking from "@/assets/salt-packing.jpg";
 import bannerImage from "@/assets/banner-clean.jpg";
 
@@ -13,12 +14,12 @@ const features = [
   {
     icon: Leaf,
     title: "Direct from Source",
-    description: "No middlemen. Direct supply from Khewra and other Pakistani salt mines, with no trading layer in between.",
+    description: "Primarily direct from PMDC. Where we draw on other local suppliers, we test the material and keep you in the loop.",
   },
   {
     icon: FlaskConical,
-    title: "PCSIR Report on Request",
-    description: "Independent PCSIR laboratory analysis available on request.",
+    title: "Tested, Report on Request",
+    description: "High-purity salt, PCSIR tested. Independent laboratory report available on request, and required certifications provided for orders that need them.",
   },
   {
     icon: Building2,
@@ -89,28 +90,30 @@ const About = () => {
                 direct from a PMDC-leased mine.
               </p>
               <p>
-                There is no trading layer between the mine and your container. We hold over
+                We source primarily direct from PMDC. Where we draw on other local
+                suppliers, we test the material and keep you in the loop. We hold over
                 100 tonnes a month across coarse, fine, edible and chunk grades, with PMDC
                 certification on the edible grade.
               </p>
               <p>
                 Our facility near Rashide, Multan is operational, handling crushing and
-                grading in-house.
+                grading in-house. A typical industry consignment takes around two months;
+                we deliver verified orders in about 15 days.
               </p>
             </div>
             
             {/* Key Stats */}
             <div className="grid grid-cols-3 gap-6 mt-10 pt-10 border-t border-border">
               <div>
-                <p className="font-serif text-3xl font-bold text-primary">1994</p>
+                <p className="font-serif text-3xl font-bold text-primary tabular-nums"><CountUp value="1994" /></p>
                 <p className="text-sm text-muted-foreground mt-1">Family in salt since</p>
               </div>
               <div>
-                <p className="font-serif text-3xl font-bold text-primary">100+</p>
+                <p className="font-serif text-3xl font-bold text-primary tabular-nums"><CountUp value="100+" /></p>
                 <p className="text-sm text-muted-foreground mt-1">Tonnes per month</p>
               </div>
               <div>
-                <p className="font-serif text-3xl font-bold text-primary">4</p>
+                <p className="font-serif text-3xl font-bold text-primary tabular-nums"><CountUp value="4" /></p>
                 <p className="text-sm text-muted-foreground mt-1">Grades supplied</p>
               </div>
             </div>

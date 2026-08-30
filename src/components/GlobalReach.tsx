@@ -1,11 +1,11 @@
-import { Mountain, Factory, FileCheck, Package } from "lucide-react";
+import { Mountain, Factory, FileCheck, Package, Clock } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
 
 const exportFeatures = [
   {
     icon: Mountain,
     title: "Direct Sourcing",
-    description: "Khewra and other Pakistani salt mines, on a PMDC lease. No trading layer in between.",
+    description: "Primarily direct from PMDC. Where we use other local suppliers we test the material and keep you informed.",
   },
   {
     icon: Factory,
@@ -15,12 +15,17 @@ const exportFeatures = [
   {
     icon: FileCheck,
     title: "Certification",
-    description: "PMDC certification on the edible grade. Independent PCSIR laboratory report on request.",
+    description: "PMDC certification on the edible grade, PCSIR-tested batches, and the certifications your order requires.",
   },
   {
     icon: Package,
     title: "Bulk Supply",
     description: "Over 100 tonnes a month across four grades, packed to your specification.",
+  },
+  {
+    icon: Clock,
+    title: "15-Day Lead Time",
+    description: "A typical industry consignment runs around two months. We deliver verified orders in about 15 days.",
   },
 ];
 
@@ -39,9 +44,9 @@ const GlobalReach = () => {
               From the mine to your container.
             </h2>
             <p className="text-primary-foreground/60 text-base md:text-lg leading-relaxed mb-12">
-              We source on a PMDC lease, grade to order, and pack for bulk shipment.
-              Because there is no trading layer, the people arranging your container
-              are the people who know the mine.
+              We source primarily direct from PMDC, grade to order, and pack for bulk
+              shipment. There is no trading layer, so the people arranging your container
+              are the people who know the mine — and every batch is tested either way.
             </p>
 
             <div ref={feats} className="reveal-group grid sm:grid-cols-2 gap-6">
@@ -78,7 +83,7 @@ const GlobalReach = () => {
               PMDC lease
             </div>
             <div className="absolute top-1/4 left-0 px-3 py-1.5 bg-primary-foreground/5 border border-primary-foreground/15 backdrop-blur-sm rounded-full text-xs uppercase tracking-wider text-primary-foreground/70 animate-float" style={{ animationDelay: "1s" }}>
-              100 t / month
+              100+ t / month
             </div>
             <div className="absolute bottom-1/4 right-0 px-3 py-1.5 bg-primary-foreground/5 border border-primary-foreground/15 backdrop-blur-sm rounded-full text-xs uppercase tracking-wider text-primary-foreground/70 animate-float" style={{ animationDelay: "2s" }}>
               4 grades

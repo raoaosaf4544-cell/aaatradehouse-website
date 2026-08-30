@@ -17,7 +17,7 @@ const products: Product[] = [
     description:
       "Fine, coarse and granular grades for gourmet food brands and culinary applications.",
     // Granulation figures are NOT on the site until a lab report exists.
-    specs: "Grades available on request",
+    specs: "High-purity, PCSIR-tested. Report and grades on request",
     uses: "Gourmet food, table salt, seasoning, baking",
     icon: Utensils,
   },
@@ -56,7 +56,7 @@ const products: Product[] = [
   {
     name: "Private Label",
     description:
-      "Your branding on bulk packaging and 500 g / 1 kg retail packs, under a registered brand.",
+      "Your branding on bulk packaging and 500 g / 1 kg retail packs, under our registered brand. Local distribution is live; export to follow.",
     specs: "Custom packaging and branding",
     uses: "Retail brands, distributors, wholesalers",
     icon: Tag,

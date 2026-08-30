@@ -1,12 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Mountain } from "lucide-react";
 import heroStill from "@/assets/hero-salt.jpg";
+import { CountUp } from "@/components/CountUp";
 
 /* Editorial spec column. Values are confirmed facts - do not invent rows. */
 const specs = [
   { value: "100+", label: "Tonnes per month capacity" },
   { value: "4", label: "Salt grades" },
   { value: "0", label: "Middlemen" },
+  { value: "15", label: "Day lead time, verified orders" },
 ];
 
 const Hero = () => {
@@ -57,7 +59,7 @@ const Hero = () => {
             <div className="inline-flex items-center gap-2.5 mb-8 animate-fade-in">
               <Mountain size={16} className="text-accent" />
               <span className="text-xs uppercase tracking-[0.2em] text-primary-foreground/70">
-                Direct from a PMDC-leased mine — no trading layer
+                Primarily direct from PMDC — no trading layer
               </span>
             </div>
 
@@ -76,9 +78,9 @@ const Hero = () => {
               className="text-base md:text-lg text-primary-foreground/70 mb-10 max-w-xl leading-relaxed animate-fade-in"
               style={{ animationDelay: "0.2s" }}
             >
-              Bulk Himalayan pink salt in coarse, fine, edible and chunk grades —
-              sourced direct from a PMDC-leased mine, with no trading layer between
-              the mine and your container.
+              Bulk Himalayan pink salt in coarse, fine, edible and chunk grades,
+              sourced primarily direct from PMDC. No trading layer between the mine
+              and your container, and every batch tested.
             </p>
 
             <div
@@ -118,7 +120,7 @@ const Hero = () => {
                 >
                   <dt className="text-sm text-primary-foreground/60">{s.label}</dt>
                   <dd className="font-serif text-4xl md:text-5xl font-bold text-primary-foreground tabular-nums">
-                    {s.value}
+                    <CountUp value={s.value} />
                   </dd>
                 </div>
               ))}
