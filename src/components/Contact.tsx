@@ -120,8 +120,9 @@ const Contact = () => {
                 <div>
                   <h4 className="font-semibold text-foreground mb-1">Visit Us</h4>
                   <p className="text-muted-foreground">
-                    Lahore,<br />
-                    Punjab, Pakistan
+Office No. 42, Valencia Tower,<br />
+                    Block K1, Valencia Town,<br />
+                    Lahore 54770, Pakistan
                   </p>
                 </div>
               </div>

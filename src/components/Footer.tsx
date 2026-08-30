@@ -4,22 +4,24 @@ import { Facebook, Instagram, Linkedin, Mail, MapPin, MessageCircle, Phone } fro
 
 const Footer = () => {
   return (
-    <footer className="bg-salt-dark text-primary-foreground">
-      {/* Brand band. banner-clean.jpg is the cropped collage - the
-          original had a fabricated claims bar baked in; do not swap
-          it back for the uncropped file. */}
-      <div className="relative h-48 md:h-64 overflow-hidden">
+    <footer className="relative bg-salt-dark text-primary-foreground overflow-hidden">
+      {/* Full-bleed brand banner behind the whole footer.
+          banner-clean.jpg is the CROPPED collage - the original had a
+          fabricated claims bar baked in. Do not swap in the uncropped file. */}
+      <div className="absolute inset-0" aria-hidden="true">
         <img
           src={footerBanner}
-          alt="Himalayan pink salt grades, bulk sacks and containerised export"
+          alt=""
           loading="lazy"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-salt-dark/70" />
-        <div className="absolute inset-0 bg-gradient-to-b from-salt-dark via-transparent to-salt-dark" />
+        {/* Layered scrim: heavy enough for AA text contrast, light enough
+            that the collage still reads. */}
+        <div className="absolute inset-0 bg-salt-dark/88" />
+        <div className="absolute inset-0 bg-gradient-to-b from-salt-dark via-salt-dark/80 to-salt-dark" />
       </div>
 
-      <div className="container mx-auto px-6 pt-16 pb-14">
+      <div className="container mx-auto px-6 pt-20 pb-14 relative z-10">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand */}
           <div className="lg:col-span-1">
@@ -108,7 +110,7 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-salt-coral flex-shrink-0 mt-0.5" />
                 <span className="text-primary-foreground/55 text-sm">
-                  Lahore,<br />Punjab, Pakistan
+Office No. 42, Valencia Tower,<br />Block K1, Valencia Town,<br />Lahore 54770, Pakistan
                 </span>
               </li>
               <li className="flex items-center gap-3">
@@ -128,7 +130,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-primary-foreground/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="relative z-10 border-t border-primary-foreground/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-primary-foreground/40 text-sm">
             © {new Date().getFullYear()} AAA Trade House. All rights reserved.
           </p>
