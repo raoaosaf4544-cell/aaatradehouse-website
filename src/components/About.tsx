@@ -123,7 +123,7 @@ const About = () => {
             <div className="aspect-[4/5] rounded-lg overflow-hidden shadow-2xl">
               <img
                 src={saltPacking}
-                alt="AAA Trade House salt packing process"
+                alt="Himalayan pink salt being packed into bulk export bags at AAA Trade House, Lahore"
                 onLoad={() => setImgLoaded(true)}
                 className={`w-full h-full object-cover hover:scale-105 transition-transform duration-700 media-load ${imgLoaded ? "is-loaded" : ""}`}
               />

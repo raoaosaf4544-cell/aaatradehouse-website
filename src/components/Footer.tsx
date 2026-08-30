@@ -27,7 +27,7 @@ const Footer = () => {
           <div className="lg:col-span-1">
             <img
               src={logoLight}
-              alt="AAA Trade House"
+              alt="AAA Trade House - Himalayan Pink Salt Experts"
               className="h-14 w-auto object-contain opacity-90 mb-5"
             />
             <p className="text-primary-foreground/55 text-sm leading-relaxed mb-6">

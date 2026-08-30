@@ -41,7 +41,7 @@ const VideoShowcase = () => {
             {prefersReduced ? (
               <img
                 src={showcaseStill}
-                alt="AAA Trade House salt processing facility"
+                alt="Himalayan pink salt crushing and grading at the AAA Trade House facility near Rashide, Multan"
                 loading="lazy"
                 onLoad={() => setMediaLoaded(true)}
                 className={`w-full aspect-video object-cover media-load ${mediaLoaded ? "is-loaded" : ""}`}

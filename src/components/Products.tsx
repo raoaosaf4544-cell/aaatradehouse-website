@@ -81,7 +81,7 @@ const Products = () => {
         <div ref={header} className="reveal text-center max-w-3xl mx-auto mb-20">
           <p className="text-xs uppercase tracking-[0.2em] text-primary mb-5">Product Portfolio</p>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.05] tracking-tight mb-6">
-            Complete Salt Solutions
+            Himalayan Pink Salt Products
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Himalayan pink salt from Khewra and other Pakistani mines, supplied in bulk
