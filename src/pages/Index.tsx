@@ -4,6 +4,7 @@ import About from "@/components/About";
 import Products from "@/components/Products";
 import VideoShowcase from "@/components/VideoShowcase";
 import GlobalReach from "@/components/GlobalReach";
+import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -16,6 +17,7 @@ const Index = () => {
       <Products />
       <VideoShowcase />
       <GlobalReach />
+      <FAQ />
       <Contact />
       <Footer />
     </div>

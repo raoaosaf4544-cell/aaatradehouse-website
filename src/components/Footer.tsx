@@ -77,6 +77,7 @@ const Footer = () => {
                 { name: "Products", href: "#products" },
                 { name: "Process", href: "#video-section" },
                 { name: "Export", href: "#global" },
+                { name: "FAQ", href: "#faq" },
                 { name: "Contact", href: "#contact" },
               ].map((link) => (
                 <li key={link.name}>
