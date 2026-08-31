@@ -97,7 +97,7 @@ const Contact = () => {
                   <Mail className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-foreground mb-1">Email Us</h4>
+                  <h3 className="font-semibold text-foreground mb-1">Email Us</h3>
                   <a href="mailto:info@aaatradehouse.com" className="text-muted-foreground hover:text-primary transition-colors">info@aaatradehouse.com</a>
                 </div>
               </div>
@@ -107,7 +107,7 @@ const Contact = () => {
                   <Phone className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-foreground mb-1">Call Us</h4>
+                  <h3 className="font-semibold text-foreground mb-1">Call Us</h3>
                   <a href="tel:+923174286226" className="block text-muted-foreground hover:text-primary transition-colors">+92 317 4286226</a>
                   <a href="https://wa.me/923174286226" target="_blank" rel="noopener noreferrer" className="block text-muted-foreground hover:text-primary transition-colors">WhatsApp</a>
                 </div>
@@ -118,7 +118,7 @@ const Contact = () => {
                   <MapPin className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-foreground mb-1">Visit Us</h4>
+                  <h3 className="font-semibold text-foreground mb-1">Visit Us</h3>
                   <p className="text-muted-foreground">
 Office No. 42, Valencia Tower,<br />
                     Block K1, Valencia Town,<br />

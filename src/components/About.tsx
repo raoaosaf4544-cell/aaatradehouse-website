@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Shield, Leaf, FlaskConical, Building2 } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
 import { CountUp } from "@/components/CountUp";
-import saltPacking from "@/assets/salt-packing.jpg";
-import bannerImage from "@/assets/banner-clean.jpg";
+import saltPacking from "@/assets/salt-packing.webp";
+import bannerImage from "@/assets/banner-clean.webp";
 
 const features = [
   {

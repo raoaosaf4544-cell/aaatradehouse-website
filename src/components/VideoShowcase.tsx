@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useReveal } from "@/hooks/use-reveal";
-import showcaseStill from "@/assets/banner-clean.jpg";
+import showcaseStill from "@/assets/banner-clean.webp";
 import facilityVideo from "@/assets/facility.mp4";
 
 const VideoShowcase = () => {
@@ -34,7 +34,7 @@ const VideoShowcase = () => {
           </p>
         </div>
 
-        {/* Real facility footage. Below the fold, so preload="metadata"
+        {/* Real facility footage. Below the fold, so preload="none"
             keeps it out of the hero's critical path. */}
         <div className="max-w-6xl mx-auto">
           <div className="relative rounded-lg overflow-hidden border border-primary-foreground/10">

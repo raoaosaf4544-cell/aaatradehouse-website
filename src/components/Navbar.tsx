@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import logoLight from "@/assets/logo-light.png";
-import logoDark from "@/assets/logo-dark.png";
+import logoLight from "@/assets/logo-light.webp";
+import logoDark from "@/assets/logo-dark.webp";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,6 +36,8 @@ const Navbar = () => {
           <a href="#home" className="flex items-center gap-2">
             <img
               src={scrolled ? logoDark : logoLight}
+              width={400}
+              height={213}
               alt="AAA Trade House - Himalayan Pink Salt Experts"
               className="h-12 md:h-14 w-auto object-contain transition-opacity duration-300"
             />
@@ -63,6 +65,9 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
+            type="button"
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isOpen}
             className={`md:hidden ${scrolled ? "text-foreground" : "text-primary-foreground"}`}
             onClick={() => setIsOpen(!isOpen)}
           >

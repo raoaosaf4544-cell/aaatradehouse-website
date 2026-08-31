@@ -1,5 +1,5 @@
-import logoLight from "@/assets/logo-light.png";
-import footerBanner from "@/assets/banner-clean.jpg";
+import logoLight from "@/assets/logo-light.webp";
+import footerBanner from "@/assets/banner-clean.webp";
 import { Facebook, Instagram, Linkedin, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 
 const Footer = () => {
@@ -27,6 +27,8 @@ const Footer = () => {
           <div className="lg:col-span-1">
             <img
               src={logoLight}
+              width={400}
+              height={213}
               alt="AAA Trade House - Himalayan Pink Salt Experts"
               className="h-14 w-auto object-contain opacity-90 mb-5"
             />
@@ -67,7 +69,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-xs uppercase tracking-[0.2em] text-primary-foreground/40 mb-6">Quick Links</h4>
+            <h3 className="text-xs uppercase tracking-[0.2em] text-primary-foreground/40 mb-6">Quick Links</h3>
             <ul className="space-y-3">
               {[
                 { name: "Home", href: "#home" },
@@ -91,7 +93,7 @@ const Footer = () => {
 
           {/* Products */}
           <div>
-            <h4 className="text-xs uppercase tracking-[0.2em] text-primary-foreground/40 mb-6">Products</h4>
+            <h3 className="text-xs uppercase tracking-[0.2em] text-primary-foreground/40 mb-6">Products</h3>
             <ul className="space-y-3">
               {["Edible Salt", "Industrial Salt", "Animal Lick Salt", "Wellness & Décor", "Bulk & Raw Sourcing", "Private Label"].map((product) => (
                 <li key={product}>
@@ -105,7 +107,7 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h4 className="text-xs uppercase tracking-[0.2em] text-primary-foreground/40 mb-6">Contact Us</h4>
+            <h3 className="text-xs uppercase tracking-[0.2em] text-primary-foreground/40 mb-6">Contact Us</h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-salt-coral flex-shrink-0 mt-0.5" />

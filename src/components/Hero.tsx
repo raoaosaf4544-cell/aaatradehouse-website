@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Mountain } from "lucide-react";
-import heroStill from "@/assets/hero-salt.jpg";
+import heroStill from "@/assets/hero-salt.webp";
 import { CountUp } from "@/components/CountUp";
 
 /* Editorial spec column. Values are confirmed facts - do not invent rows. */
