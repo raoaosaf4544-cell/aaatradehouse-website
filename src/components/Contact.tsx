@@ -42,6 +42,11 @@ const Contact = () => {
       },
     ].filter((f) => f.value !== "");
 
+    // Set by the HubSpot tracking script in index.html. Absent on a first
+    // visit with no cookie yet, or if a consent tool blocks the script -
+    // omitted rather than sent empty, which HubSpot rejects.
+    const hutk = document.cookie.match(/(?:^|;\s*)hubspotutk=([^;]*)/)?.[1];
+
     setState("sending");
     setErrorDetail("");
 
@@ -52,6 +57,7 @@ const Contact = () => {
         body: JSON.stringify({
           fields,
           context: {
+            ...(hutk ? { hutk } : {}),
             pageUri: window.location.href,
             pageName: document.title,
           },

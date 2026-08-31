@@ -197,5 +197,17 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- HubSpot tracking. Sets the hubspotutk cookie that Contact.tsx reads
+         into context.hutk, which is what links a form submission to the
+         existing contact record instead of stranding it. async+defer at end
+         of body so it never blocks first paint. -->
+    <script
+      type="text/javascript"
+      id="hs-script-loader"
+      async
+      defer
+      src="https://js.hs-scripts.com/246642088.js"
+    ></script>
   </body>
 </html>
