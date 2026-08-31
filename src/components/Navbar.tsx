@@ -36,8 +36,8 @@ const Navbar = () => {
           <a href="#home" className="flex items-center gap-2">
             <img
               src={scrolled ? logoDark : logoLight}
-              width={400}
-              height={213}
+              width={240}
+              height={128}
               alt="AAA Trade House - Himalayan Pink Salt Experts"
               className="h-12 md:h-14 w-auto object-contain transition-opacity duration-300"
             />
