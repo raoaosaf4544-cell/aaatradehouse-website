@@ -96,8 +96,9 @@ const About = () => {
                 certification on the edible grade.
               </p>
               <p>
-                Our facility near Rashide, Multan is operational, handling crushing and
-                grading in-house.
+                Our facility near Rashida, Multan is operational, handling crushing and
+                grading in-house. We already supply the domestic market, shipping to
+                Karachi and across Pakistan under our own registered salt brand.
               </p>
             </div>
             

@@ -10,7 +10,7 @@ const exportFeatures = [
   {
     icon: Factory,
     title: "In-House Processing",
-    description: "Our Rashide facility in Multan is operational, handling crushing and grading in-house.",
+    description: "Our Rashida facility in Multan is operational, handling crushing and grading in-house.",
   },
   {
     icon: FileCheck,
