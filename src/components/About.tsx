@@ -32,6 +32,7 @@ const About = () => {
   const header = useReveal<HTMLDivElement>();
   const grid = useReveal<HTMLDivElement>();
   const story = useReveal<HTMLDivElement>();
+  const why = useReveal<HTMLDivElement>();
   const [imgLoaded, setImgLoaded] = useState(false);
 
   return (
@@ -153,6 +154,30 @@ const About = () => {
               <p className="text-sm text-muted-foreground">Certified edible grade</p>
             </div>
             <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-gradient-accent opacity-20 blur-2xl" />
+          </div>
+        </div>
+
+        {/* Why we do this */}
+        <div ref={why} className="reveal mt-24 pt-16 border-t border-border">
+          <div className="max-w-3xl">
+            <p className="text-xs uppercase tracking-[0.2em] text-primary mb-5">Why We Do This</p>
+            <p className="font-serif text-2xl md:text-3xl font-bold text-foreground leading-snug mb-7">
+              For over thirty years our family has worked with Himalayan salt, learned
+              hands-on and passed down, not taught at a desk.
+            </p>
+            <div className="space-y-5 text-muted-foreground text-lg leading-relaxed">
+              <p>
+                In 2009 we formalised the business as AAA General Trading. Today a new
+                generation leads the export side: someone who grew up around this trade
+                and set out early to take the family's salt to the world.
+              </p>
+              <p>
+                We run it on transparency and persistence. We tell you what we know and
+                what we do not, and we do not give up when something gets difficult. You
+                are a buyer we know by name, not a ticket number, and we put our own name
+                on every shipment.
+              </p>
+            </div>
           </div>
         </div>
       </div>
