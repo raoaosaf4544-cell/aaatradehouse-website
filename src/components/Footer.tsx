@@ -129,6 +129,9 @@ Office No. 42, Valencia Tower,<br />Block K1, Valencia Town,<br />Lahore 54770, 
                 <a href="https://wa.me/923174286226" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/55 hover:text-primary-foreground transition-colors text-sm">WhatsApp</a>
               </li>
             </ul>
+            <p className="text-primary-foreground/55 text-sm leading-relaxed mt-6 pt-6 border-t border-primary-foreground/10">
+              Contracts and invoices are issued by AAA General Trading.
+            </p>
           </div>
         </div>
 
@@ -138,7 +141,7 @@ Office No. 42, Valencia Tower,<br />Block K1, Valencia Town,<br />Lahore 54770, 
             © {new Date().getFullYear()} AAA Trade House. All rights reserved.
           </p>
           <p className="text-primary-foreground/55 text-sm">
-            The export brand of AAA General Trading
+            AAA Trade House is the export brand of AAA General Trading, registered since 2009.
           </p>
         </div>
       </div>

@@ -85,9 +85,10 @@ const About = () => {
             </h3>
             <div className="space-y-6 text-muted-foreground text-lg leading-relaxed">
               <p>
-                Our family has worked in Pakistan's salt trade since 1994. AAA Trade House is
-                the export brand of AAA General Trading, supplying bulk Himalayan pink salt
-                direct from a PMDC-leased mine.
+                Our family has worked in Pakistan's salt trade for over 30 years. In
+                2009 we formalised the business as AAA General Trading, our registered
+                company. AAA Trade House is our dedicated Himalayan pink salt export
+                brand, operating under it.
               </p>
               <p>
                 We source primarily direct from PMDC. Where we draw on other local
@@ -102,6 +103,24 @@ const About = () => {
               </p>
             </div>
             
+            {/* Company & Legal Structure */}
+            <div className="mt-10 border-l-2 border-primary pl-6">
+              <p className="text-xs uppercase tracking-[0.2em] text-primary mb-3">
+                Company &amp; Legal Structure
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                AAA Trade House is the export brand of{" "}
+                <strong className="font-semibold text-foreground">AAA General Trading</strong>,
+                our registered company operating since 2009. Contracts, invoices and
+                banking documents are issued in the name of AAA General Trading.
+              </p>
+              <p className="text-muted-foreground leading-relaxed mt-4">
+                The export brand is younger than the company. Our export record to date is
+                one completed shipment to the UAE, alongside established domestic supply
+                across Pakistan under our own registered salt brand.
+              </p>
+            </div>
+
             {/* Key Stats */}
             <div className="grid grid-cols-3 gap-6 mt-10 pt-10 border-t border-border">
               <div>

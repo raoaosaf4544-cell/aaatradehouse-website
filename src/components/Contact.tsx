@@ -133,6 +133,13 @@ Office No. 42, Valencia Tower,<br />
                 </div>
               </div>
             </div>
+
+            <p className="text-sm text-muted-foreground leading-relaxed mt-10 pt-6 border-t border-border">
+              Contracts, invoices and banking documents are issued in the name of{" "}
+              <strong className="font-semibold text-foreground">AAA General Trading</strong>,
+              our registered company. AAA Trade House is its Himalayan pink salt export
+              brand.
+            </p>
           </div>
 
           {/* Contact Form */}
