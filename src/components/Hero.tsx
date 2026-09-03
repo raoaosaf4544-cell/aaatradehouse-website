@@ -8,7 +8,6 @@ const specs = [
   { value: "100+", label: "Tonnes per month capacity" },
   { value: "4", label: "Salt grades" },
   { value: "0", label: "Middlemen" },
-  { value: "15", label: "Day lead time, verified orders" },
 ];
 
 const Hero = () => {

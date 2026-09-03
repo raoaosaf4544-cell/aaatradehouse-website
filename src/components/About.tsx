@@ -97,8 +97,7 @@ const About = () => {
               </p>
               <p>
                 Our facility near Rashide, Multan is operational, handling crushing and
-                grading in-house. A typical industry consignment takes around two months;
-                we deliver verified orders in about 15 days.
+                grading in-house.
               </p>
             </div>
             

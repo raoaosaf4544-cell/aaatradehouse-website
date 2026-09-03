@@ -1,4 +1,4 @@
-import { Mountain, Factory, FileCheck, Package, Clock } from "lucide-react";
+import { Mountain, Factory, FileCheck, Package } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
 
 const exportFeatures = [
@@ -21,11 +21,6 @@ const exportFeatures = [
     icon: Package,
     title: "Bulk Supply",
     description: "Over 100 tonnes a month across four grades, packed to your specification.",
-  },
-  {
-    icon: Clock,
-    title: "15-Day Lead Time",
-    description: "A typical industry consignment runs around two months. We deliver verified orders in about 15 days.",
   },
 ];
 

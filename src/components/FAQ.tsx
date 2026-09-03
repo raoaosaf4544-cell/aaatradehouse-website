@@ -15,7 +15,7 @@ export const faqs = [
   },
   {
     q: "How long does a Himalayan salt order take to deliver?",
-    a: "A typical industry consignment runs around two months. AAA Trade House delivers verified orders in about 15 days.",
+    a: "Lead time depends on grade, order volume, packaging and destination port. Tell us what you need and we confirm a date in writing before you commit.",
   },
   {
     q: "Is the salt certified and laboratory tested?",
