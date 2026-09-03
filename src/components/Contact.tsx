@@ -93,8 +93,9 @@ const Contact = () => {
               Ready to Order?
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-12">
-              Whether you need a small sample or bulk shipments, our team is ready 
-              to assist you with pricing, specifications, and logistics.
+              Talk directly to us, no sales queue. Send your requirement and get a real
+              response from the people who run the business, with pricing, specifications
+              and packaging options.
             </p>
 
             <div className="space-y-6">
