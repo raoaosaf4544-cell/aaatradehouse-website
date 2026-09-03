@@ -45,7 +45,7 @@ const FAQ = () => {
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.05] tracking-tight mb-6">
             What importers ask first.
           </h2>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-muted-foreground text-lg leading-relaxed">
             The answers below are the ones we give on every call. Anything not
             covered here, ask us directly.
           </p>

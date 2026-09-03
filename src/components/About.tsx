@@ -48,7 +48,7 @@ const About = () => {
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.05] tracking-tight mb-6">
             Our Heritage & Strength
           </h2>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-muted-foreground text-lg leading-relaxed">
             Family experience in Pakistan's salt trade since 1994, operating as the export
             brand of AAA General Trading.
           </p>

@@ -69,7 +69,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-xs uppercase tracking-[0.2em] text-primary-foreground/40 mb-6">Quick Links</h3>
+            <h3 className="text-xs uppercase tracking-[0.2em] text-primary-foreground/55 mb-6">Quick Links</h3>
             <ul className="space-y-3">
               {[
                 { name: "Home", href: "#home" },
@@ -94,7 +94,7 @@ const Footer = () => {
 
           {/* Products */}
           <div>
-            <h3 className="text-xs uppercase tracking-[0.2em] text-primary-foreground/40 mb-6">Products</h3>
+            <h3 className="text-xs uppercase tracking-[0.2em] text-primary-foreground/55 mb-6">Products</h3>
             <ul className="space-y-3">
               {["Edible Salt", "Industrial Salt", "Animal Lick Salt", "Wellness & Décor", "Bulk & Raw Sourcing", "Private Label"].map((product) => (
                 <li key={product}>
@@ -108,7 +108,7 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h3 className="text-xs uppercase tracking-[0.2em] text-primary-foreground/40 mb-6">Contact Us</h3>
+            <h3 className="text-xs uppercase tracking-[0.2em] text-primary-foreground/55 mb-6">Contact Us</h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-salt-coral flex-shrink-0 mt-0.5" />
@@ -134,10 +134,10 @@ Office No. 42, Valencia Tower,<br />Block K1, Valencia Town,<br />Lahore 54770, 
 
         {/* Bottom Bar */}
         <div className="relative z-10 border-t border-primary-foreground/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-primary-foreground/40 text-sm">
+          <p className="text-primary-foreground/55 text-sm">
             © {new Date().getFullYear()} AAA Trade House. All rights reserved.
           </p>
-          <p className="text-primary-foreground/40 text-sm">
+          <p className="text-primary-foreground/55 text-sm">
             The export brand of AAA General Trading
           </p>
         </div>

@@ -92,7 +92,7 @@ const Contact = () => {
             <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-6">
               Ready to Order?
             </h2>
-            <p className="text-muted-foreground text-lg mb-12">
+            <p className="text-muted-foreground text-lg leading-relaxed mb-12">
               Whether you need a small sample or bulk shipments, our team is ready 
               to assist you with pricing, specifications, and logistics.
             </p>
@@ -125,7 +125,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">Visit Us</h3>
-                  <p className="text-muted-foreground">
+                  <p className="text-muted-foreground leading-relaxed">
 Office No. 42, Valencia Tower,<br />
                     Block K1, Valencia Town,<br />
                     Lahore 54770, Pakistan

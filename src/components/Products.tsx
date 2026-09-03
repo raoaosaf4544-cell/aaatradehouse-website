@@ -83,7 +83,7 @@ const Products = () => {
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.05] tracking-tight mb-6">
             Himalayan Pink Salt Products
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-lg leading-relaxed max-w-2xl mx-auto">
             Himalayan pink salt from Khewra and other Pakistani mines, supplied in bulk
             with packaging and private labelling to your specification. PCSIR lab report
             available on request.
@@ -114,13 +114,13 @@ const Products = () => {
 
               <dl className="mt-auto space-y-4 mb-8">
                 <div className="border-t border-border pt-3">
-                  <dt className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground/70 mb-1">
+                  <dt className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground mb-1">
                     Specs
                   </dt>
                   <dd className="text-sm text-foreground/80">{product.specs}</dd>
                 </div>
                 <div className="border-t border-border pt-3">
-                  <dt className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground/70 mb-1">
+                  <dt className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground mb-1">
                     Uses
                   </dt>
                   <dd className="text-sm text-foreground/80">{product.uses}</dd>
@@ -144,7 +144,7 @@ const Products = () => {
           <h3 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-3">
             Any bulk size you need.
           </h3>
-          <p className="text-muted-foreground mb-10 max-w-2xl">
+          <p className="text-muted-foreground leading-relaxed mb-10 max-w-2xl">
             Standard export bags, jumbo bags, or a size you specify. Tell us what your
             line runs and we pack to it.
           </p>
@@ -161,7 +161,7 @@ const Products = () => {
               </div>
               <h4 className="font-serif text-xl font-bold text-foreground mb-1">25 / 50 kg</h4>
               <p className="text-sm font-medium text-foreground/70 mb-2">PP export bags</p>
-              <p className="text-muted-foreground text-sm">Standard distribution sizes.</p>
+              <p className="text-muted-foreground text-sm leading-relaxed">Standard distribution sizes.</p>
             </div>
             <div className="bg-card rounded-md border border-border/50 p-6 transition-all duration-[180ms] ease-[var(--ease-out)] hover:-translate-y-1 hover:border-primary/30 hover:shadow-soft">
               <div className="w-14 h-14 rounded-md bg-gradient-accent flex items-center justify-center mb-4">
@@ -169,7 +169,7 @@ const Products = () => {
               </div>
               <h4 className="font-serif text-xl font-bold text-foreground mb-1">1000 kg</h4>
               <p className="text-sm font-medium text-foreground/70 mb-2">Jumbo bags</p>
-              <p className="text-muted-foreground text-sm">For large-scale operations.</p>
+              <p className="text-muted-foreground text-sm leading-relaxed">For large-scale operations.</p>
             </div>
             <div className="bg-card rounded-md border border-border/50 p-6 transition-all duration-[180ms] ease-[var(--ease-out)] hover:-translate-y-1 hover:border-primary/30 hover:shadow-soft">
               <div className="w-14 h-14 rounded-md bg-gradient-accent flex items-center justify-center mb-4">
@@ -177,7 +177,7 @@ const Products = () => {
               </div>
               <h4 className="font-serif text-xl font-bold text-foreground mb-1">Custom</h4>
               <p className="text-sm font-medium text-foreground/70 mb-2">To your specification</p>
-              <p className="text-muted-foreground text-sm">Name the size, we pack to it.</p>
+              <p className="text-muted-foreground text-sm leading-relaxed">Name the size, we pack to it.</p>
             </div>
             <div className="bg-card rounded-md border border-border/50 p-6 transition-all duration-[180ms] ease-[var(--ease-out)] hover:-translate-y-1 hover:border-primary/30 hover:shadow-soft">
               <div className="w-14 h-14 rounded-md bg-gradient-accent flex items-center justify-center mb-4">
@@ -185,7 +185,7 @@ const Products = () => {
               </div>
               <h4 className="font-serif text-xl font-bold text-foreground mb-1">500 g / 1 kg</h4>
               <p className="text-sm font-medium text-foreground/70 mb-2">Branded retail packs</p>
-              <p className="text-muted-foreground text-sm">Private labelling, registered brand.</p>
+              <p className="text-muted-foreground text-sm leading-relaxed">Private labelling, registered brand.</p>
             </div>
           </div>
 

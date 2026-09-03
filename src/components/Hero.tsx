@@ -108,7 +108,7 @@ const Hero = () => {
             className="lg:col-span-5 lg:pl-8 animate-fade-in"
             style={{ animationDelay: "0.45s" }}
           >
-            <p className="text-xs uppercase tracking-[0.2em] text-primary-foreground/40 mb-6">
+            <p className="text-xs uppercase tracking-[0.2em] text-primary-foreground/55 mb-6">
               At a glance
             </p>
             <dl className="border-t border-primary-foreground/15">
@@ -124,7 +124,7 @@ const Hero = () => {
                 </div>
               ))}
             </dl>
-            <p className="mt-6 text-xs text-primary-foreground/40 leading-relaxed">
+            <p className="mt-6 text-xs text-primary-foreground/55 leading-relaxed">
               PMDC certification on the edible grade. PCSIR lab report on request.
             </p>
           </div>
