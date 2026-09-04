@@ -68,7 +68,7 @@ const Hero = () => {
             >
               Himalayan
               <br />
-              Pink Salt
+              Salt
               <br />
               <span className="text-accent">Experts</span>
             </h1>

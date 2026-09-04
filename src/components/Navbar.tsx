@@ -40,7 +40,7 @@ const Navbar = () => {
               src={scrolled ? logoDark : logoLight}
               width={240}
               height={128}
-              alt="AAA Trade House - Himalayan Pink Salt Experts"
+              alt="AAA Trade House - Himalayan Salt Experts"
               className="h-12 md:h-14 w-auto object-contain transition-opacity duration-300"
             />
           </a>
