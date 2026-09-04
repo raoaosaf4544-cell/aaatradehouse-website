@@ -20,7 +20,9 @@ const Navbar = () => {
     { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
     { name: "Products", href: "#products" },
+    { name: "Industries", href: "#industries" },
     { name: "Export", href: "#global" },
+    { name: "Ordering", href: "#ordering" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -44,7 +46,7 @@ const Navbar = () => {
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-6 xl:gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -68,7 +70,7 @@ const Navbar = () => {
             type="button"
             aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
-            className={`md:hidden ${scrolled ? "text-foreground" : "text-primary-foreground"}`}
+            className={`lg:hidden ${scrolled ? "text-foreground" : "text-primary-foreground"}`}
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -77,7 +79,7 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden py-6 bg-background/95 backdrop-blur-md rounded-b-2xl animate-fade-in">
+          <div className="lg:hidden py-6 bg-background/95 backdrop-blur-md rounded-b-2xl animate-fade-in">
             {navLinks.map((link) => (
               <a
                 key={link.name}

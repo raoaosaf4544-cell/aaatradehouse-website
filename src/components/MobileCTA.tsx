@@ -7,7 +7,7 @@ import { MessageCircle, FileText } from "lucide-react";
  * without a visible way to contact us.
  */
 const MobileCTA = () => (
-  <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 flex border-t border-primary-foreground/15 bg-salt-dark/95 backdrop-blur-lg pb-[env(safe-area-inset-bottom)]">
+  <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 flex border-t border-primary-foreground/15 bg-salt-dark/95 backdrop-blur-lg pb-[env(safe-area-inset-bottom)]">
     <a
       href="https://wa.me/923174286226"
       target="_blank"
