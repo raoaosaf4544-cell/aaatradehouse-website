@@ -6,13 +6,13 @@ const industries = [
     icon: Factory,
     title: "Food Manufacturing",
     description:
-      "Edible grade carrying PMDC certification, graded to the requirement you specify, for processors and packers.",
+      "Edible Himalayan pink salt carrying PMDC certification, graded to the requirement you specify, for processors and packers.",
   },
   {
     icon: ChefHat,
     title: "Food Service",
     description:
-      "Coarse and fine grades in bulk or retail packs for distributors, restaurant suppliers and gourmet brands.",
+      "Coarse and fine pink salt grades in bulk or retail packs for distributors, restaurant suppliers and gourmet brands.",
   },
   {
     icon: Beaker,
@@ -24,7 +24,7 @@ const industries = [
     icon: Tags,
     title: "Wholesale & Private Label",
     description:
-      "Your branding on bulk packaging and retail packs, under your own label or our registered brand.",
+      "Wholesale pink salt for private label: your branding on bulk packaging and retail packs, under your own label or our registered brand.",
   },
 ];
 
@@ -41,8 +41,9 @@ const Industries = () => {
             Who we supply.
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed">
-            The grade, the packaging and the paperwork change with the buyer. Tell us which
-            of these you are and we will quote to it.
+            We supply bulk Himalayan pink salt to four kinds of buyer, and the grade, the
+            packaging and the paperwork change with each. Tell us which of these you are
+            and we will quote to it.
           </p>
         </div>
 

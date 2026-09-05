@@ -7,11 +7,11 @@ import { useReveal } from "@/hooks/use-reveal";
 export const faqs = [
   {
     q: "Where does AAA Trade House source its Himalayan pink salt?",
-    a: "Primarily direct from PMDC-leased mines in Pakistan, with no trading layer between the mine and your container. Where we draw on other local suppliers we test the material and keep you informed.",
+    a: "We are a bulk Himalayan pink salt supplier in Pakistan, sourcing primarily direct from PMDC-leased mines with no trading layer between the mine and your container. Where we draw on other local suppliers we test the material and keep you informed.",
   },
   {
     q: "What is the monthly supply capacity?",
-    a: "Over 100 tonnes per month, across coarse, fine, edible and chunk grades.",
+    a: "Over 100 tonnes of Himalayan pink salt per month, across coarse, fine, edible and chunk grades.",
   },
   {
     q: "How long does a Himalayan salt order take to deliver?",
@@ -27,7 +27,7 @@ export const faqs = [
   },
   {
     q: "Do you offer private label Himalayan pink salt?",
-    a: "Yes. Your branding on bulk packaging and on 500 g / 1 kg retail packs under our registered brand. Local distribution is live and export is to follow.",
+    a: "Yes. We supply wholesale pink salt for private label: your branding on bulk packaging and on 500 g / 1 kg retail packs under our registered brand. Local distribution is live and export is to follow.",
   },
 ];
 

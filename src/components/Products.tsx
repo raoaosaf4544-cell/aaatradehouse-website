@@ -15,7 +15,7 @@ const products: Product[] = [
   {
     name: "Edible Salt",
     description:
-      "Fine, coarse and granular grades for gourmet food brands and culinary applications.",
+      "Edible Himalayan pink salt in fine, coarse and granular grades for gourmet food brands and culinary applications.",
     // Granulation figures are NOT on the site until a lab report exists.
     specs: "High-purity, PCSIR-tested. Report and grades on request",
     uses: "Gourmet food, table salt, seasoning, baking",
@@ -24,7 +24,7 @@ const products: Product[] = [
   {
     name: "Industrial Salt",
     description:
-      "High-grade salt for industrial, chemical and manufacturing applications.",
+      "High-grade Himalayan pink salt for industrial, chemical and manufacturing applications.",
     specs: "Custom specifications available",
     uses: "Chemical processing, manufacturing, water treatment",
     icon: Factory,
@@ -40,7 +40,7 @@ const products: Product[] = [
   {
     name: "Wellness & Décor",
     description:
-      "Hand-crafted salt lamps and decorative slabs for homes and spas.",
+      "Hand-crafted Himalayan pink salt lamps and decorative slabs for homes and spas.",
     specs: "Lamps, tiles, slabs, custom carvings",
     uses: "Home décor, wellness, spas, gifts",
     icon: Lamp,
@@ -48,7 +48,7 @@ const products: Product[] = [
   {
     name: "Bulk & Raw Sourcing",
     description:
-      "Direct supply of raw salt rocks for large-scale importers and manufacturers.",
+      "Direct supply of raw Himalayan pink salt rocks for large-scale importers and manufacturers.",
     specs: "1000kg jumbo bags | 25kg/50kg PP bags",
     uses: "Importers, wholesalers, private label brands",
     icon: Package,
@@ -56,7 +56,7 @@ const products: Product[] = [
   {
     name: "Private Label",
     description:
-      "Your branding on bulk packaging and 500 g / 1 kg retail packs, under our registered brand. Local distribution is live; export to follow.",
+      "Wholesale Himalayan pink salt with your branding on bulk packaging and 500 g / 1 kg retail packs, under our registered brand. Local distribution is live; export to follow.",
     specs: "Custom packaging and branding",
     uses: "Retail brands, distributors, wholesalers",
     icon: Tag,
