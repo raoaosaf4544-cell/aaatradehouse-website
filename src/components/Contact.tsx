@@ -13,9 +13,28 @@ const HUBSPOT_ENDPOINT = `https://api.hsforms.com/submissions/v3/integration/sub
 
 type SubmitState = "idle" | "sending" | "sent" | "error";
 
+
+/* Both listings are the live Google Business Profiles. The office CID is the
+   same one already referenced in the JSON-LD hasMap / sameAs. */
+const locations = [
+  {
+    name: "Head Office",
+    address: "Office No. 42, Valencia Tower, Block K1, Valencia Town, Lahore 54770, Pakistan",
+    embed: "https://maps.google.com/maps?cid=14540864625688017508&output=embed",
+    link: "https://maps.google.com/?cid=14540864625688017508",
+  },
+  {
+    name: "Crushing Plant",
+    address: "Near Kot Abbas Shaheed Station, Khanewal 60000, Pakistan",
+    embed: "https://maps.google.com/maps?cid=13571007861337017993&output=embed",
+    link: "https://maps.google.com/?cid=13571007861337017993",
+  },
+];
+
 const Contact = () => {
   const info = useReveal<HTMLDivElement>();
   const formCard = useReveal<HTMLDivElement>();
+  const maps = useReveal<HTMLDivElement>();
   const [state, setState] = useState<SubmitState>("idle");
   const [errorDetail, setErrorDetail] = useState("");
 
@@ -230,6 +249,41 @@ Office No. 42, Valencia Tower,<br />
                 )}
               </p>
             </form>
+          </div>
+        </div>
+        {/* Verified locations - Google Business Profile listings */}
+        <div ref={maps} className="reveal mt-20 md:mt-24">
+          <p className="text-xs uppercase tracking-[0.2em] text-primary mb-5">Find Us</p>
+          <h3 className="font-serif text-3xl md:text-4xl font-bold text-foreground leading-tight mb-10">
+            Two verified locations.
+          </h3>
+          <div className="grid md:grid-cols-2 gap-10">
+            {locations.map((loc) => (
+              <div key={loc.name}>
+                <h4 className="font-serif text-xl font-bold text-foreground mb-2">{loc.name}</h4>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4 min-h-[2.5rem]">
+                  {loc.address}
+                </p>
+                <div className="rounded-lg overflow-hidden border border-border shadow-soft">
+                  <iframe
+                    src={loc.embed}
+                    title={`Google Map showing ${loc.name} - ${loc.address}`}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    allowFullScreen
+                    className="w-full h-72 block border-0"
+                  />
+                </div>
+                <a
+                  href={loc.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block mt-3 text-sm font-medium text-primary hover:underline underline-offset-4"
+                >
+                  Open in Google Maps
+                </a>
+              </div>
+            ))}
           </div>
         </div>
       </div>
