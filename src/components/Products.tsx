@@ -154,36 +154,28 @@ const Products = () => {
             <span className="h-px flex-1 bg-border" />
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-card rounded-md border border-border/50 p-6 transition-all duration-[180ms] ease-[var(--ease-out)] hover:-translate-y-1 hover:border-primary/30 hover:shadow-soft">
-              <div className="w-14 h-14 rounded-md bg-gradient-accent flex items-center justify-center mb-4">
-                <Package className="w-7 h-7 text-primary-foreground" />
-              </div>
-              <h4 className="font-serif text-xl font-bold text-foreground mb-1">25 / 50 kg</h4>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border rounded-lg overflow-hidden">
+            <div className="bg-card p-6 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40">
+              <Package className="w-5 h-5 text-primary mb-5" aria-hidden="true" strokeWidth={1.5} />
+              <h4 className="font-serif text-xl font-bold text-foreground mb-1 leading-tight">25 / 50 kg</h4>
               <p className="text-sm font-medium text-foreground/70 mb-2">PP export bags</p>
               <p className="text-muted-foreground text-sm leading-relaxed">Standard distribution sizes.</p>
             </div>
-            <div className="bg-card rounded-md border border-border/50 p-6 transition-all duration-[180ms] ease-[var(--ease-out)] hover:-translate-y-1 hover:border-primary/30 hover:shadow-soft">
-              <div className="w-14 h-14 rounded-md bg-gradient-accent flex items-center justify-center mb-4">
-                <Boxes className="w-7 h-7 text-primary-foreground" />
-              </div>
-              <h4 className="font-serif text-xl font-bold text-foreground mb-1">1000 kg</h4>
+            <div className="bg-card p-6 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40">
+              <Boxes className="w-5 h-5 text-primary mb-5" aria-hidden="true" strokeWidth={1.5} />
+              <h4 className="font-serif text-xl font-bold text-foreground mb-1 leading-tight">1000 kg</h4>
               <p className="text-sm font-medium text-foreground/70 mb-2">Jumbo bags</p>
               <p className="text-muted-foreground text-sm leading-relaxed">For large-scale operations.</p>
             </div>
-            <div className="bg-card rounded-md border border-border/50 p-6 transition-all duration-[180ms] ease-[var(--ease-out)] hover:-translate-y-1 hover:border-primary/30 hover:shadow-soft">
-              <div className="w-14 h-14 rounded-md bg-gradient-accent flex items-center justify-center mb-4">
-                <Ruler className="w-7 h-7 text-primary-foreground" />
-              </div>
-              <h4 className="font-serif text-xl font-bold text-foreground mb-1">Custom</h4>
+            <div className="bg-card p-6 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40">
+              <Ruler className="w-5 h-5 text-primary mb-5" aria-hidden="true" strokeWidth={1.5} />
+              <h4 className="font-serif text-xl font-bold text-foreground mb-1 leading-tight">Custom</h4>
               <p className="text-sm font-medium text-foreground/70 mb-2">To your specification</p>
               <p className="text-muted-foreground text-sm leading-relaxed">Name the size, we pack to it.</p>
             </div>
-            <div className="bg-card rounded-md border border-border/50 p-6 transition-all duration-[180ms] ease-[var(--ease-out)] hover:-translate-y-1 hover:border-primary/30 hover:shadow-soft">
-              <div className="w-14 h-14 rounded-md bg-gradient-accent flex items-center justify-center mb-4">
-                <Tag className="w-7 h-7 text-primary-foreground" />
-              </div>
-              <h4 className="font-serif text-xl font-bold text-foreground mb-1">500 g / 1 kg</h4>
+            <div className="bg-card p-6 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40">
+              <Tag className="w-5 h-5 text-primary mb-5" aria-hidden="true" strokeWidth={1.5} />
+              <h4 className="font-serif text-xl font-bold text-foreground mb-1 leading-tight">500 g / 1 kg</h4>
               <p className="text-sm font-medium text-foreground/70 mb-2">Branded retail packs</p>
               <p className="text-muted-foreground text-sm leading-relaxed">Private labelling, registered brand.</p>
             </div>

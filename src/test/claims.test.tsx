@@ -105,6 +105,26 @@ describe("site-wide", () => {
     "VideoShowcase", "GlobalReach", "FAQ", "Ordering", "Contact",
   ].map((n) => [n, src(`src/components/${n}.tsx`)] as const);
 
+  it("discloses no shipment count or export history, in any section", () => {
+    // This was scoped to GlobalReach and About slipped through with "our
+    // export record to date is one completed shipment to the UAE". The
+    // count is internal context, not a public credential, so the guard
+    // has to cover every section rather than the one being edited.
+    for (const [name, s] of components) {
+      const hit = /\bUAE\b|United Arab Emirates|shipments? completed|completed shipment|first (?:export|shipment)|one shipment/i.exec(s);
+      expect(`${name}:${hit?.[0] ?? "clean"}`).toBe(`${name}:clean`);
+    }
+  });
+
+  it("keeps the decorative blobs the brief rules out off the page", () => {
+    // "no gradient meshes, no glassmorphism, no 3D blobs" - About had four
+    // blurred coral blobs behind its cards plus a fifth on the photo.
+    for (const [name, s] of components) {
+      expect(`${name}:${s.includes("blur-2xl")}`).toBe(`${name}:false`);
+      expect(`${name}:${s.includes("blur-3xl")}`).toBe(`${name}:false`);
+    }
+  });
+
   it("runs no infinite animation anywhere on the page", () => {
     for (const [name, s] of components) {
       expect(`${name}:${s.includes("animate-float")}`).toBe(`${name}:false`);

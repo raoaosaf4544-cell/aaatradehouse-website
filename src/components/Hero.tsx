@@ -50,8 +50,8 @@ const Hero = () => {
           className="w-full h-full object-cover scale-105"
         />
         {/* Cinematic falloff - keeps display type crisp over any frame. */}
-        <div className="absolute inset-0 bg-gradient-to-b from-salt-dark/75 via-salt-dark/55 to-salt-dark" />
-        <div className="absolute inset-0 bg-gradient-to-r from-salt-dark/95 via-salt-dark/50 to-salt-dark/10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-salt-dark/85 via-salt-dark/70 to-salt-dark" />
+        <div className="absolute inset-0 bg-gradient-to-r from-salt-dark via-salt-dark/75 to-salt-dark/25" />
       </div>
 
       {/* Film grain */}
@@ -78,7 +78,7 @@ const Hero = () => {
             </p>
 
             <h1
-              className="font-serif text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-primary-foreground leading-[0.95] tracking-tight mb-8 animate-fade-in"
+              className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-primary-foreground leading-[0.88] tracking-[-0.02em] mb-8 animate-fade-in"
               style={{ animationDelay: "0.1s" }}
             >
               Himalayan

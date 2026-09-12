@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Shield, Leaf, FlaskConical, Building2 } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
-import { CountUp } from "@/components/CountUp";
 import saltPacking from "@/assets/salt-packing.webp";
 import bannerImage from "@/assets/banner-clean.webp";
 
@@ -44,7 +43,10 @@ const About = () => {
       
       <div className="container mx-auto px-6">
         {/* Section Header */}
-        <div ref={header} className="reveal text-center max-w-3xl mx-auto mb-20">
+        {/* Left-aligned, like every other section header on the site. A
+            centred header over a dead-even four-column grid is the most
+            generic composition available and it was the only one here. */}
+        <div ref={header} className="reveal max-w-2xl mb-16">
           <p className="text-xs uppercase tracking-[0.2em] text-primary mb-5">Why AAA Trade House</p>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.05] tracking-tight mb-6">
             Our Heritage & Strength
@@ -55,22 +57,25 @@ const About = () => {
           </p>
         </div>
 
-        {/* Features Grid */}
-        <div ref={grid} className="reveal-group grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-24">
+        {/* Features Grid.
+            Was four floating cards, each with a blurred coral blob behind
+            the corner, a gradient-filled icon tile, a drop shadow and a
+            lift-on-hover. That is the exact vocabulary the brief rules out
+            - no gradient meshes, no blobs - and it did not match Products
+            or Industries, which both use a hairline gap-px grid. Now it
+            does, so the three read as one system. */}
+        <div ref={grid} className="reveal-group grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border rounded-lg overflow-hidden mb-20">
           {features.map((feature, index) => (
             <div
               key={feature.title}
-              className="relative bg-card p-8 rounded-lg shadow-soft hover:shadow-elevated transition-all duration-[180ms] ease-[var(--ease-out)] hover:-translate-y-1 hover:border-primary/30 group border border-border/50"
+              className="bg-card p-8 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40"
               style={{ "--reveal-delay": `${Math.min(index, 3) * 60}ms` } as React.CSSProperties}
             >
-              <div className="absolute -top-4 -right-4 w-20 h-20 bg-salt-coral/10 rounded-full blur-2xl group-hover:bg-salt-coral/20 transition-colors" />
-              <div className="w-16 h-16 rounded-md bg-gradient-accent flex items-center justify-center mb-6 shadow-lg">
-                <feature.icon className="w-8 h-8 text-primary-foreground" />
-              </div>
-              <h3 className="font-serif text-xl font-bold text-foreground mb-3">
+              <feature.icon className="w-5 h-5 text-primary mb-6" aria-hidden="true" strokeWidth={1.5} />
+              <h3 className="font-serif text-xl font-bold text-foreground mb-3 leading-tight">
                 {feature.title}
               </h3>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed text-sm">
                 {feature.description}
               </p>
             </div>
@@ -115,32 +120,20 @@ const About = () => {
                 our registered company operating since 2009. Contracts, invoices and
                 banking documents are issued in the name of AAA General Trading.
               </p>
+              {/* The shipment count is deliberately not on the site. It is
+                  internal context, not a public credential. */}
               <p className="text-muted-foreground leading-relaxed mt-4">
-                The export brand is younger than the company. Our export record to date is
-                one completed shipment to the UAE, alongside established domestic supply
-                across Pakistan under our own registered salt brand.
+                The export brand is younger than the company. Domestic supply
+                across Pakistan is established, under our own registered salt
+                brand, and the export side runs on the same plant, the same
+                grades and the same registered entity.
               </p>
             </div>
 
-            {/* Key Stats */}
-            <div className="grid grid-cols-3 gap-6 mt-10 pt-10 border-t border-border">
-              <div>
-                <p className="font-serif text-3xl font-bold text-primary tabular-nums"><CountUp value="1994" /></p>
-                <p className="text-sm text-muted-foreground mt-1">Family in salt since</p>
-              </div>
-              <div>
-                <p className="font-serif text-3xl font-bold text-primary tabular-nums"><CountUp value="100+" /></p>
-                <p className="text-sm text-muted-foreground mt-1">Tonnes per month</p>
-              </div>
-              <div>
-                <p className="font-serif text-3xl font-bold text-primary tabular-nums"><CountUp value="4" /></p>
-                <p className="text-sm text-muted-foreground mt-1">Grades supplied</p>
-              </div>
-            </div>
           </div>
           
           <div className="relative">
-            <div className="aspect-[4/5] rounded-lg overflow-hidden shadow-2xl">
+            <div className="aspect-[4/5] rounded-lg overflow-hidden border border-border">
               <img
                 src={saltPacking}
                 alt="Himalayan pink salt being packed into bulk export bags at AAA Trade House, Lahore"
@@ -153,7 +146,6 @@ const About = () => {
               <p className="font-serif text-2xl font-bold text-primary">PMDC</p>
               <p className="text-sm text-muted-foreground">Certified edible grade</p>
             </div>
-            <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-gradient-accent opacity-20 blur-2xl" />
           </div>
         </div>
 
