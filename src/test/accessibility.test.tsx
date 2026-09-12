@@ -288,3 +288,57 @@ describe("P4 - decorative content is not announced", () => {
     expect(container.textContent ?? "").not.toMatch(/\p{Extended_Pictographic}/u);
   });
 });
+
+describe("dark palette contrast", () => {
+  /* The whole site moved to one dark field, which meant rewriting every
+     colour token at once. Contrast is the thing that silently breaks when
+     you do that: the page still renders, it just stops being readable for
+     anyone with less than perfect vision. Parsed from index.css so this
+     tracks the real tokens rather than a copy of them. */
+  /* Parsed by hand rather than with a constructed RegExp: building the
+     pattern from a template literal silently swallows the backslashes,
+     so `\s` becomes a literal "s" and every lookup misses. */
+  const tok = (name: string) => {
+    const at = css.indexOf(`--${name}:`);
+    if (at === -1) throw new Error(`token --${name} not found`);
+    const value = css.slice(at + name.length + 3, css.indexOf(";", at));
+    const [h, s2, l] = value.trim().split(/\s+/).map((v) => Number(v.replace("%", "")));
+    if ([h, s2, l].some(Number.isNaN)) throw new Error(`token --${name} unparsable: ${value}`);
+    return [h, s2, l] as const;
+  };
+
+  const luminance = ([h, s, l]: readonly [number, number, number]) => {
+    const a = (s / 100) * Math.min(l / 100, 1 - l / 100);
+    const f = (n: number) => {
+      const k = (n + h / 30) % 12;
+      return l / 100 - a * Math.max(-1, Math.min(k - 3, 9 - k, 1));
+    };
+    const lin = (v: number) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4);
+    return 0.2126 * lin(f(0)) + 0.7152 * lin(f(8)) + 0.0722 * lin(f(4));
+  };
+
+  const ratio = (a: string, b: string) => {
+    const [x, y] = [luminance(tok(a)), luminance(tok(b))];
+    return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05);
+  };
+
+  it.each([
+    ["foreground", "background", 4.5],
+    ["foreground", "card", 4.5],
+    ["muted-foreground", "background", 4.5],
+    ["muted-foreground", "card", 4.5],
+    ["muted-foreground", "secondary", 4.5],
+    ["accent", "background", 4.5],
+    ["accent", "card", 4.5],
+  ])("%s on %s clears %s:1", (fg, bg, need) => {
+    expect(Number(ratio(fg, bg).toFixed(2))).toBeGreaterThanOrEqual(need as number);
+  });
+
+  it("keeps the accent readable, since it now carries every eyebrow and link", () => {
+    // Navy at 34% lightness was invisible on a 4% ground, which is why
+    // text-primary was replaced site-wide. If someone moves it back, this
+    // fails rather than shipping unreadable copy.
+    expect(ratio("primary", "background")).toBeLessThan(4.5);
+    expect(ratio("accent", "background")).toBeGreaterThan(4.5);
+  });
+});

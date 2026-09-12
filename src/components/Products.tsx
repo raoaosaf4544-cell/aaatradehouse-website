@@ -17,10 +17,9 @@ const products: Product[] = [
     name: "Edible Salt",
     description:
       "Edible Himalayan pink salt in fine, coarse and granular grades for gourmet food brands and culinary applications.",
-    // NaCl is from the PCSIR report. GRANULATION still is not confirmed
-    // and stays off until it is - one known figure does not license the
-    // rest of the row.
-    specs: "98.82% NaCl typical, PCSIR-tested. Granulation on request",
+    // No spec figures on the site. The lab report is old and the
+    // business is not publishing numbers a buyer could test against yet.
+    specs: "High-purity, PCSIR-tested. Report and grades on request",
     uses: "Gourmet food, table salt, seasoning, baking",
     icon: Utensils,
   },
@@ -66,18 +65,6 @@ const products: Product[] = [
   },
 ];
 
-/* Transcribed from the PCSIR figures printed on the 900g retail pack.
-   Do NOT edit these to look rounder or better - they are lab output, and
-   a buyer can test the goods against them. If a newer report supersedes
-   this one, replace the whole set rather than patching single rows. */
-const analysis = [
-  { name: "Sodium chloride (NaCl)", value: "98.82%" },
-  { name: "Water insoluble matter", value: "0.801%" },
-  { name: "Sulphate (SO₄)", value: "0.104%" },
-  { name: "Calcium (Ca)", value: "0.090%" },
-  { name: "Moisture", value: "0.076%" },
-  { name: "Magnesium (Mg)", value: "0.046%" },
-];
 
 const Products = () => {
   const header = useReveal<HTMLDivElement>();
@@ -90,7 +77,7 @@ const Products = () => {
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div ref={header} className="reveal text-center max-w-3xl mx-auto mb-20">
-          <p className="text-xs uppercase tracking-[0.2em] text-primary mb-5">Product Portfolio</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-accent mb-5">Product Portfolio</p>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.05] tracking-tight mb-6">
             Himalayan Pink Salt Products
           </h2>
@@ -113,7 +100,7 @@ const Products = () => {
                 <span className="font-serif text-3xl font-bold text-border tabular-nums leading-none">
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <product.icon className="w-5 h-5 text-primary/60 group-hover:text-primary transition-colors" />
+                <product.icon className="w-5 h-5 text-accent/60 group-hover:text-accent transition-colors" />
               </div>
 
               <h3 className="font-serif text-2xl font-bold text-foreground mb-3 leading-tight">
@@ -140,7 +127,7 @@ const Products = () => {
 
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:gap-3 transition-all duration-[180ms] ease-[var(--ease-out)]"
+                className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:gap-3 transition-all duration-[180ms] ease-[var(--ease-out)]"
               >
                 Request samples
                 <ArrowRight className="w-4 h-4" />
@@ -149,81 +136,25 @@ const Products = () => {
           ))}
         </div>
 
-        {/* Typical analysis.
-            NaCl % is the first number a bulk importer looks for and the
-            site used to make them ask for it. These figures are already
-            printed on the 900g retail pack, so staying silent here did
-            not reduce exposure - it just meant the bag said more than the
-            website did.
-
-            Labelled TYPICAL, never "guaranteed specification". Salt is a
-            mined mineral and varies between batches; a guaranteed figure
-            is a contractual commitment, a typical one is a description,
-            and the trade states it the second way for that reason. */}
-        <div ref={specs} className="reveal mt-20">
-          <div className="max-w-2xl mb-10">
-            <p className="text-xs uppercase tracking-[0.2em] text-primary mb-5">
-              Typical Analysis
-            </p>
-            <h3 className="font-serif text-3xl md:text-4xl font-bold text-foreground leading-tight mb-4">
-              The numbers, before you ask.
-            </h3>
-            <p className="text-muted-foreground leading-relaxed">
-              From our PCSIR laboratory report, per 1 g. Figures are typical
-              for the edible grade and are not a guaranteed specification —
-              salt is mined, and it varies between batches. The report is
-              available on request.
-            </p>
-          </div>
-
-          {/* One dark panel, photograph bleeding to its edge.
-              This was a white card grid sitting next to a photo, which
-              read as flat - black text on white with no relationship to
-              the image beside it. Putting both inside one dark surface
-              makes the figures feel like a datasheet rather than a table,
-              and gives the pink of the salt something to sit against
-              instead of competing with white. */}
-          <div className="rounded-xl overflow-hidden bg-salt-dark elev-dark">
-            <div className="grid lg:grid-cols-12">
-              <div className="lg:col-span-5 relative min-h-[280px] lg:min-h-0">
-                <img
-                  src={saltRawClose}
-                  alt="Raw Himalayan pink salt chunks at the AAA Trade House plant, showing natural colour variation from pale to deep pink"
-                  loading="lazy"
-                  width={1200}
-                  height={1500}
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                {/* Only where the photo meets the panel, so the seam is a
-                    transition rather than a hard edge. */}
-                <div
-                  aria-hidden="true"
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-salt-dark lg:to-salt-dark"
-                />
-              </div>
-
-              <dl className="lg:col-span-7 grid sm:grid-cols-2">
-                {analysis.map((row, i) => (
-                  <div
-                    key={row.name}
-                    className={`p-7 border-primary-foreground/10 ${i % 2 === 0 ? "sm:border-r" : ""} ${i < analysis.length - 2 ? "border-b" : "sm:border-b-0 border-b"}`}
-                  >
-                    <dt className="text-[11px] uppercase tracking-[0.16em] text-primary-foreground/45 mb-2">
-                      {row.name}
-                    </dt>
-                    <dd className="font-serif text-4xl font-bold text-primary-foreground tabular-nums leading-none">
-                      {row.value}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-          </div>
+        {/* Real product photograph. The typical-analysis figures that
+            used to sit beside it have been withdrawn - the lab report is
+            old and the business is not ready to publish specs. The image
+            stays because showing the goods is not the same as
+            specifying them. */}
+        <div ref={specs} className="reveal mt-20 rounded-xl overflow-hidden border border-border">
+          <img
+            src={saltRawClose}
+            alt="Raw Himalayan pink salt chunks at the AAA Trade House plant, showing natural colour variation from pale to deep pink"
+            loading="lazy"
+            width={1200}
+            height={1500}
+            className="w-full aspect-[3/2] md:aspect-[21/9] object-cover"
+          />
         </div>
 
         {/* Packaging Info */}
         <div ref={packs} className="reveal mt-20 bg-salt-cream rounded-lg p-10 md:p-14">
-          <p className="text-primary font-semibold mb-3 tracking-widest uppercase text-sm">Packaging</p>
+          <p className="text-accent font-semibold mb-3 tracking-widest uppercase text-sm">Packaging</p>
           <h3 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-3">
             Any bulk size you need.
           </h3>
@@ -233,31 +164,31 @@ const Products = () => {
           </p>
 
           <div className="flex items-center gap-4 mb-6">
-            <span className="text-xs font-semibold uppercase tracking-widest text-primary">Available now</span>
+            <span className="text-xs font-semibold uppercase tracking-widest text-accent">Available now</span>
             <span className="h-px flex-1 bg-border" />
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border rounded-lg overflow-hidden">
             <div className="bg-card p-6 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40">
-              <Package className="w-5 h-5 text-primary mb-5" aria-hidden="true" strokeWidth={1.5} />
+              <Package className="w-5 h-5 text-accent mb-5" aria-hidden="true" strokeWidth={1.5} />
               <h4 className="font-serif text-xl font-bold text-foreground mb-1 leading-tight">25 / 50 kg</h4>
               <p className="text-sm font-medium text-foreground/70 mb-2">PP export bags</p>
               <p className="text-muted-foreground text-sm leading-relaxed">Standard distribution sizes.</p>
             </div>
             <div className="bg-card p-6 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40">
-              <Boxes className="w-5 h-5 text-primary mb-5" aria-hidden="true" strokeWidth={1.5} />
+              <Boxes className="w-5 h-5 text-accent mb-5" aria-hidden="true" strokeWidth={1.5} />
               <h4 className="font-serif text-xl font-bold text-foreground mb-1 leading-tight">1000 kg</h4>
               <p className="text-sm font-medium text-foreground/70 mb-2">Jumbo bags</p>
               <p className="text-muted-foreground text-sm leading-relaxed">For large-scale operations.</p>
             </div>
             <div className="bg-card p-6 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40">
-              <Ruler className="w-5 h-5 text-primary mb-5" aria-hidden="true" strokeWidth={1.5} />
+              <Ruler className="w-5 h-5 text-accent mb-5" aria-hidden="true" strokeWidth={1.5} />
               <h4 className="font-serif text-xl font-bold text-foreground mb-1 leading-tight">Custom</h4>
               <p className="text-sm font-medium text-foreground/70 mb-2">To your specification</p>
               <p className="text-muted-foreground text-sm leading-relaxed">Name the size, we pack to it.</p>
             </div>
             <div className="bg-card p-6 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40">
-              <Tag className="w-5 h-5 text-primary mb-5" aria-hidden="true" strokeWidth={1.5} />
+              <Tag className="w-5 h-5 text-accent mb-5" aria-hidden="true" strokeWidth={1.5} />
               <h4 className="font-serif text-xl font-bold text-foreground mb-1 leading-tight">500 g / 1 kg</h4>
               <p className="text-sm font-medium text-foreground/70 mb-2">Branded retail packs</p>
               <p className="text-muted-foreground text-sm leading-relaxed">Private labelling, registered brand.</p>

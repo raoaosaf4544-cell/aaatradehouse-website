@@ -50,7 +50,7 @@ const About = () => {
             centred header over a dead-even four-column grid is the most
             generic composition available and it was the only one here. */}
         <div ref={header} className="reveal max-w-2xl mb-16">
-          <p className="text-xs uppercase tracking-[0.2em] text-primary mb-5">Why AAA Trade House</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-accent mb-5">Why AAA Trade House</p>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.05] tracking-tight mb-6">
             Our Heritage & Strength
           </h2>
@@ -74,7 +74,7 @@ const About = () => {
               className="bg-card p-8 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40"
               style={{ "--reveal-delay": `${Math.min(index, 3) * 60}ms` } as React.CSSProperties}
             >
-              <feature.icon className="w-5 h-5 text-primary mb-6" aria-hidden="true" strokeWidth={1.5} />
+              <feature.icon className="w-5 h-5 text-accent mb-6" aria-hidden="true" strokeWidth={1.5} />
               <h3 className="font-serif text-xl font-bold text-foreground mb-3 leading-tight">
                 {feature.title}
               </h3>
@@ -88,7 +88,7 @@ const About = () => {
         {/* Story Section */}
         <div ref={story} className="reveal grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-primary mb-5">Our Story</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-accent mb-5">Our Story</p>
             <h3 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-8">
               In salt since 1994.
             </h3>
@@ -113,8 +113,8 @@ const About = () => {
             </div>
             
             {/* Company & Legal Structure */}
-            <div className="mt-10 border-l-2 border-primary pl-6">
-              <p className="text-xs uppercase tracking-[0.2em] text-primary mb-3">
+            <div className="mt-10 border-l-2 border-accent pl-6">
+              <p className="text-xs uppercase tracking-[0.2em] text-accent mb-3">
                 Company &amp; Legal Structure
               </p>
               <p className="text-muted-foreground leading-relaxed">
@@ -149,7 +149,7 @@ const About = () => {
                 elev-dark's lift comes from a white inset highlight that is
                 invisible on a light surface. */}
             <div className="absolute -bottom-6 -left-6 bg-card p-6 rounded-md border border-border shadow-elevated">
-              <p className="font-serif text-2xl font-bold text-primary">PMDC</p>
+              <p className="font-serif text-2xl font-bold text-accent">PMDC</p>
               <p className="text-sm text-muted-foreground">Certified edible grade</p>
             </div>
           </div>
@@ -162,7 +162,7 @@ const About = () => {
             that does not carry information is worse than no image. */}
         <div ref={why} className="reveal mt-24 pt-16 border-t border-border">
           <div className="max-w-3xl">
-            <p className="text-xs uppercase tracking-[0.2em] text-primary mb-5">Why We Do This</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-accent mb-5">Why We Do This</p>
             <p className="font-serif text-2xl md:text-3xl font-bold text-foreground leading-snug mb-7">
               For over thirty years our family has worked with Himalayan salt, learned
               hands-on and passed down, not taught at a desk.

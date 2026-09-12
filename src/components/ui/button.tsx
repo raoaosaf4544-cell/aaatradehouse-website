@@ -9,14 +9,14 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-soft hover:shadow-elevated",
+        default: "bg-foreground text-background hover:bg-foreground/90 shadow-soft hover:shadow-elevated",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+        outline: "border border-border bg-transparent text-foreground hover:bg-foreground/10",
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        hero: "bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-elevated hover:shadow-soft hover:scale-[1.02] active:scale-[0.98] relative overflow-hidden before:absolute before:inset-0 before:content-[''] before:pointer-events-none before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent hover:before:translate-x-full before:transition-transform before:duration-[600ms] before:ease-[var(--ease-out)]",
-        heroOutline: "border-2 border-primary text-primary bg-transparent hover:bg-primary hover:text-primary-foreground font-semibold",
+        hero: "bg-foreground hover:bg-foreground/90 text-background font-semibold shadow-elevated hover:shadow-soft hover:scale-[1.02] active:scale-[0.98] relative overflow-hidden before:absolute before:inset-0 before:content-[''] before:pointer-events-none before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent hover:before:translate-x-full before:transition-transform before:duration-[600ms] before:ease-[var(--ease-out)]",
+        heroOutline: "border border-foreground/25 text-foreground bg-transparent hover:bg-foreground/10 font-semibold",
       },
       size: {
         default: "h-10 px-4 py-2",

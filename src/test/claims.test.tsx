@@ -78,32 +78,23 @@ describe("GlobalReach - the export route", () => {
   });
 });
 
-describe("Products - the lab figures", () => {
-  it("publishes the analysis a bulk importer asks for first", () => {
+describe("Products - withheld figures", () => {
+  it("publishes no spec numbers a buyer could test the goods against", () => {
+    // Withdrawn at the business's request: the lab report is old and they
+    // are not ready to stand behind figures publicly. The numbers are
+    // still printed on the 900g pack, which is a separate problem for
+    // them to fix - but the site no longer repeats them.
     const { container } = render(<Products />);
     const text = container.textContent ?? "";
-    expect(text).toMatch(/98\.82%/);
-    expect(text).toMatch(/Sodium chloride/i);
-  });
-
-  it("calls it typical, never a guaranteed specification", () => {
-    // Salt is mined and varies batch to batch. "Typical" is a description;
-    // "guaranteed" is a contractual commitment a buyer can test the goods
-    // against and reject a container over. The trade states it the first
-    // way for exactly that reason.
-    const { container } = render(<Products />);
-    const text = container.textContent ?? "";
-    expect(text).toMatch(/typical/i);
-    expect(text).toMatch(/not a guaranteed specification/i);
-    expect(text).not.toMatch(/guaranteed (?:purity|analysis|NaCl)/i);
-  });
-
-  it("still withholds granulation, which is not confirmed", () => {
-    // One known figure does not license the rest of the row.
-    const { container } = render(<Products />);
-    const text = container.textContent ?? "";
-    expect(text).toMatch(/granulation on request/i);
+    for (const n of ["98.82", "0.801", "0.104", "0.090", "0.076", "0.046"]) {
+      expect(`${n}:${text.includes(n)}`).toBe(`${n}:false`);
+    }
     expect(text).not.toMatch(/\d+\s*(?:mm|mesh|micron)/i);
+  });
+
+  it("still offers the report on request", () => {
+    const { container } = render(<Products />);
+    expect(container.textContent ?? "").toMatch(/report.{0,20}on request/i);
   });
 });
 

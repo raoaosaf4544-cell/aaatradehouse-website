@@ -50,7 +50,7 @@ const Privacy = () => {
         <section className="bg-salt-cream pt-32 pb-20 md:pt-40 md:pb-24">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl">
-              <p className="text-xs uppercase tracking-[0.2em] text-primary mb-5">
+              <p className="text-xs uppercase tracking-[0.2em] text-accent mb-5">
                 Legal
               </p>
               <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.05] tracking-tight mb-6">
@@ -280,7 +280,7 @@ const Privacy = () => {
 };
 
 const linkClass =
-  "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
+  "text-accent underline underline-offset-4 hover:text-accent/80 transition-colors";
 const codeClass = "rounded bg-muted px-1.5 py-0.5 text-[0.85em] font-mono";
 
 const Block = ({

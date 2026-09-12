@@ -37,11 +37,7 @@ export const faqs = [
     q: "Is there a minimum order quantity?",
     a: "There is no fixed minimum. Tell us the volume, grade and packaging you need and we quote to it.",
   },
-  {
-    q: "What is the NaCl content of your Himalayan pink salt?",
-    a: "Typical analysis from our PCSIR laboratory report is 98.82% sodium chloride, with 0.801% water insoluble matter, 0.104% sulphate, 0.090% calcium, 0.076% moisture and 0.046% magnesium. These are typical figures for the edible grade, not a guaranteed specification - salt is mined and varies between batches. The report is available on request.",
-  },
-  {
+   {
     q: "Is the salt halal certified?",
     a: "Yes. The salt is halal certified, and the edible grade also carries PMDC certification.",
   },
@@ -55,7 +51,7 @@ const FAQ = () => {
     <section id="faq" className="py-20 md:py-24 bg-background">
       <div className="container mx-auto px-6">
         <div ref={header} className="reveal max-w-3xl mb-16">
-          <p className="text-xs uppercase tracking-[0.2em] text-primary mb-5">
+          <p className="text-xs uppercase tracking-[0.2em] text-accent mb-5">
             Buyer Questions
           </p>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.05] tracking-tight mb-6">
@@ -83,7 +79,7 @@ const FAQ = () => {
                 </h3>
                 <span
                   aria-hidden="true"
-                  className="mt-1 flex-shrink-0 text-2xl leading-none text-primary/70 transition-transform duration-[180ms] ease-[var(--ease-out)] group-open:rotate-45"
+                  className="mt-1 flex-shrink-0 text-2xl leading-none text-accent/70 transition-transform duration-[180ms] ease-[var(--ease-out)] group-open:rotate-45"
                 >
                   +
                 </span>

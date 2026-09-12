@@ -41,7 +41,7 @@ const Industries = () => {
             better next to the goods actually packed. */}
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center mb-16">
         <div ref={header} className="reveal lg:col-span-6">
-          <p className="text-xs uppercase tracking-[0.2em] text-primary mb-5">Industries We Serve</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-accent mb-5">Industries We Serve</p>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.05] tracking-tight mb-6">
             Who we supply.
           </h2>
@@ -71,7 +71,7 @@ const Industries = () => {
               style={{ "--reveal-delay": `${Math.min(index, 3) * 60}ms` } as React.CSSProperties}
               className="bg-card p-8 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40"
             >
-              <industry.icon className="w-5 h-5 text-primary mb-6" />
+              <industry.icon className="w-5 h-5 text-accent mb-6" />
               <h3 className="font-serif text-xl font-bold text-foreground mb-3 leading-tight">
                 {industry.title}
               </h3>

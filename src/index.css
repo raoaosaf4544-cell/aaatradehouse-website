@@ -8,54 +8,65 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Warm neutral paper, brand charcoal ink. */
-    --background: 36 18% 97%;
-    --foreground: 0 3% 13%;
+    /* ALL-DARK. The site used to alternate cream and dark four times;
+       every flip reset the reader's eye and was the real reason it never
+       felt like the reference, which is one continuous field from nav to
+       footer. background and salt-dark are now the SAME value so section
+       boundaries genuinely disappear; cream and secondary survive only as
+       barely-raised surfaces, a percent or two apart, for depth.
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 3% 13%;
+       --primary-foreground stays light on purpose. Twenty-five call sites
+       use it as light text on dark, so flipping it would black out most
+       of the copy on the page. Buttons therefore do not use it as a
+       background pair any more - see button.tsx. */
+    --background: 220 24% 4%;
+    --foreground: 36 18% 96%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 3% 13%;
+    --card: 220 20% 7%;
+    --card-foreground: 36 18% 96%;
 
-    /* Brand navy #32527B - the swoosh in the logo. */
+    --popover: 220 20% 7%;
+    --popover-foreground: 36 18% 96%;
+
+    /* Brand navy #32527B. Kept as a token but barely used on screen now:
+       at 34% lightness it is close to invisible on a 4% ground, so the
+       eyebrows and links that used it have moved to the terracotta
+       accent - which is what the dark sections were already doing. */
     --primary: 214 42% 34%;
     --primary-foreground: 36 18% 98%;
 
-    --secondary: 30 12% 93%;
-    --secondary-foreground: 0 3% 13%;
+    --secondary: 220 18% 9%;
+    --secondary-foreground: 36 18% 96%;
 
-    --muted: 30 12% 94%;
-    --muted-foreground: 220 8% 42%;
+    --muted: 220 18% 9%;
+    --muted-foreground: 30 8% 64%;
 
-    /* Salt terracotta - rare accent only. */
-    --accent: 12 45% 58%;
-    --accent-foreground: 36 18% 98%;
+    /* Terracotta, lifted from 58% to 64% lightness. It now carries every
+       eyebrow, link and accent on the site, so it has to clear contrast
+       against near-black rather than against cream. */
+    --accent: 12 58% 64%;
+    --accent-foreground: 220 24% 4%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 36 18% 98%;
 
-    --border: 30 10% 87%;
-    --input: 30 10% 87%;
-    --ring: 214 42% 34%;
+    --border: 220 14% 15%;
+    --input: 220 14% 15%;
+    --ring: 12 58% 64%;
 
-    /* 4px read as rigid. Softer corners are the single largest lever
-       on perceived smoothness, and this token drives every card,
-       panel and image frame on the site. */
     --radius: 0.75rem;
 
-    /* Custom tokens */
     --salt-pink: 8 50% 74%;
-    --salt-coral: 12 45% 62%;
-    --salt-blush: 10 40% 92%;
-    --salt-cream: 36 24% 96%;
-    --salt-dark: 220 26% 7%;
-    --salt-warm: 25 18% 46%;
+    --salt-coral: 12 52% 66%;
+    --salt-blush: 220 18% 11%;
+    --salt-cream: 220 22% 6%;
+    --salt-dark: 220 24% 4%;
+    --salt-warm: 25 14% 58%;
 
-    --gradient-hero: linear-gradient(135deg, hsl(214 42% 34% / 0.12), hsl(36 24% 96%));
-    --gradient-accent: linear-gradient(135deg, hsl(214 42% 34%), hsl(214 44% 24%));
-    --shadow-soft: 0 2px 12px -2px hsl(220 20% 12% / 0.08);
-    --shadow-elevated: 0 16px 40px -12px hsl(220 20% 12% / 0.18);
+    --gradient-hero: linear-gradient(135deg, hsl(214 42% 34% / 0.18), hsl(220 24% 4%));
+    --gradient-accent: linear-gradient(135deg, hsl(214 44% 30%), hsl(214 46% 18%));
+    --shadow-soft: 0 2px 12px -2px hsl(0 0% 0% / 0.5);
+    --shadow-elevated: 0 16px 40px -12px hsl(0 0% 0% / 0.7);
   }
 
   /* Radial gradient utility */

@@ -101,7 +101,7 @@ const MapEmbed = ({ loc }: { loc: (typeof locations)[number] }) => {
         <button
           type="button"
           onClick={() => setClicked(true)}
-          className="self-start rounded-md border border-primary-foreground/25 bg-primary-foreground/10 px-5 py-2.5 text-sm font-medium text-primary-foreground backdrop-blur-sm transition-colors hover:bg-primary-foreground/20"
+          className="self-start rounded-full border border-foreground/25 bg-foreground/10 px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-foreground/20"
         >
           Show map
         </button>
@@ -211,7 +211,7 @@ const Contact = () => {
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Contact Info */}
           <div ref={info} className="reveal">
-            <p className="text-xs uppercase tracking-[0.2em] text-primary mb-5">Get in Touch</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-accent mb-5">Get in Touch</p>
             <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-6">
               Ready to Order?
             </h2>
@@ -224,30 +224,30 @@ const Contact = () => {
             <div className="space-y-6">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-xl bg-salt-blush flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-5 h-5 text-primary" />
+                  <Mail className="w-5 h-5 text-accent" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">Email Us</h3>
-                  <a href="mailto:info@aaatradehouse.com" className="text-muted-foreground hover:text-primary transition-colors">info@aaatradehouse.com</a>
+                  <a href="mailto:info@aaatradehouse.com" className="text-muted-foreground hover:text-accent transition-colors">info@aaatradehouse.com</a>
                 </div>
               </div>
 
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-xl bg-salt-blush flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-5 h-5 text-primary" />
+                  <Phone className="w-5 h-5 text-accent" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">Call or WhatsApp</h3>
                   {/* Both numbers take calls and WhatsApp. phones[0] is primary. */}
                   {phones.map((p) => (
                     <div key={p.tel} className="flex flex-wrap items-baseline gap-x-3">
-                      <a href={`tel:${p.tel}`} className="text-muted-foreground hover:text-primary transition-colors">{p.display}</a>
+                      <a href={`tel:${p.tel}`} className="text-muted-foreground hover:text-accent transition-colors">{p.display}</a>
                       <a
                         href={`https://wa.me/${p.wa}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`WhatsApp ${p.display}`}
-                        className="text-sm text-primary hover:underline underline-offset-4"
+                        className="text-sm text-accent hover:underline underline-offset-4"
                       >
                         WhatsApp
                       </a>
@@ -258,7 +258,7 @@ const Contact = () => {
 
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-xl bg-salt-blush flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-5 h-5 text-primary" />
+                  <MapPin className="w-5 h-5 text-accent" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">Visit Us</h3>
@@ -308,13 +308,13 @@ Office No. 42, Valencia Tower,<br />
                   <label htmlFor="fullName" className="block text-sm font-medium text-foreground mb-2">
                     Full Name
                   </label>
-                  <Input id="fullName" name="fullName" required placeholder="John Smith" className="bg-background" />
+                  <Input id="fullName" name="fullName" required placeholder="John Smith" className="bg-secondary border-border/80" />
                 </div>
                 <div>
                   <label htmlFor="company" className="block text-sm font-medium text-foreground mb-2">
                     Company
                   </label>
-                  <Input id="company" name="company" placeholder="Your Company Ltd." className="bg-background" />
+                  <Input id="company" name="company" placeholder="Your Company Ltd." className="bg-secondary border-border/80" />
                 </div>
               </div>
 
@@ -323,13 +323,13 @@ Office No. 42, Valencia Tower,<br />
                   <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
                     Email
                   </label>
-                  <Input id="email" name="email" type="email" required placeholder="john@company.com" className="bg-background" />
+                  <Input id="email" name="email" type="email" required placeholder="john@company.com" className="bg-secondary border-border/80" />
                 </div>
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
                     Phone
                   </label>
-                  <Input id="phone" name="phone" type="tel" placeholder="+1 234 567 890" className="bg-background" />
+                  <Input id="phone" name="phone" type="tel" placeholder="+1 234 567 890" className="bg-secondary border-border/80" />
                 </div>
               </div>
 
@@ -337,7 +337,7 @@ Office No. 42, Valencia Tower,<br />
                 <label htmlFor="interest" className="block text-sm font-medium text-foreground mb-2">
                   Product Interest
                 </label>
-                <Input id="interest" name="interest" placeholder="e.g., Fine Pink Salt, 20 tons" className="bg-background" />
+                <Input id="interest" name="interest" placeholder="e.g., Fine Pink Salt, 20 tons" className="bg-secondary border-border/80" />
               </div>
 
               <div>
@@ -348,7 +348,7 @@ Office No. 42, Valencia Tower,<br />
                   id="message"
                   name="message"
                   placeholder="Tell us about your requirements..."
-                  className="bg-background min-h-[120px]"
+                  className="bg-secondary border-border/80 min-h-[120px]"
                 />
               </div>
 
@@ -365,7 +365,7 @@ Office No. 42, Valencia Tower,<br />
                 them only to answer your enquiry. See our{" "}
                 <a
                   href="/privacy"
-                  className="text-primary underline underline-offset-4"
+                  className="text-accent underline underline-offset-4"
                 >
                   privacy notice
                 </a>
@@ -382,7 +382,7 @@ Office No. 42, Valencia Tower,<br />
                 {state === "error" && (
                   <span className="text-muted-foreground">
                     That didn't send{errorDetail ? ` (${errorDetail})` : ""}. Please email{" "}
-                    <a href="mailto:info@aaatradehouse.com" className="text-primary underline underline-offset-4">
+                    <a href="mailto:info@aaatradehouse.com" className="text-accent underline underline-offset-4">
                       info@aaatradehouse.com
                     </a>{" "}
                     or message us on{" "}
@@ -390,7 +390,7 @@ Office No. 42, Valencia Tower,<br />
                       href={`https://wa.me/${phones[0].wa}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-primary underline underline-offset-4"
+                      className="text-accent underline underline-offset-4"
                     >
                       WhatsApp
                     </a>
@@ -403,7 +403,7 @@ Office No. 42, Valencia Tower,<br />
         </div>
         {/* Verified locations - Google Business Profile listings */}
         <div ref={maps} className="reveal mt-20 md:mt-24">
-          <p className="text-xs uppercase tracking-[0.2em] text-primary mb-5">Find Us</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-accent mb-5">Find Us</p>
           <h3 className="font-serif text-3xl md:text-4xl font-bold text-foreground leading-tight mb-10">
             Two verified locations.
           </h3>
@@ -419,7 +419,7 @@ Office No. 42, Valencia Tower,<br />
                   href={loc.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block mt-3 text-sm font-medium text-primary hover:underline underline-offset-4"
+                  className="inline-block mt-3 text-sm font-medium text-accent hover:underline underline-offset-4"
                 >
                   Open in Google Maps
                 </a>

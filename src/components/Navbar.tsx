@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import logoLight from "@/assets/logo-light.webp";
-import logoDark from "@/assets/logo-dark.webp";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -43,8 +42,8 @@ const Navbar = () => {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-      scrolled 
-        ? "bg-background/90 backdrop-blur-lg border-b border-border" 
+      scrolled
+        ? "bg-background/80 backdrop-blur-xl border-b border-border"
         : "bg-transparent border-b border-transparent"
     }`}>
       <div className="container mx-auto px-6">
@@ -52,7 +51,10 @@ const Navbar = () => {
           {/* Logo */}
           <a href="/#home" className="flex items-center gap-2">
             <img
-              src={scrolled ? logoDark : logoLight}
+              /* Always the light mark. The scrolled state used to mean
+                 "a light bar is behind me" and swapped in logoDark; on an
+                 all-dark site that rendered a near-black logo on near-black. */
+              src={logoLight}
               width={240}
               height={128}
               alt="AAA Trade House - Himalayan Salt Experts"
@@ -66,11 +68,7 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className={`transition-colors duration-300 text-sm font-medium tracking-wide uppercase ${
-                  scrolled 
-                    ? "text-muted-foreground hover:text-primary" 
-                    : "text-primary-foreground/90 hover:text-primary-foreground"
-                }`}
+                className="transition-colors duration-300 text-sm font-medium tracking-wide uppercase text-foreground/70 hover:text-foreground"
               >
                 {link.name}
               </a>
@@ -89,7 +87,7 @@ const Navbar = () => {
             aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
-            className={`lg:hidden -mr-2 p-2 ${scrolled ? "text-foreground" : "text-primary-foreground"}`}
+            className="lg:hidden -mr-2 p-2 text-foreground"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -106,7 +104,7 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="block px-2 py-3 text-lg text-muted-foreground hover:text-primary transition-colors"
+                className="block px-2 py-3 text-lg text-muted-foreground hover:text-accent transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 {link.name}

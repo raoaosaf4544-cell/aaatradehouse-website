@@ -95,14 +95,14 @@ const ConsentBanner = () => {
           <button
             type="button"
             onClick={() => decide("granted")}
-            className="flex-1 rounded-md border border-primary bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="flex-1 rounded-full border border-foreground bg-foreground px-5 py-3 text-sm font-medium text-background transition-colors hover:bg-foreground/90"
           >
             Accept
           </button>
           <button
             type="button"
             onClick={() => decide("denied")}
-            className="flex-1 rounded-md border border-primary bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="flex-1 rounded-full border border-foreground bg-foreground px-5 py-3 text-sm font-medium text-background transition-colors hover:bg-foreground/90"
           >
             Decline
           </button>
@@ -110,7 +110,7 @@ const ConsentBanner = () => {
 
         <a
           href="/privacy"
-          className="mt-4 inline-block text-sm text-primary underline underline-offset-4"
+          className="mt-4 inline-block text-sm text-accent underline underline-offset-4"
         >
           Privacy &amp; cookies
         </a>
