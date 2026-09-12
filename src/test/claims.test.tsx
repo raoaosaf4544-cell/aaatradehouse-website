@@ -1,10 +1,11 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, afterEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import GlobalReach from "@/components/GlobalReach";
 import Products from "@/components/Products";
 import Hero from "@/components/Hero";
+import { CountUp } from "@/components/CountUp";
 
 /**
  * Guards the claims, not the styling.
@@ -177,5 +178,56 @@ describe("site-wide", () => {
         .filter(Boolean),
     );
     expect(spacings.size).toBeGreaterThan(1);
+  });
+});
+
+describe("CountUp never shows a wrong number", () => {
+  const hide = (state: "visible" | "hidden") =>
+    Object.defineProperty(document, "visibilityState", {
+      configurable: true,
+      get: () => state,
+    });
+
+  afterEach(() => hide("visible"));
+
+  it("does not drop to zero while the tab is in the background", () => {
+    // Found in the browser: a background tab throttles rAF to nothing,
+    // so a counter that had already reset to 0 stayed at 0. "0 tonnes
+    // per month" is a false figure, not a missing animation.
+    hide("hidden");
+    render(<CountUp value="100+" />);
+    expect(screen.getByText("100+")).toBeInTheDocument();
+    expect(screen.queryByText("0+")).toBeNull();
+  });
+
+  it("shows the real figure when motion is reduced", () => {
+    const original = window.matchMedia;
+    window.matchMedia = ((q: string) => ({
+      matches: q.includes("prefers-reduced-motion"),
+      media: q, onchange: null,
+      addListener: () => {}, removeListener: () => {},
+      addEventListener: () => {}, removeEventListener: () => {},
+      dispatchEvent: () => false,
+    })) as unknown as typeof window.matchMedia;
+    try {
+      render(<CountUp value="100+" />);
+      expect(screen.getByText("100+")).toBeInTheDocument();
+    } finally {
+      window.matchMedia = original;
+    }
+  });
+
+  it("animates a year instead of counting it, so it still arrives", () => {
+    // 2009 counting up from zero reads as a broken odometer, but sitting
+    // dead still beside two counters read as a failure. It slides.
+    const { container } = render(<CountUp value="2009" />);
+    expect(container.querySelector(".num-mask")).not.toBeNull();
+    expect(container.querySelector(".num-slide")).not.toBeNull();
+    expect(screen.getByText("2009")).toBeInTheDocument();
+  });
+
+  it("keeps the suffix on a counted value", () => {
+    render(<CountUp value="100+" />);
+    expect(screen.getByText("100+")).toBeInTheDocument();
   });
 });

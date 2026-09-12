@@ -316,6 +316,31 @@ All colors MUST be HSL.
       translateZ(0);
   }
 
+  /* A figure that cannot be counted still has to arrive.
+     Used for years: 2009 sliding up from behind a mask reads as the
+     number taking its place, where counting it from zero would read as
+     an odometer resetting. Same 1100ms as the counters beside it, so
+     all three figures in the hero spec column land together.
+
+     The mask needs its own box to clip against, and both halves are
+     inline-block so the figure stays on the dd's baseline instead of
+     dropping below it. */
+  .num-mask {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+  }
+
+  .num-slide {
+    display: inline-block;
+    transform: translateY(105%);
+    transition: transform 1100ms var(--ease-settle);
+  }
+
+  .num-slide.is-in {
+    transform: translateY(0);
+  }
+
   /* Cursor spotlight on card grids.
      A soft radial highlight tracks the pointer across a hairline grid,
      so the cell under the cursor lifts out of the dark without moving.

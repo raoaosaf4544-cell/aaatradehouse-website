@@ -152,19 +152,63 @@ const Products = () => {
             fixes the resolution: at lg it paints around 600px from a
             1200px source, comfortably sharp even on a 2x screen. */}
         <div ref={packs} className="reveal mt-20 bg-salt-cream rounded-lg p-8 md:p-12 lg:p-14">
-          <div className="grid lg:grid-cols-12 gap-x-14 gap-y-10 items-center mb-12">
+          <div className="grid lg:grid-cols-12 gap-x-14 gap-y-12">
+            {/* Everything textual stacks on the left; the photograph
+                holds the right. The four pack sizes were a single row of
+                four, which on a 1600px container stretched each card
+                into a wide, thin strip. Two-by-two inside the left
+                column gives them a readable measure and lets the photo
+                run full height beside them. */}
             <div className="lg:col-span-7">
               <p className="text-accent font-semibold mb-3 tracking-widest uppercase text-sm">Packaging</p>
               <h3 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-3">
                 Any bulk size you need.
               </h3>
-              <p className="text-muted-foreground leading-relaxed max-w-2xl">
+              <p className="text-muted-foreground leading-relaxed mb-10">
                 Standard export bags, jumbo bags, or a size you specify. Tell us what your
                 line runs and we pack to it.
               </p>
+
+              <div className="flex items-center gap-4 mb-6">
+                <span className="text-xs font-semibold uppercase tracking-widest text-accent">
+                  Packaging types
+                </span>
+                <span className="h-px flex-1 bg-border" />
+              </div>
+
+              <div
+                onPointerMove={spot.onPointerMove}
+                onPointerLeave={spot.onPointerLeave}
+                className="stage grid sm:grid-cols-2 gap-px bg-border border border-border rounded-lg overflow-hidden"
+              >
+                <div className="spot tilt border border-transparent bg-card p-6 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40">
+              <Package className="w-5 h-5 text-accent mb-5" aria-hidden="true" strokeWidth={1.5} />
+              <h4 className="font-serif text-xl font-bold text-foreground mb-1 leading-tight">25 / 50 kg</h4>
+              <p className="text-sm font-medium text-foreground/70 mb-2">PP export bags</p>
+              <p className="text-muted-foreground text-sm leading-relaxed">Standard distribution sizes.</p>
+                </div>
+                <div className="spot tilt border border-transparent bg-card p-6 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40">
+              <Boxes className="w-5 h-5 text-accent mb-5" aria-hidden="true" strokeWidth={1.5} />
+              <h4 className="font-serif text-xl font-bold text-foreground mb-1 leading-tight">1000 kg</h4>
+              <p className="text-sm font-medium text-foreground/70 mb-2">Jumbo bags</p>
+              <p className="text-muted-foreground text-sm leading-relaxed">For large-scale operations.</p>
+                </div>
+                <div className="spot tilt border border-transparent bg-card p-6 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40">
+              <Ruler className="w-5 h-5 text-accent mb-5" aria-hidden="true" strokeWidth={1.5} />
+              <h4 className="font-serif text-xl font-bold text-foreground mb-1 leading-tight">Custom</h4>
+              <p className="text-sm font-medium text-foreground/70 mb-2">To your specification</p>
+              <p className="text-muted-foreground text-sm leading-relaxed">Name the size, we pack to it.</p>
+                </div>
+                <div className="spot tilt border border-transparent bg-card p-6 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40">
+              <Tag className="w-5 h-5 text-accent mb-5" aria-hidden="true" strokeWidth={1.5} />
+              <h4 className="font-serif text-xl font-bold text-foreground mb-1 leading-tight">500 g / 1 kg</h4>
+              <p className="text-sm font-medium text-foreground/70 mb-2">Branded retail packs</p>
+              <p className="text-muted-foreground text-sm leading-relaxed">Private labelling, registered brand.</p>
+                </div>
+              </div>
             </div>
 
-            <figure className="lg:col-span-5">
+            <figure className="lg:col-span-5 lg:sticky lg:top-28 lg:self-start">
               <div className="rounded-xl overflow-hidden border border-border">
                 <img
                   src={saltRawClose}
@@ -180,38 +224,6 @@ const Products = () => {
                 Colour varies naturally across the same seam.
               </figcaption>
             </figure>
-          </div>
-
-          <div className="flex items-center gap-4 mb-6">
-            <span className="text-xs font-semibold uppercase tracking-widest text-accent">Available now</span>
-            <span className="h-px flex-1 bg-border" />
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border rounded-lg overflow-hidden">
-            <div className="bg-card p-6 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40">
-              <Package className="w-5 h-5 text-accent mb-5" aria-hidden="true" strokeWidth={1.5} />
-              <h4 className="font-serif text-xl font-bold text-foreground mb-1 leading-tight">25 / 50 kg</h4>
-              <p className="text-sm font-medium text-foreground/70 mb-2">PP export bags</p>
-              <p className="text-muted-foreground text-sm leading-relaxed">Standard distribution sizes.</p>
-            </div>
-            <div className="bg-card p-6 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40">
-              <Boxes className="w-5 h-5 text-accent mb-5" aria-hidden="true" strokeWidth={1.5} />
-              <h4 className="font-serif text-xl font-bold text-foreground mb-1 leading-tight">1000 kg</h4>
-              <p className="text-sm font-medium text-foreground/70 mb-2">Jumbo bags</p>
-              <p className="text-muted-foreground text-sm leading-relaxed">For large-scale operations.</p>
-            </div>
-            <div className="bg-card p-6 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40">
-              <Ruler className="w-5 h-5 text-accent mb-5" aria-hidden="true" strokeWidth={1.5} />
-              <h4 className="font-serif text-xl font-bold text-foreground mb-1 leading-tight">Custom</h4>
-              <p className="text-sm font-medium text-foreground/70 mb-2">To your specification</p>
-              <p className="text-muted-foreground text-sm leading-relaxed">Name the size, we pack to it.</p>
-            </div>
-            <div className="bg-card p-6 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40">
-              <Tag className="w-5 h-5 text-accent mb-5" aria-hidden="true" strokeWidth={1.5} />
-              <h4 className="font-serif text-xl font-bold text-foreground mb-1 leading-tight">500 g / 1 kg</h4>
-              <p className="text-sm font-medium text-foreground/70 mb-2">Branded retail packs</p>
-              <p className="text-muted-foreground text-sm leading-relaxed">Private labelling, registered brand.</p>
-            </div>
           </div>
 
           <div className="text-center mt-12">

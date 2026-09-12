@@ -1,14 +1,30 @@
 import { useEffect, useRef, useState } from "react";
 
+/** Both behaviours run for this long, so the three figures in the hero
+ *  spec column finish together regardless of which one they are. */
+const DURATION = 1100;
+
 /**
- * Counts a number up when it scrolls into view. Fires once.
+ * Brings a figure to life when it scrolls into view. Fires once.
  *
- * Fail-safe: the final value is what renders unless we know we can animate,
- * so a missing observer or reduced-motion preference simply shows the number.
+ * Two behaviours, one trigger and one duration:
  *
- * Values are parsed as "<digits><suffix>" - "100+" counts to 100 and keeps
- * the plus. Years are not counted: watching 1994 spin up from zero reads as
- * a broken odometer, not a statistic.
+ *   COUNTABLE values ("100+", "4") count up. "100+" counts to 100 and
+ *   keeps the plus.
+ *
+ *   YEARS do not count. Watching 2009 spin up from zero reads as a
+ *   broken odometer rather than a statistic - but "not counted" is not
+ *   the same as "not animated", and leaving it dead still while its
+ *   neighbours moved made it look like something had failed. It slides
+ *   into place from behind a mask instead: same trigger, same duration,
+ *   an expression that suits a figure whose digits are not a quantity.
+ *
+ * FAIL-SAFE: the final value is what renders unless we know we can
+ * animate. A missing observer or a reduced-motion preference simply
+ * shows the number, and the counter only drops to zero at the instant
+ * the animation actually starts - a counter that failed mid-flight
+ * would otherwise leave "0 tonnes per month" on the page, which is
+ * worse than no animation at all.
  */
 export function CountUp({ value, className }: { value: string; className?: string }) {
   const match = value.match(/^(\d+)(.*)$/);
@@ -17,28 +33,47 @@ export function CountUp({ value, className }: { value: string; className?: strin
   const isYear = target >= 1900;
   const countable = !!match && !isYear && target > 0;
 
-  const canAnimate =
-    countable &&
+  const motionOk =
     typeof window !== "undefined" &&
     typeof IntersectionObserver !== "undefined" &&
     !window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
+  const canCount = countable && motionOk;
+  const canSlide = !countable && motionOk;
+
   const ref = useRef<HTMLSpanElement>(null);
-  // FAIL-SAFE: hold the real number. We only drop to zero at the moment the
-  // animation actually starts. A counter that fails mid-flight would otherwise
-  // display a wrong figure - "0 tonnes per month" is worse than no animation.
   const [n, setN] = useState(target);
+  // Starts false only when a slide is actually possible; otherwise the
+  // figure is simply in place from the first paint.
+  const [arrived, setArrived] = useState(!canSlide);
 
   useEffect(() => {
-    if (!canAnimate) return;
+    if (!canCount && !canSlide) return;
     const el = ref.current;
     if (!el) return;
 
     let raf = 0;
     let io: IntersectionObserver | null = null;
+    const onVisible = () => {
+      if (document.visibilityState === "visible") run();
+    };
 
     const run = () => {
-      const DURATION = 1100;
+      io?.disconnect();
+      if (canSlide) {
+        setArrived(true);
+        return;
+      }
+      // A background tab throttles requestAnimationFrame to nothing, so
+      // dropping to zero here would leave "0 tonnes per month" on screen
+      // until the tab is looked at. The original fail-safe only covered
+      // never STARTING; this covers starting and then being frozen,
+      // which is what a tab opened in the background actually does.
+      // Verified: with the tab hidden the counters sat at 0 indefinitely.
+      if (document.visibilityState !== "visible") {
+        document.addEventListener("visibilitychange", onVisible, { once: true });
+        return;
+      }
       setN(0);
       const start = performance.now();
       const tick = (now: number) => {
@@ -49,7 +84,6 @@ export function CountUp({ value, className }: { value: string; className?: strin
         if (t < 1) raf = requestAnimationFrame(tick);
       };
       raf = requestAnimationFrame(tick);
-      io?.disconnect();
     };
 
     const r = el.getBoundingClientRect();
@@ -68,13 +102,24 @@ export function CountUp({ value, className }: { value: string; className?: strin
     return () => {
       cancelAnimationFrame(raf);
       io?.disconnect();
+      document.removeEventListener("visibilitychange", onVisible);
     };
-  }, [canAnimate, target]);
+  }, [canCount, canSlide, target]);
 
+  if (countable) {
+    return (
+      <span ref={ref} className={className}>
+        {canCount ? n : target}
+        {suffix}
+      </span>
+    );
+  }
+
+  // The mask needs its own box, so the slid element has something to be
+  // clipped by. inline-block keeps it on the text baseline inside the dd.
   return (
-    <span ref={ref} className={className}>
-      {countable ? n : value}
-      {countable ? suffix : ""}
+    <span ref={ref} className={`num-mask ${className ?? ""}`}>
+      <span className={`num-slide ${arrived ? "is-in" : ""}`}>{value}</span>
     </span>
   );
 }
