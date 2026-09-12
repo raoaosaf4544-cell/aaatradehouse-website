@@ -99,6 +99,22 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
   }
+
+  /* One focus indicator for every interactive element that does not bring
+     its own. Terracotta rather than the navy --ring because it is the only
+     brand colour that clears 3:1 (WCAG 1.4.11) against BOTH surfaces the
+     site uses: ~3.6:1 on the cream background, ~4.9:1 on salt-dark. Navy on
+     salt-dark is almost invisible, which is what the nav, the footer and the
+     mobile bar all sit on.
+
+     :where() keeps specificity at zero, so the shadcn components' own
+     `focus-visible:ring-*` utilities still win where they are set. */
+  :where(a, button, summary, [tabindex]:not([tabindex="-1"])):focus-visible,
+  :where(input, select, textarea):focus-visible {
+    outline: 2px solid hsl(var(--accent));
+    outline-offset: 2px;
+    border-radius: 3px;
+  }
 }
 
 @layer base {
@@ -147,6 +163,29 @@ All colors MUST be HSL.
 
 /* Anyone who asks for less motion gets none of it. */
 @media (prefers-reduced-motion: reduce) {
+  /* Blanket first, so anything added later is covered by default rather
+     than needing to be remembered here. This catches the tailwindcss-animate
+     utilities behind every shadcn overlay (animate-in / animate-out), the
+     hero's animate-fade-in, and the two infinite ones on the scroll
+     indicator (animate-bounce, animate-pulse).
+
+     0.01ms rather than `animation: none` is deliberate: fade-in and
+     scale-in are `forwards` animations that START at opacity 0, so killing
+     them outright would strand that content invisible. A near-zero duration
+     runs them to their end state instantly instead. */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Reveal and media-load hide via a class, not an animation, so the
+     blanket above cannot reach them - they still need to be unhidden. */
   .reveal,
   .reveal.reveal-armed,
   .reveal.reveal-armed.is-visible,

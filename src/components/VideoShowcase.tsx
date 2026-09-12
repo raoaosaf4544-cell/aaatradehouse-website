@@ -1,15 +1,55 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { Factory, FlaskConical, Pause, Pickaxe, Play } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import showcaseStill from "@/assets/banner-clean.webp";
 import facilityVideo from "@/assets/facility.mp4";
 
+/* Line icons rather than emoji. Emoji render as a different picture on every
+   OS, announce as "pick emoji" / "microscope emoji" to a screen reader, and
+   read as consumer rather than trade - the wrong register for a buyer doing
+   due diligence. Decorative here, so aria-hidden: the heading says it. */
+const features = [
+  {
+    icon: Pickaxe,
+    title: "Traditional Mining",
+    body: "Hand-mined from ancient Khewra salt mines",
+  },
+  {
+    icon: FlaskConical,
+    title: "Quality Tested",
+    body: "PCSIR lab report available on request",
+  },
+  {
+    icon: Factory,
+    title: "In-House Processing",
+    body: "Khanewal facility operational, crushing and grading in-house",
+  },
+];
+
 const VideoShowcase = () => {
   const [mediaLoaded, setMediaLoaded] = useState(false);
-  const prefersReduced =
-    typeof window !== "undefined" &&
-    window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+  const prefersReduced = usePrefersReducedMotion();
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(true);
   const header = useReveal<HTMLDivElement>();
   const feats = useReveal<HTMLDivElement>();
+
+  const toggle = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) {
+      // play() rejects when autoplay is blocked or the element is torn
+      // down mid-gesture; swallow it so the button never throws at a user.
+      void v.play().then(
+        () => setPlaying(true),
+        () => setPlaying(false),
+      );
+    } else {
+      v.pause();
+      setPlaying(false);
+    }
+  };
 
   return (
     <section id="video-section" className="py-28 md:py-36 bg-salt-dark relative overflow-hidden">
@@ -47,19 +87,42 @@ const VideoShowcase = () => {
                 className={`w-full aspect-video object-cover media-load ${mediaLoaded ? "is-loaded" : ""}`}
               />
             ) : (
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                poster={showcaseStill}
-                aria-label="AAA Trade House salt processing facility"
-                onLoadedData={() => setMediaLoaded(true)}
-                className={`w-full aspect-video object-cover media-load ${mediaLoaded ? "is-loaded" : ""}`}
-              >
-                <source src={facilityVideo} type="video/mp4" />
-              </video>
+              <>
+                <video
+                  ref={videoRef}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  poster={showcaseStill}
+                  aria-label="AAA Trade House salt processing facility"
+                  onPlay={() => setPlaying(true)}
+                  onPause={() => setPlaying(false)}
+                  onLoadedData={() => setMediaLoaded(true)}
+                  className={`w-full aspect-video object-cover media-load ${mediaLoaded ? "is-loaded" : ""}`}
+                >
+                  <source src={facilityVideo} type="video/mp4" />
+                </video>
+                {/* WCAG 2.2.2: motion that starts on its own and runs past
+                    five seconds needs a way to stop it. The clip loops, so
+                    without this there is none. Sits above the falloff
+                    gradient, which is pointer-events-none. */}
+                <button
+                  type="button"
+                  onClick={toggle}
+                  aria-pressed={!playing}
+                  aria-label={playing ? "Pause facility video" : "Play facility video"}
+                  className="absolute bottom-4 right-4 z-10 inline-flex items-center gap-2 rounded-md border border-primary-foreground/20 bg-salt-dark/80 px-3 py-2 text-xs font-medium uppercase tracking-wide text-primary-foreground backdrop-blur-sm transition-colors hover:bg-salt-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-salt-dark"
+                >
+                  {playing ? (
+                    <Pause className="w-4 h-4" aria-hidden="true" />
+                  ) : (
+                    <Play className="w-4 h-4" aria-hidden="true" />
+                  )}
+                  {playing ? "Pause" : "Play"}
+                </button>
+              </>
             )}
             {/* Edge falloff so the clip sits in the section rather than on it. */}
             <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-salt-dark/60 via-transparent to-transparent" />
@@ -67,28 +130,16 @@ const VideoShowcase = () => {
         </div>
 
         {/* Features Below Video */}
-        <div ref={feats} className="reveal-group grid md:grid-cols-3 gap-10 mt-16 max-w-6xl mx-auto border-t border-primary-foreground/10 pt-12">
-          <div className="text-left" style={{ "--reveal-delay": "0ms" } as React.CSSProperties}>
-            <div className="w-11 h-11 rounded-md bg-primary-foreground/5 border border-primary-foreground/10 flex items-center justify-center mb-4">
-              <span className="text-2xl">⛏️</span>
+        <div ref={feats} className="reveal-group grid sm:grid-cols-2 md:grid-cols-3 gap-x-10 gap-y-12 mt-16 max-w-6xl mx-auto border-t border-primary-foreground/10 pt-12">
+          {features.map((f, i) => (
+            <div key={f.title} className="text-left" style={{ "--reveal-delay": `${i * 60}ms` } as React.CSSProperties}>
+              <div className="w-11 h-11 rounded-md bg-primary-foreground/5 border border-primary-foreground/10 flex items-center justify-center mb-4">
+                <f.icon className="w-5 h-5 text-salt-coral" aria-hidden="true" strokeWidth={1.5} />
+              </div>
+              <h3 className="text-primary-foreground font-medium mb-2">{f.title}</h3>
+              <p className="text-primary-foreground/50 text-sm leading-relaxed">{f.body}</p>
             </div>
-            <h3 className="text-primary-foreground font-medium mb-2">Traditional Mining</h3>
-            <p className="text-primary-foreground/50 text-sm leading-relaxed">Hand-mined from ancient Khewra salt mines</p>
-          </div>
-          <div className="text-left" style={{ "--reveal-delay": "60ms" } as React.CSSProperties}>
-            <div className="w-11 h-11 rounded-md bg-primary-foreground/5 border border-primary-foreground/10 flex items-center justify-center mb-4">
-              <span className="text-2xl">🔬</span>
-            </div>
-            <h3 className="text-primary-foreground font-medium mb-2">Quality Tested</h3>
-            <p className="text-primary-foreground/50 text-sm leading-relaxed">PCSIR lab report available on request</p>
-          </div>
-          <div className="text-left" style={{ "--reveal-delay": "120ms" } as React.CSSProperties}>
-            <div className="w-11 h-11 rounded-md bg-primary-foreground/5 border border-primary-foreground/10 flex items-center justify-center mb-4">
-              <span className="text-2xl">🏭</span>
-            </div>
-            <h3 className="text-primary-foreground font-medium mb-2">In-House Processing</h3>
-            <p className="text-primary-foreground/50 text-sm leading-relaxed">Khanewal facility operational, crushing and grading in-house</p>
-          </div>
+          ))}
         </div>
       </div>
     </section>

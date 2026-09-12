@@ -3,11 +3,22 @@ import { ArrowRight, Mountain } from "lucide-react";
 import heroStill from "@/assets/hero-salt.webp";
 import { CountUp } from "@/components/CountUp";
 
-/* Editorial spec column. Values are confirmed facts - do not invent rows. */
+/* Editorial spec column. Values are confirmed facts - do not invent rows.
+   "0 Middlemen" used to sit in the third slot. It contradicted the
+   "primarily direct from PMDC" wording everywhere else on the site -
+   "primarily" concedes that some volume is not direct, so "0" was not a
+   softer claim, it was a false one. A buyer who finds both statements in
+   the same due-diligence pass stops reading.
+
+   The replacement is a registration date rather than a softer sourcing
+   claim: it is checkable against the register, which is what a buyer doing
+   diligence actually wants from this column. CountUp does not animate it -
+   anything >= 1900 is treated as a year, so it renders flat instead of
+   spinning up from zero like an odometer. */
 const specs = [
   { value: "100+", label: "Tonnes per month capacity" },
   { value: "4", label: "Salt grades" },
-  { value: "0", label: "Middlemen" },
+  { value: "2009", label: "AAA General Trading registered" },
 ];
 
 const Hero = () => {
@@ -79,7 +90,7 @@ const Hero = () => {
             >
               Bulk Himalayan pink salt in coarse, fine, edible and chunk grades,
               sourced primarily direct from PMDC. No trading layer between the mine
-              and your container, and every batch tested.
+              and your container, and batches PCSIR tested.
             </p>
 
             <div
@@ -131,8 +142,12 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+      {/* Scroll indicator - purely decorative, and it announces as nothing
+          useful, so it stays out of the accessibility tree. */}
+      <div
+        aria-hidden="true"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce"
+      >
         <div className="w-7 h-12 rounded-full border border-primary-foreground/25 flex items-start justify-center p-2">
           <div className="w-1 h-2.5 rounded-full bg-accent animate-pulse" />
         </div>

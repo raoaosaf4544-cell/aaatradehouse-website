@@ -25,7 +25,7 @@ const steps = [
 
 const Ordering = () => {
   const header = useReveal<HTMLDivElement>();
-  const strip = useReveal<HTMLDivElement>();
+  const strip = useReveal<HTMLOListElement>();
 
   return (
     <section id="ordering" className="py-28 md:py-36 bg-salt-dark text-primary-foreground">

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import logoLight from "@/assets/logo-light.webp";
@@ -7,6 +7,7 @@ import logoDark from "@/assets/logo-dark.webp";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const toggleRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,6 +16,20 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Escape closes the panel and puts focus back on the toggle. Without the
+  // second half, dismissing the menu strands focus on a button that is no
+  // longer rendered and the next Tab restarts from the top of the document.
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      setIsOpen(false);
+      toggleRef.current?.focus();
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [isOpen]);
 
   const navLinks = [
     { name: "Home", href: "#home" },
@@ -66,11 +81,15 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu Button */}
+          {/* -mr-2 p-2 keeps the optical alignment while giving the icon a
+              44px tap target, which a bare 24px icon does not meet. */}
           <button
+            ref={toggleRef}
             type="button"
             aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
-            className={`lg:hidden ${scrolled ? "text-foreground" : "text-primary-foreground"}`}
+            aria-controls="mobile-menu"
+            className={`lg:hidden -mr-2 p-2 ${scrolled ? "text-foreground" : "text-primary-foreground"}`}
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -79,12 +98,15 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="lg:hidden py-6 bg-background/95 backdrop-blur-md rounded-b-2xl animate-fade-in">
+          <div
+            id="mobile-menu"
+            className="lg:hidden py-4 px-2 bg-background/95 backdrop-blur-md rounded-b-2xl animate-fade-in"
+          >
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="block py-3 text-lg text-muted-foreground hover:text-primary transition-colors"
+                className="block px-2 py-3 text-lg text-muted-foreground hover:text-primary transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 {link.name}

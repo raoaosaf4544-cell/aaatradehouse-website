@@ -41,7 +41,7 @@ const GlobalReach = () => {
             <p className="text-primary-foreground/60 text-base md:text-lg leading-relaxed mb-12">
               We source primarily direct from PMDC, grade to order, and pack for bulk
               shipment. There is no trading layer, so the people arranging your container
-              are the people who know the mine — and every batch is tested either way.
+              are the people who know the mine — and batches are PCSIR tested either way.
             </p>
 
             <div ref={feats} className="reveal-group grid sm:grid-cols-2 gap-6">
