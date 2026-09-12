@@ -1,6 +1,7 @@
 import logoLight from "@/assets/logo-light.webp";
 import footerBanner from "@/assets/banner-clean.webp";
 import { Facebook, Instagram, Linkedin, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { phones } from "@/lib/contact";
 
 const Footer = () => {
   return (
@@ -118,17 +119,28 @@ const Footer = () => {
 Office No. 42, Valencia Tower,<br />Block K1, Valencia Town,<br />Lahore 54770, Pakistan
                 </span>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-salt-coral flex-shrink-0" />
-                <a href="tel:+923174286226" className="text-primary-foreground/55 hover:text-primary-foreground transition-colors text-sm">+92 317 4286226</a>
-              </li>
+              {/* Both numbers take calls and WhatsApp. phones[0] is primary. */}
+              {phones.map((p) => (
+                <li key={p.tel} className="flex items-start gap-3">
+                  <Phone className="w-5 h-5 text-salt-coral flex-shrink-0 mt-0.5" />
+                  <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                    <a href={`tel:${p.tel}`} className="text-primary-foreground/55 hover:text-primary-foreground transition-colors text-sm">{p.display}</a>
+                    <a
+                      href={`https://wa.me/${p.wa}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`WhatsApp ${p.display}`}
+                      className="inline-flex items-center gap-1.5 text-primary-foreground/55 hover:text-primary-foreground transition-colors text-sm"
+                    >
+                      <MessageCircle className="w-4 h-4 text-salt-coral" />
+                      WhatsApp
+                    </a>
+                  </span>
+                </li>
+              ))}
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-salt-coral flex-shrink-0" />
                 <a href="mailto:info@aaatradehouse.com" className="text-primary-foreground/55 hover:text-primary-foreground transition-colors text-sm">info@aaatradehouse.com</a>
-              </li>
-              <li className="flex items-center gap-3">
-                <MessageCircle className="w-5 h-5 text-salt-coral flex-shrink-0" />
-                <a href="https://wa.me/923174286226" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/55 hover:text-primary-foreground transition-colors text-sm">WhatsApp</a>
               </li>
             </ul>
             <p className="text-primary-foreground/55 text-sm leading-relaxed mt-6 pt-6 border-t border-primary-foreground/10">

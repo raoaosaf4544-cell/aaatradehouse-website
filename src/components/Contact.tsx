@@ -4,6 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
+import { phones } from "@/lib/contact";
 
 // HubSpot Forms submission endpoint. Portal ID confirmed against
 // forms.hsforms.com (the 8-digit variant 404s; this one resolves).
@@ -133,9 +134,22 @@ const Contact = () => {
                   <Phone className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground mb-1">Call Us</h3>
-                  <a href="tel:+923174286226" className="block text-muted-foreground hover:text-primary transition-colors">+92 317 4286226</a>
-                  <a href="https://wa.me/923174286226" target="_blank" rel="noopener noreferrer" className="block text-muted-foreground hover:text-primary transition-colors">WhatsApp</a>
+                  <h3 className="font-semibold text-foreground mb-1">Call or WhatsApp</h3>
+                  {/* Both numbers take calls and WhatsApp. phones[0] is primary. */}
+                  {phones.map((p) => (
+                    <div key={p.tel} className="flex flex-wrap items-baseline gap-x-3">
+                      <a href={`tel:${p.tel}`} className="text-muted-foreground hover:text-primary transition-colors">{p.display}</a>
+                      <a
+                        href={`https://wa.me/${p.wa}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`WhatsApp ${p.display}`}
+                        className="text-sm text-primary hover:underline underline-offset-4"
+                      >
+                        WhatsApp
+                      </a>
+                    </div>
+                  ))}
                 </div>
               </div>
 
@@ -237,7 +251,7 @@ Office No. 42, Valencia Tower,<br />
                     </a>{" "}
                     or message us on{" "}
                     <a
-                      href="https://wa.me/923174286226"
+                      href={`https://wa.me/${phones[0].wa}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-primary underline underline-offset-4"
