@@ -6,7 +6,7 @@ import { openConsentSettings } from "@/lib/consent";
 
 const Footer = () => {
   return (
-    <footer className="relative bg-salt-dark text-primary-foreground overflow-hidden">
+    <footer className="relative bg-salt-dark text-primary-foreground overflow-hidden border-t border-border">
       {/* Full-bleed brand banner behind the whole footer.
           banner-clean.jpg is the CROPPED collage - the original had a
           fabricated claims bar baked in. Do not swap in the uncropped file. */}

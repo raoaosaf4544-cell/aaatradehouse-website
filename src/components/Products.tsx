@@ -97,7 +97,7 @@ const Products = () => {
               className="group relative bg-card p-8 lg:p-10 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40"
             >
               <div className="flex items-start justify-between mb-6">
-                <span className="font-serif text-3xl font-bold text-border tabular-nums leading-none">
+                <span className="font-serif text-3xl font-bold text-foreground/50 tabular-nums leading-none">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <product.icon className="w-5 h-5 text-accent/60 group-hover:text-accent transition-colors" />

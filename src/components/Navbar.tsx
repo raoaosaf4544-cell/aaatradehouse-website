@@ -68,7 +68,11 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="transition-colors duration-300 text-sm font-medium tracking-wide uppercase text-foreground/70 hover:text-foreground"
+                /* py-2 is not decoration: at text-sm these links measured 20px
+                   tall, under the 24px minimum in WCAG 2.2 SC 2.5.8. A
+                   nav row is not an inline link in a sentence, so it does
+                   not get that exemption. */
+                className="py-2 transition-colors duration-300 text-sm font-medium tracking-wide uppercase text-foreground/70 hover:text-foreground"
               >
                 {link.name}
               </a>

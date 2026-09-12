@@ -145,10 +145,10 @@ const About = () => {
               />
             </div>
             {/* Floating Badge */}
-            {/* shadow-elevated, not elev-dark: this card sits on cream, and
-                elev-dark's lift comes from a white inset highlight that is
-                invisible on a light surface. */}
-            <div className="absolute -bottom-6 -left-6 bg-card p-6 rounded-md border border-border shadow-elevated">
+            {/* elev-dark now, not shadow-elevated: the section is no longer
+                cream, and a black drop shadow is invisible against a dark
+                ground. The lift has to come from a light top edge. */}
+            <div className="absolute -bottom-6 -left-6 bg-card p-6 rounded-md border border-border elev-dark">
               <p className="font-serif text-2xl font-bold text-accent">PMDC</p>
               <p className="text-sm text-muted-foreground">Certified edible grade</p>
             </div>

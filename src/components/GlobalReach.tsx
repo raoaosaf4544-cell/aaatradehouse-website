@@ -97,7 +97,7 @@ const GlobalReach = () => {
 
             <dl className="border-t border-primary-foreground/15">
               <div className="py-4 border-b border-primary-foreground/15">
-                <dt className="text-xs uppercase tracking-[0.16em] text-primary-foreground/45 mb-3">
+                <dt className="text-xs uppercase tracking-[0.16em] text-primary-foreground/60 mb-3">
                   Shipping terms
                 </dt>
                 <dd className="flex flex-wrap items-baseline gap-x-6 gap-y-3">
@@ -114,7 +114,7 @@ const GlobalReach = () => {
                 </dd>
               </div>
               <div className="py-4 border-b border-primary-foreground/15">
-                <dt className="text-xs uppercase tracking-[0.16em] text-primary-foreground/45 mb-1.5">
+                <dt className="text-xs uppercase tracking-[0.16em] text-primary-foreground/60 mb-1.5">
                   Minimum order
                 </dt>
                 <dd className="text-sm text-primary-foreground/60 leading-relaxed">
@@ -123,7 +123,7 @@ const GlobalReach = () => {
                 </dd>
               </div>
               <div className="py-4 border-b border-primary-foreground/15">
-                <dt className="text-xs uppercase tracking-[0.16em] text-primary-foreground/45 mb-1.5">
+                <dt className="text-xs uppercase tracking-[0.16em] text-primary-foreground/60 mb-1.5">
                   Certification
                 </dt>
                 <dd className="text-sm text-primary-foreground/60 leading-relaxed">

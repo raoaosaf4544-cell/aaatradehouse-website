@@ -166,6 +166,13 @@ All colors MUST be HSL.
   .line-mask {
     display: block;
     overflow: hidden;
+    /* The h1 runs at leading-[0.88], so its line box is shorter than the
+       type itself and descenders - the y of "Himalayan" - fall outside
+       it. overflow:hidden then clips them. Pad the bottom for the tail
+       and pull the same amount back off the margin, so nothing moves
+       visually and the glyph stops being cut in half. */
+    padding-bottom: 0.16em;
+    margin-bottom: -0.16em;
   }
 
   .line-in {

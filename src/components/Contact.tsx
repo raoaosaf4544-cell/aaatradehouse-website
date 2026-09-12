@@ -105,7 +105,7 @@ const MapEmbed = ({ loc }: { loc: (typeof locations)[number] }) => {
         >
           Show map
         </button>
-        <p className="text-[11px] leading-relaxed text-primary-foreground/45">
+        <p className="text-[11px] leading-relaxed text-primary-foreground/60">
           Loading the map sends your IP address to Google.
         </p>
       </div>
