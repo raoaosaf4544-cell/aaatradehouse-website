@@ -197,11 +197,46 @@ describe("H3 - fonts are self-hosted", () => {
   });
 });
 
-describe("H4 - maps are click-to-load", () => {
-  it("embeds no iframe until asked", () => {
+describe("H4 - maps never load without a basis", () => {
+  it("embeds no iframe before any decision", () => {
     const { container } = render(<Contact />);
     expect(container.querySelectorAll("iframe")).toHaveLength(0);
     expect(screen.getAllByRole("button", { name: /show map/i })).toHaveLength(2);
+  });
+
+  it("embeds no iframe after Decline", () => {
+    localStorage.setItem("aaa.consent.analytics", "denied");
+    const { container } = render(<Contact />);
+    expect(container.querySelectorAll("iframe")).toHaveLength(0);
+  });
+
+  it("loads both automatically once consent is given", () => {
+    localStorage.setItem("aaa.consent.analytics", "granted");
+    const { container } = render(<Contact />);
+    expect(container.querySelectorAll("iframe")).toHaveLength(2);
+    expect(screen.queryByRole("button", { name: /show map/i })).toBeNull();
+  });
+
+  it("reveals them the moment consent is given, without a reload", () => {
+    const { container } = render(
+      <>
+        <ConsentBanner />
+        <Contact />
+      </>,
+    );
+    expect(container.querySelectorAll("iframe")).toHaveLength(0);
+
+    fireEvent.click(screen.getByRole("button", { name: /^accept$/i }));
+
+    // Someone who presses Accept and sees nothing change assumes it failed.
+    expect(container.querySelectorAll("iframe")).toHaveLength(2);
+  });
+
+  it("names maps in the banner, since a yes to analytics would not cover Google", () => {
+    render(<ConsentBanner />);
+    const body = screen.getByRole("dialog").textContent ?? "";
+    expect(body).toMatch(/google maps/i);
+    expect(body).toMatch(/analytics/i);
   });
 
   it("says what pressing it will do", () => {

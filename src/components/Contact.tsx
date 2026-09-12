@@ -4,6 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useRef, useState } from "react";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
+import { useConsent } from "@/hooks/use-consent";
 import { phones } from "@/lib/contact";
 import { HUBSPOT_ENDPOINT } from "@/lib/hubspot";
 
@@ -38,12 +39,25 @@ const locations = [
 /**
  * A Google Maps iframe contacts Google the moment it renders, sending the
  * visitor's IP address and setting Google's cookies before anyone has been
- * asked. So it is not rendered until asked for: the button IS the consent,
- * which keeps it specific to this one map rather than folded into a blanket
- * banner yes. Per map - loading the office does not load the plant.
+ * asked. So it is never rendered without a basis, and there are two:
+ *
+ *   - Accepted in the banner. The banner names embedded maps explicitly,
+ *     so the map can load straight away. Widening the wording was the
+ *     price of that - a yes to "analytics" alone would not have covered
+ *     Google, and stretching it there is exactly the kind of unspecific
+ *     consent that invalidates the whole banner.
+ *   - Pressed Show map. For anyone who declined or has not chosen, the
+ *     button is the consent, and it is per map: loading the office does
+ *     not load the plant.
  */
 const MapEmbed = ({ loc }: { loc: (typeof locations)[number] }) => {
-  const [loaded, setLoaded] = useState(false);
+  const [clicked, setClicked] = useState(false);
+  const consent = useConsent();
+  // Accepting in the banner covers embedded maps too - the banner says so -
+  // so someone who accepted should not have to click again. Anyone who
+  // declined, or has not chosen yet, still gets the placeholder, and the
+  // button remains the consent for that one map.
+  const loaded = clicked || consent === "granted";
 
   if (loaded) {
     return (
@@ -86,7 +100,7 @@ const MapEmbed = ({ loc }: { loc: (typeof locations)[number] }) => {
         </p>
         <button
           type="button"
-          onClick={() => setLoaded(true)}
+          onClick={() => setClicked(true)}
           className="self-start rounded-md border border-primary-foreground/25 bg-primary-foreground/10 px-5 py-2.5 text-sm font-medium text-primary-foreground backdrop-blur-sm transition-colors hover:bg-primary-foreground/20"
         >
           Show map

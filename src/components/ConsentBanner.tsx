@@ -77,10 +77,17 @@ const ConsentBanner = () => {
         >
           Cookies
         </h2>
+        {/* Names both things this consent covers. A yes to "analytics" alone
+            would not cover Google, so auto-loading the maps on the back of it
+            would be exactly the unspecific consent that invalidates a banner
+            (Art. 4(11)). Declining does not hide the maps - they stay one
+            button away, which is why refusing costs a visitor nothing real. */}
         <p className="mb-5 text-sm leading-relaxed text-muted-foreground">
           We'd like to set analytics cookies from HubSpot to see how visitors
-          find and use this site. They are not needed for the site to work, and
-          we won't set them unless you agree. Our contact form works either way.
+          find and use this site, and to load the Google Maps showing our office
+          and plant. Neither is needed for the site to work, and we won't do
+          either unless you agree. Our contact form works either way, and you
+          can still open each map yourself with a single click.
         </p>
 
         {/* Identical classes on both, deliberately. */}

@@ -175,10 +175,12 @@ const Privacy = () => {
                   States), which processes request logs in order to serve pages.
                 </p>
                 <p>
-                  The two maps in our Contact section are{" "}
-                  <strong>not loaded until you press "Show map"</strong>. Until
-                  you do, Google receives nothing. Pressing it loads the map
-                  from Google and sends your IP address to them at that point.
+                  The two maps in our Contact section load from{" "}
+                  <strong>Google</strong>, which receives your IP address when
+                  one does. They load automatically only if you accepted
+                  cookies, since that choice covers them. If you declined, or
+                  have not chosen, neither map loads until you press "Show
+                  map" on it — and pressing it loads only that one.
                 </p>
                 <p>
                   Our fonts are served from this site, not from Google Fonts, so
@@ -193,14 +195,18 @@ const Privacy = () => {
 
               <Block title="Cookies">
                 <p>
-                  The only non-essential cookies this site can set are HubSpot's
-                  analytics cookies —{" "}
+                  Accepting covers two things: HubSpot's analytics cookies —{" "}
                   <code className={codeClass}>__hstc</code>,{" "}
                   <code className={codeClass}>__hssc</code>,{" "}
                   <code className={codeClass}>__hssrc</code> and{" "}
-                  <code className={codeClass}>hubspotutk</code>. They are not set
-                  unless you accept, and if you decline we delete any that are
-                  already there.
+                  <code className={codeClass}>hubspotutk</code> — and loading
+                  the embedded Google Maps, which lets Google set its own
+                  cookies. Neither happens unless you accept, and if you
+                  decline we delete any HubSpot cookies already there.
+                </p>
+                <p>
+                  Declining does not hide the maps. They stay one click away,
+                  so refusing costs you nothing on this site.
                 </p>
                 <p>
                   We store your choice itself on your own device so we do not
