@@ -138,21 +138,33 @@ const Products = () => {
           ))}
         </div>
 
-        {/* Real product photograph. The typical-analysis figures that
-            used to sit beside it have been withdrawn - the lab report is
-            old and the business is not ready to publish specs. The image
-            stays because showing the goods is not the same as
-            specifying them. */}
-        <div ref={specs} className="reveal mt-20 rounded-xl overflow-hidden border border-border">
-          <img
-            src={saltRawClose}
-            alt="Raw Himalayan pink salt chunks at the AAA Trade House plant, showing natural colour variation from pale to deep pink"
-            loading="lazy"
-            width={1200}
-            height={1500}
-            className="w-full aspect-[3/2] md:aspect-[21/9] object-cover"
-          />
-        </div>
+        {/* Real product photograph, sized to its own resolution.
+            It was running full-width at 21:9, which on a 1600px
+            container upscaled a 1200px source by 1.33x - hence soft -
+            and cropped a 4:5 portrait down to 34% of its height, so it
+            showed a sliver at low quality across a lot of screen.
+
+            max-w-3xl at 3:2 means it paints at 768px from a 1200px
+            source: a downscale, so it is sharp, and it keeps two thirds
+            of the frame. The caption is not decoration either - an
+            uncaptioned photograph between two sections is what made it
+            read as filler. */}
+        <figure ref={specs} className="reveal mt-20 max-w-3xl mx-auto">
+          <div className="rounded-xl overflow-hidden border border-border">
+            <img
+              src={saltRawClose}
+              alt="Raw Himalayan pink salt chunks at the AAA Trade House plant, showing natural colour variation from pale to deep pink"
+              loading="lazy"
+              width={1200}
+              height={800}
+              className="w-full aspect-[3/2] object-cover"
+            />
+          </div>
+          <figcaption className="mt-4 text-sm text-muted-foreground text-center">
+            Raw salt at our Khanewal plant, before crushing and grading. Colour
+            varies naturally from pale to deep pink across the same seam.
+          </figcaption>
+        </figure>
 
         {/* Packaging Info */}
         <div ref={packs} className="reveal mt-20 bg-salt-cream rounded-lg p-10 md:p-14">

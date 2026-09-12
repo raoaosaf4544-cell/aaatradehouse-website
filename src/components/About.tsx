@@ -162,14 +162,25 @@ const About = () => {
             band it showed a truck and an archway and almost nothing else,
             taking a great deal of vertical space to say nothing. An image
             that does not carry information is worse than no image. */}
-        <div ref={why} className="reveal mt-24 pt-16 border-t border-border">
-          <div className="max-w-3xl">
-            <p className="text-xs uppercase tracking-[0.2em] text-accent mb-5">Why We Do This</p>
-            <p className="font-serif text-2xl md:text-3xl font-bold text-foreground leading-snug mb-7">
-              For over thirty years our family has worked with Himalayan salt, learned
-              hands-on and passed down, not taught at a desk.
-            </p>
-            <div className="space-y-5 text-muted-foreground text-lg leading-relaxed">
+        {/* Given a surface of its own. It used to be loose text under a
+            horizontal rule, so it read as something that had fallen off
+            the end of the section rather than as a deliberate closing
+            statement - which is what "hanging on its own" meant.
+
+            The pull-quote sits in its own column beside the body on
+            large screens, which also stops a 1600px container from
+            running these lines to an unreadable length. */}
+        <div ref={why} className="reveal mt-24">
+          <div className="rounded-xl border border-border bg-card p-8 md:p-12 lg:p-16">
+            <div className="grid lg:grid-cols-12 gap-x-14 gap-y-8">
+              <div className="lg:col-span-5">
+                <p className="text-xs uppercase tracking-[0.2em] text-accent mb-5">Why We Do This</p>
+                <p className="font-serif text-2xl md:text-3xl font-bold text-foreground leading-snug">
+                  For over thirty years our family has worked with Himalayan salt,
+                  learned hands-on and passed down, not taught at a desk.
+                </p>
+              </div>
+              <div className="lg:col-span-7 space-y-5 text-muted-foreground text-lg leading-relaxed">
               <p>
                 In 2009 we formalised the business as AAA General Trading. Today a new
                 generation leads the export side: someone who grew up around this trade
@@ -181,6 +192,7 @@ const About = () => {
                 are a buyer we know by name, not a ticket number, and we put our own name
                 on every shipment.
               </p>
+              </div>
             </div>
           </div>
         </div>
