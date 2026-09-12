@@ -46,11 +46,18 @@ const route = [
 ];
 
 /* Incoterms are among the first things an importer looks for and the site
-   did not state them anywhere. FOB is our usual basis; the rest are
-   quotable. No port is named here - that is a per-order detail and naming
-   one we have not confirmed would be the same error as naming a lead time. */
+   did not state them anywhere.
+
+   Karachi and Port Qasim are two SEPARATE seaports, not one place with two
+   names, and which is used is decided per booking - so both are named.
+   "FOB Karachi" alone would be wrong half the time, and to a freight
+   forwarder that is not a rounding error.
+
+   "Other" stays deliberately unnamed. EXW, CFR and FCA have not been
+   confirmed as terms we can actually quote, and naming a term we then
+   cannot honour is worse in a negotiation than not listing it. */
 const terms = [
-  { code: "FOB", note: "Our usual basis" },
+  { code: "FOB", note: "Our usual basis — Karachi or Port Qasim" },
   { code: "CIF", note: "Available on request" },
   { code: "Other", note: "Quoted to your requirement" },
 ];
@@ -97,6 +104,15 @@ const GlobalReach = () => {
                       </span>
                     </span>
                   ))}
+                </dd>
+              </div>
+              <div className="py-4 border-b border-primary-foreground/15">
+                <dt className="text-xs uppercase tracking-[0.16em] text-primary-foreground/45 mb-1.5">
+                  Minimum order
+                </dt>
+                <dd className="text-sm text-primary-foreground/60 leading-relaxed">
+                  No fixed minimum. Tell us the volume, grade and packaging you
+                  need and we quote to it.
                 </dd>
               </div>
               <div className="py-4 border-b border-primary-foreground/15">

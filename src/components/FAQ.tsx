@@ -1,7 +1,7 @@
 import { useReveal } from "@/hooks/use-reveal";
 
 /* Google requires FAQPage schema to mirror content the user can actually see.
-   These six pairs must stay identical to the FAQPage node in index.html -
+   These pairs must stay identical to the FAQPage node in index.html -
    src/test/faq-schema.test.ts fails the build if they drift apart.
    Every answer is copy already approved elsewhere on the site. */
 export const faqs = [
@@ -28,6 +28,14 @@ export const faqs = [
   {
     q: "Do you offer private label Himalayan pink salt?",
     a: "Yes. We supply wholesale pink salt for private label: your branding on bulk packaging and on 500 g / 1 kg retail packs under our registered brand. Local distribution is live and export is to follow.",
+  },
+  {
+    q: "Which Incoterms do you ship on?",
+    a: "FOB is our usual basis, loading at Karachi or Port Qasim depending on the booking. CIF is available on request, and we quote other terms to your requirement.",
+  },
+  {
+    q: "Is there a minimum order quantity?",
+    a: "There is no fixed minimum. Tell us the volume, grade and packaging you need and we quote to it.",
   },
 ];
 

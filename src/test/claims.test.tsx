@@ -26,14 +26,33 @@ describe("GlobalReach - the export route", () => {
     expect(screen.getByText(/our usual basis/i)).toBeInTheDocument();
   });
 
-  it("names no port", () => {
-    // FOB normally names a port, but ours is not confirmed. Printing an
-    // unconfirmed one would be the same class of error as printing a lead
-    // time - checkable, and wrong.
+  it("names both ports, because the booking decides which", () => {
+    // Karachi and Port Qasim are two separate seaports, not one place with
+    // two names. Naming only one would be wrong on roughly half of
+    // shipments, and to a freight forwarder that is not a rounding error.
     const { container } = render(<GlobalReach />);
     const text = container.textContent ?? "";
-    expect(text).not.toMatch(/\bport\b/i);
-    expect(text).not.toMatch(/Karachi|Gwadar|Qasim/i);
+    expect(text).toMatch(/Karachi/);
+    expect(text).toMatch(/Port Qasim/);
+    // Gwadar was never in scope; if it appears, someone guessed.
+    expect(text).not.toMatch(/Gwadar/i);
+  });
+
+  it("states the minimum order rather than staying silent", () => {
+    // Silence on MOQ is read by a smaller buyer as a large hidden one.
+    const { container } = render(<GlobalReach />);
+    expect(container.textContent ?? "").toMatch(/no fixed minimum/i);
+  });
+
+  it("names no Incoterm we have not confirmed we can quote", () => {
+    // FOB and CIF are confirmed. EXW, CFR, FCA, DAP and DDP are not -
+    // listing one we cannot honour is worse in a negotiation than the
+    // vaguer "quoted to your requirement".
+    const { container } = render(<GlobalReach />);
+    const text = container.textContent ?? "";
+    for (const term of ["EXW", "CFR", "FCA", "DAP", "DDP", "C&F"]) {
+      expect(`${term}:${text.includes(term)}`).toBe(`${term}:false`);
+    }
   });
 
   it("gives no shipment count and no export history", () => {
