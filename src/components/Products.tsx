@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Utensils, Factory, PawPrint, Lamp, Package, Boxes, Ruler, Tag } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
+import saltRawClose from "@/assets/salt-raw-close.webp";
 import { LucideIcon } from "lucide-react";
 
 interface Product {
@@ -181,18 +182,34 @@ const Products = () => {
             </p>
           </div>
 
-          <dl className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border rounded-lg overflow-hidden">
-            {analysis.map((row) => (
-              <div key={row.name} className="bg-card p-6">
-                <dt className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground mb-2">
-                  {row.name}
-                </dt>
-                <dd className="font-serif text-3xl font-bold text-foreground tabular-nums">
-                  {row.value}
-                </dd>
-              </div>
-            ))}
-          </dl>
+          <div className="grid lg:grid-cols-12 gap-8 items-start">
+            {/* A real photograph of the actual goods, next to the actual
+                lab figures. The pairing is the point: a buyer can see the
+                material the numbers describe. */}
+            <div className="lg:col-span-4 rounded-lg overflow-hidden border border-border">
+              <img
+                src={saltRawClose}
+                alt="Raw Himalayan pink salt chunks at the AAA Trade House plant, showing natural colour variation from pale to deep pink"
+                loading="lazy"
+                width={1200}
+                height={1500}
+                className="w-full h-full object-cover aspect-[4/5]"
+              />
+            </div>
+
+            <dl className="lg:col-span-8 grid sm:grid-cols-2 gap-px bg-border border border-border rounded-lg overflow-hidden">
+              {analysis.map((row) => (
+                <div key={row.name} className="bg-card p-6">
+                  <dt className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground mb-2">
+                    {row.name}
+                  </dt>
+                  <dd className="font-serif text-3xl font-bold text-foreground tabular-nums">
+                    {row.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
         </div>
 
         {/* Packaging Info */}

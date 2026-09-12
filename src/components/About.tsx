@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { Shield, Leaf, FlaskConical, Building2 } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
-import saltPacking from "@/assets/salt-packing.webp";
+/* Real photograph, shot at the plant. Replaces salt-packing.webp, which
+   was AI-looking AND technically worse: 900x600 landscape being cropped
+   to a 4:5 portrait frame and upscaled. This one is natively 1200x1500. */
+import loading from "@/assets/loading.webp";
 import bannerImage from "@/assets/banner-clean.webp";
 
 const features = [
@@ -135,8 +138,8 @@ const About = () => {
           <div className="relative">
             <div className="aspect-[4/5] rounded-lg overflow-hidden border border-border">
               <img
-                src={saltPacking}
-                alt="Himalayan pink salt being packed into bulk export bags at AAA Trade House, Lahore"
+                src={loading}
+                alt="Raw Himalayan pink salt being loaded at the AAA Trade House plant near Kot Abbas Shaheed, Khanewal"
                 onLoad={() => setImgLoaded(true)}
                 className={`w-full h-full object-cover hover:scale-105 transition-transform duration-700 media-load ${imgLoaded ? "is-loaded" : ""}`}
               />

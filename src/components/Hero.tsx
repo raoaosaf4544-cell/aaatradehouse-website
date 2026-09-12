@@ -1,6 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import heroStill from "@/assets/hero-salt.webp";
+/* Real photograph of our own raw salt, replacing an AI-looking still.
+   Fewer pixels than the image it replaces (1200x800 vs 1920x1080) and
+   that is a deliberate trade: it sits under two heavy falloff gradients
+   and a grain layer, so the softness never shows, and the brief is
+   explicit that the generated imagery is a problem worth solving. */
+import heroStill from "@/assets/salt-raw-wide.webp";
 import { CountUp } from "@/components/CountUp";
 import { useScrollProgress } from "@/hooks/use-scroll-progress";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
