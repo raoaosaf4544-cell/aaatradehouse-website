@@ -12,17 +12,25 @@ type SubmitState = "idle" | "sending" | "sent" | "error";
 
 /* Both listings are the live Google Business Profiles. The office CID is the
    same one already referenced in the JSON-LD hasMap / sameAs. */
+/* t=h is hybrid: satellite imagery WITH street and place labels. Plain
+   satellite (t=k) looks better and reads worse - an importer checking that
+   a crushing plant exists needs the road and the rail station named, not
+   just a pretty aerial. Verified against the keyless CID embed, which
+   honours the parameter; true 3D Earth would need the Maps Embed API and a
+   billing-enabled key, which this does not use. */
+const MAP_VIEW = "&t=h";
+
 const locations = [
   {
     name: "Head Office",
     address: "Office No. 42, Valencia Tower, Block K1, Valencia Town, Lahore 54770, Pakistan",
-    embed: "https://maps.google.com/maps?cid=14540864625688017508&output=embed",
+    embed: `https://maps.google.com/maps?cid=14540864625688017508&output=embed${MAP_VIEW}`,
     link: "https://maps.google.com/?cid=14540864625688017508",
   },
   {
     name: "Crushing Plant",
     address: "Near Kot Abbas Shaheed Station, Khanewal 60000, Pakistan",
-    embed: "https://maps.google.com/maps?cid=13571007861337017993&output=embed",
+    embed: `https://maps.google.com/maps?cid=13571007861337017993&output=embed${MAP_VIEW}`,
     link: "https://maps.google.com/?cid=13571007861337017993",
   },
 ];
@@ -53,18 +61,40 @@ const MapEmbed = ({ loc }: { loc: (typeof locations)[number] }) => {
   }
 
   return (
-    <div className="rounded-lg border border-border bg-secondary/60 shadow-soft h-72 flex flex-col items-center justify-center gap-4 px-6 text-center">
-      <MapPin className="w-6 h-6 text-primary" aria-hidden="true" />
-      <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
-        Loading the map sends your IP address to Google.
-      </p>
-      <button
-        type="button"
-        onClick={() => setLoaded(true)}
-        className="rounded-md border border-primary bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-      >
-        Show map
-      </button>
+    <div className="relative h-72 overflow-hidden rounded-lg border border-border bg-salt-dark shadow-soft">
+      {/* Survey-grid texture. Reads as a map before one loads, and costs no
+          request - it is a CSS gradient, not an image, so it cannot leak an
+          IP the way a static map preview from Google would. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 opacity-[0.18]"
+        style={{
+          backgroundImage:
+            "linear-gradient(hsl(var(--salt-coral)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--salt-coral)) 1px, transparent 1px)",
+          backgroundSize: "44px 44px",
+        }}
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-gradient-to-t from-salt-dark via-salt-dark/70 to-transparent"
+      />
+
+      <div className="relative z-10 flex h-full flex-col justify-end gap-3 p-6">
+        <MapPin className="w-5 h-5 text-salt-coral" aria-hidden="true" />
+        <p className="text-xs uppercase tracking-[0.16em] text-primary-foreground/55">
+          Satellite view
+        </p>
+        <button
+          type="button"
+          onClick={() => setLoaded(true)}
+          className="self-start rounded-md border border-primary-foreground/25 bg-primary-foreground/10 px-5 py-2.5 text-sm font-medium text-primary-foreground backdrop-blur-sm transition-colors hover:bg-primary-foreground/20"
+        >
+          Show map
+        </button>
+        <p className="text-[11px] leading-relaxed text-primary-foreground/45">
+          Loading the map sends your IP address to Google.
+        </p>
+      </div>
     </div>
   );
 };

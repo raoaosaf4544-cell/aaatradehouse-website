@@ -218,6 +218,18 @@ describe("H4 - maps are click-to-load", () => {
     expect(container.querySelectorAll("iframe")).toHaveLength(1);
     expect(screen.getAllByRole("button", { name: /show map/i })).toHaveLength(1);
   });
+
+  it("opens in hybrid satellite, not the default roadmap", () => {
+    const { container } = render(<Contact />);
+    fireEvent.click(screen.getAllByRole("button", { name: /show map/i })[0]);
+
+    // t=h is satellite imagery plus street and place labels. Losing this
+    // parameter is invisible - the map still works, it just goes back to
+    // a flat roadmap - so it needs an assertion rather than an eyeball.
+    const src = container.querySelector("iframe")!.getAttribute("src") ?? "";
+    expect(src).toContain("t=h");
+    expect(src).toContain("output=embed");
+  });
 });
 
 describe("H5 - react-router is gone", () => {
