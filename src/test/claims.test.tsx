@@ -116,6 +116,21 @@ describe("site-wide", () => {
     }
   });
 
+  it("never colour-grades the product photography", () => {
+    // Pink is the product. A duotone or grayscale pass over a Himalayan
+    // salt photograph throws away the one thing a salt buyer is looking
+    // at - the treatment makes generic imagery look art-directed and
+    // makes your own goods look wrong. It was tried and removed.
+    for (const [name, s] of components) {
+      // Matches the class being APPLIED, not the word. Hero carries a
+      // comment explaining why the treatment was removed, and a naive
+      // substring search would fail on its own documentation.
+      const applied = /className="[^"]*\bduotone\b/.test(s);
+      expect(`${name}:${applied}`).toBe(`${name}:false`);
+      expect(`${name}:${/grayscale\(|sepia\(|hue-rotate\(/.test(s)}`).toBe(`${name}:false`);
+    }
+  });
+
   it("keeps the decorative blobs the brief rules out off the page", () => {
     // "no gradient meshes, no glassmorphism, no 3D blobs" - About had four
     // blurred coral blobs behind its cards plus a fifth on the photo.

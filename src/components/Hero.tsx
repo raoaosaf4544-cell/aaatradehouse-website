@@ -58,25 +58,25 @@ const Hero = () => {
           Nothing else needs to change - the gradients sit above it.
           ───────────────────────────────────────────────────────────── */}
       {/* scale-110 rather than 105: the parallax drift would otherwise
-          expose the bottom edge as the layer rises. duotone strips the
-          still to luminance and pushes brand colour back through it, so
-          an AI-looking stock frame reads as a deliberate grade. */}
+          expose the bottom edge as the layer rises.
+
+          NO duotone here. It was tried and removed: the salt is pink, and
+          pink is the product. Grading a Himalayan salt photograph to navy
+          and terracotta throws away the single thing a salt buyer is
+          looking for. The treatment makes generic imagery read as art
+          direction; on your own product it just makes the goods look
+          wrong. Do not reapply it to anything showing salt. */}
       <div
         className="absolute inset-0 will-change-transform"
         style={{ transform: `translate3d(0, ${drift}px, 0)` }}
       >
-        {/* duotone wraps the image ALONE. On the outer layer its
-            mix-blend-mode: color pass would sit above the two falloff
-            gradients below and tint those as well. */}
-        <div className="absolute inset-0 duotone">
-          <img
-            src={heroStill}
-            alt=""
-            aria-hidden="true"
-            fetchPriority="high"
-            className="w-full h-full object-cover scale-110"
-          />
-        </div>
+        <img
+          src={heroStill}
+          alt=""
+          aria-hidden="true"
+          fetchPriority="high"
+          className="w-full h-full object-cover scale-110"
+        />
         {/* Cinematic falloff - keeps display type crisp over any frame. */}
         <div className="absolute inset-0 bg-gradient-to-b from-salt-dark/85 via-salt-dark/70 to-salt-dark" />
         <div className="absolute inset-0 bg-gradient-to-r from-salt-dark via-salt-dark/75 to-salt-dark/25" />

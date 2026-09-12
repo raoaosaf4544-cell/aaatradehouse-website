@@ -133,7 +133,7 @@ const About = () => {
           </div>
           
           <div className="relative">
-            <div className="aspect-[4/5] rounded-lg overflow-hidden border border-border duotone">
+            <div className="aspect-[4/5] rounded-lg overflow-hidden border border-border">
               <img
                 src={saltPacking}
                 alt="Himalayan pink salt being packed into bulk export bags at AAA Trade House, Lahore"
