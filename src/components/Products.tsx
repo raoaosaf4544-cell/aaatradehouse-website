@@ -72,7 +72,6 @@ const Products = () => {
   const grid = useReveal<HTMLDivElement>();
   const spot = useSpotlight<HTMLDivElement>();
   const packs = useReveal<HTMLDivElement>();
-  const specs = useReveal<HTMLDivElement>();
 
   return (
     <section id="products" className="py-24 md:py-32 bg-background relative">
@@ -129,7 +128,11 @@ const Products = () => {
 
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:gap-3 transition-all duration-[180ms] ease-[var(--ease-out)]"
+                /* py-2 -mb-2: the link measured 255x20 on a phone, under
+                   the 24px minimum in WCAG 2.2 SC 2.5.8. The negative
+                   margin keeps the card's spacing identical while the
+                   hit area grows to 36px. */
+                className="inline-flex items-center gap-2 py-2 -mb-2 text-sm font-medium text-accent hover:gap-3 transition-all duration-[180ms] ease-[var(--ease-out)]"
               >
                 Request samples
                 <ArrowRight className="arc-arrow w-4 h-4" />
@@ -138,44 +141,46 @@ const Products = () => {
           ))}
         </div>
 
-        {/* Real product photograph, sized to its own resolution.
-            It was running full-width at 21:9, which on a 1600px
-            container upscaled a 1200px source by 1.33x - hence soft -
-            and cropped a 4:5 portrait down to 34% of its height, so it
-            showed a sliver at low quality across a lot of screen.
+        {/* Packaging, with the photograph as its right column.
+            The image used to sit alone in a centred band, which is why
+            it read as taking space for nothing: it had no neighbour and
+            no argument to support. Paired with the bulk copy it is
+            doing a job - the buyer reads the sizes on the left and sees
+            the material they apply to on the right.
 
-            max-w-3xl at 3:2 means it paints at 768px from a 1200px
-            source: a downscale, so it is sharp, and it keeps two thirds
-            of the frame. The caption is not decoration either - an
-            uncaptioned photograph between two sections is what made it
-            read as filler. */}
-        <figure ref={specs} className="reveal mt-20 max-w-3xl mx-auto">
-          <div className="rounded-xl overflow-hidden border border-border">
-            <img
-              src={saltRawClose}
-              alt="Raw Himalayan pink salt chunks at the AAA Trade House plant, showing natural colour variation from pale to deep pink"
-              loading="lazy"
-              width={1200}
-              height={800}
-              className="w-full aspect-[3/2] object-cover"
-            />
+            It also stops being a full-width element, which is what
+            fixes the resolution: at lg it paints around 600px from a
+            1200px source, comfortably sharp even on a 2x screen. */}
+        <div ref={packs} className="reveal mt-20 bg-salt-cream rounded-lg p-8 md:p-12 lg:p-14">
+          <div className="grid lg:grid-cols-12 gap-x-14 gap-y-10 items-center mb-12">
+            <div className="lg:col-span-7">
+              <p className="text-accent font-semibold mb-3 tracking-widest uppercase text-sm">Packaging</p>
+              <h3 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-3">
+                Any bulk size you need.
+              </h3>
+              <p className="text-muted-foreground leading-relaxed max-w-2xl">
+                Standard export bags, jumbo bags, or a size you specify. Tell us what your
+                line runs and we pack to it.
+              </p>
+            </div>
+
+            <figure className="lg:col-span-5">
+              <div className="rounded-xl overflow-hidden border border-border">
+                <img
+                  src={saltRawClose}
+                  alt="Raw Himalayan pink salt chunks at the AAA Trade House plant, showing natural colour variation from pale to deep pink"
+                  loading="lazy"
+                  width={1200}
+                  height={1500}
+                  className="w-full aspect-[4/5] object-cover"
+                />
+              </div>
+              <figcaption className="mt-3 text-sm text-muted-foreground">
+                Raw salt at our Khanewal plant, before crushing and grading.
+                Colour varies naturally across the same seam.
+              </figcaption>
+            </figure>
           </div>
-          <figcaption className="mt-4 text-sm text-muted-foreground text-center">
-            Raw salt at our Khanewal plant, before crushing and grading. Colour
-            varies naturally from pale to deep pink across the same seam.
-          </figcaption>
-        </figure>
-
-        {/* Packaging Info */}
-        <div ref={packs} className="reveal mt-20 bg-salt-cream rounded-lg p-10 md:p-14">
-          <p className="text-accent font-semibold mb-3 tracking-widest uppercase text-sm">Packaging</p>
-          <h3 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-3">
-            Any bulk size you need.
-          </h3>
-          <p className="text-muted-foreground leading-relaxed mb-10 max-w-2xl">
-            Standard export bags, jumbo bags, or a size you specify. Tell us what your
-            line runs and we pack to it.
-          </p>
 
           <div className="flex items-center gap-4 mb-6">
             <span className="text-xs font-semibold uppercase tracking-widest text-accent">Available now</span>

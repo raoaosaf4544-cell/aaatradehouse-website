@@ -87,7 +87,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className="text-primary-foreground/55 hover:text-primary-foreground transition-colors text-sm"
+                    className="inline-block py-1 text-primary-foreground/55 hover:text-primary-foreground transition-colors text-sm"
                   >
                     {link.name}
                   </a>
@@ -102,7 +102,7 @@ const Footer = () => {
             <ul className="space-y-3">
               {["Edible Salt", "Industrial Salt", "Animal Lick Salt", "Wellness & Décor", "Bulk & Raw Sourcing", "Private Label"].map((product) => (
                 <li key={product}>
-                  <a href="/#products" className="text-primary-foreground/55 hover:text-primary-foreground transition-colors text-sm">
+                  <a href="/#products" className="inline-block py-1 text-primary-foreground/55 hover:text-primary-foreground transition-colors text-sm">
                     {product}
                   </a>
                 </li>
@@ -125,13 +125,13 @@ Office No. 42, Valencia Tower,<br />Block K1, Valencia Town,<br />Lahore 54770, 
                 <li key={p.tel} className="flex items-start gap-3">
                   <Phone className="w-5 h-5 text-salt-coral flex-shrink-0 mt-0.5" />
                   <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                    <a href={`tel:${p.tel}`} className="text-primary-foreground/55 hover:text-primary-foreground transition-colors text-sm">{p.display}</a>
+                    <a href={`tel:${p.tel}`} className="inline-block py-1 text-primary-foreground/55 hover:text-primary-foreground transition-colors text-sm">{p.display}</a>
                     <a
                       href={`https://wa.me/${p.wa}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`WhatsApp ${p.display}`}
-                      className="inline-flex items-center gap-1.5 text-primary-foreground/55 hover:text-primary-foreground transition-colors text-sm"
+                      className="inline-flex items-center gap-1.5 py-1 text-primary-foreground/55 hover:text-primary-foreground transition-colors text-sm"
                     >
                       <MessageCircle className="w-4 h-4 text-salt-coral" />
                       WhatsApp
@@ -141,7 +141,7 @@ Office No. 42, Valencia Tower,<br />Block K1, Valencia Town,<br />Lahore 54770, 
               ))}
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-salt-coral flex-shrink-0" />
-                <a href="mailto:info@aaatradehouse.com" className="text-primary-foreground/55 hover:text-primary-foreground transition-colors text-sm">info@aaatradehouse.com</a>
+                <a href="mailto:info@aaatradehouse.com" className="inline-block py-1 text-primary-foreground/55 hover:text-primary-foreground transition-colors text-sm">info@aaatradehouse.com</a>
               </li>
             </ul>
             <p className="text-primary-foreground/55 text-sm leading-relaxed mt-6 pt-6 border-t border-primary-foreground/10">
@@ -158,7 +158,7 @@ Office No. 42, Valencia Tower,<br />Block K1, Valencia Town,<br />Lahore 54770, 
           <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
             <a
               href="/privacy"
-              className="text-primary-foreground/55 hover:text-primary-foreground transition-colors text-sm"
+              className="inline-block py-1 text-primary-foreground/55 hover:text-primary-foreground transition-colors text-sm"
             >
               Privacy &amp; cookies
             </a>
@@ -168,7 +168,7 @@ Office No. 42, Valencia Tower,<br />Block K1, Valencia Town,<br />Lahore 54770, 
             <button
               type="button"
               onClick={openConsentSettings}
-              className="text-primary-foreground/55 hover:text-primary-foreground transition-colors text-sm"
+              className="inline-block py-1 text-primary-foreground/55 hover:text-primary-foreground transition-colors text-sm"
             >
               Cookie settings
             </button>

@@ -228,7 +228,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">Email Us</h3>
-                  <a href="mailto:info@aaatradehouse.com" className="text-muted-foreground hover:text-accent transition-colors">info@aaatradehouse.com</a>
+                  <a href="mailto:info@aaatradehouse.com" className="inline-block py-1 text-muted-foreground hover:text-accent transition-colors">info@aaatradehouse.com</a>
                 </div>
               </div>
 
@@ -241,13 +241,13 @@ const Contact = () => {
                   {/* Both numbers take calls and WhatsApp. phones[0] is primary. */}
                   {phones.map((p) => (
                     <div key={p.tel} className="flex flex-wrap items-baseline gap-x-3">
-                      <a href={`tel:${p.tel}`} className="text-muted-foreground hover:text-accent transition-colors">{p.display}</a>
+                      <a href={`tel:${p.tel}`} className="inline-block py-1 text-muted-foreground hover:text-accent transition-colors">{p.display}</a>
                       <a
                         href={`https://wa.me/${p.wa}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`WhatsApp ${p.display}`}
-                        className="text-sm text-accent hover:underline underline-offset-4"
+                        className="inline-block py-1 text-sm text-accent hover:underline underline-offset-4"
                       >
                         WhatsApp
                       </a>
@@ -419,7 +419,7 @@ Office No. 42, Valencia Tower,<br />
                   href={loc.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block mt-3 text-sm font-medium text-accent hover:underline underline-offset-4"
+                  className="inline-block mt-2 py-2 text-sm font-medium text-accent hover:underline underline-offset-4"
                 >
                   Open in Google Maps
                 </a>

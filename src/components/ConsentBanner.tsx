@@ -110,7 +110,7 @@ const ConsentBanner = () => {
 
         <a
           href="/privacy"
-          className="mt-4 inline-block text-sm text-accent underline underline-offset-4"
+          className="mt-3 inline-block py-1 text-sm text-accent underline underline-offset-4"
         >
           Privacy &amp; cookies
         </a>
