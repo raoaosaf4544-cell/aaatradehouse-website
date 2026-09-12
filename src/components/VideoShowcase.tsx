@@ -55,7 +55,7 @@ const VideoShowcase = () => {
     <section id="video-section" className="pt-24 md:pt-32 pb-16 md:pb-20 bg-salt-dark relative overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
-        <div ref={header} className="reveal max-w-3xl mb-14">
+        <div ref={header} className="reveal max-w-3xl mx-auto text-center mb-14">
           <p className="text-xs uppercase tracking-[0.2em] text-accent mb-5">See Us in Action</p>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground leading-[1.05] tracking-tight mb-6">
             From Mine to Market

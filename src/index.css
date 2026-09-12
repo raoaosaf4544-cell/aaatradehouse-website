@@ -190,6 +190,51 @@ All colors MUST be HSL.
     }
   }
 
+  /* Cursor spotlight on card grids.
+     A soft radial highlight tracks the pointer across a hairline grid,
+     so the cell under the cursor lifts out of the dark without moving.
+     On near-black this reads far better than a shadow, which is
+     invisible, or a translate, which shoves the layout around.
+
+     The gradient is painted on ::before at 0 opacity and faded in, so
+     nothing is composited until a pointer is actually over the grid,
+     and the reduce-motion blanket already flattens the fade to
+     instant. Pointer-events are off so it never eats a click.
+
+     --mx/--my are set by one listener on the GRID, not one per cell:
+     the fallback 50% keeps it centred before the first move, and on
+     touch devices - which never fire pointermove - nothing shows at
+     all, which is correct rather than a degradation. */
+  .spot {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .spot::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--dur-hover) var(--ease-out);
+    background: radial-gradient(
+      18rem circle at var(--mx, 50%) var(--my, 50%),
+      hsl(var(--accent) / 0.14),
+      transparent 65%
+    );
+  }
+
+  .spot:hover::before {
+    opacity: 1;
+  }
+
+  /* The hovered cell also takes a brighter hairline, so the effect
+     still reads for anyone who has turned transparency down. */
+  .spot:hover {
+    border-color: hsl(var(--accent) / 0.35);
+  }
+
   /* Depth on dark surfaces without blur or glass.
      A hairline of light along the top edge is what makes a panel read as
      raised under an overhead light source; a drop shadow alone does

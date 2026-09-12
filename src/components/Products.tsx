@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Utensils, Factory, PawPrint, Lamp, Package, Boxes, Ruler, Tag } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
+import { useSpotlight } from "@/hooks/use-spotlight";
 import saltRawClose from "@/assets/salt-raw-close.webp";
 import { LucideIcon } from "lucide-react";
 
@@ -69,6 +70,7 @@ const products: Product[] = [
 const Products = () => {
   const header = useReveal<HTMLDivElement>();
   const grid = useReveal<HTMLDivElement>();
+  const spot = useSpotlight<HTMLDivElement>();
   const packs = useReveal<HTMLDivElement>();
   const specs = useReveal<HTMLDivElement>();
 
@@ -89,12 +91,12 @@ const Products = () => {
         </div>
 
         {/* Products Grid */}
-        <div ref={grid} className="reveal-group grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border rounded-lg overflow-hidden">
+        <div onPointerMove={spot.onPointerMove} ref={grid} className="reveal-group grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border rounded-lg overflow-hidden">
           {products.map((product, index) => (
             <div
               key={product.name}
               style={{ "--reveal-delay": `${Math.min(index, 3) * 60}ms` } as React.CSSProperties}
-              className="group relative bg-card p-8 lg:p-10 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40"
+              className="spot border border-transparent group relative bg-card p-8 lg:p-10 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40"
             >
               <div className="flex items-start justify-between mb-6">
                 <span className="font-serif text-3xl font-bold text-foreground/50 tabular-nums leading-none">

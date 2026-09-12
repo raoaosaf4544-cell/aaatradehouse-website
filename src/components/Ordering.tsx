@@ -30,7 +30,7 @@ const Ordering = () => {
   return (
     <section id="ordering" className="py-24 md:py-32 bg-salt-dark text-primary-foreground">
       <div className="container mx-auto px-6">
-        <div ref={header} className="reveal max-w-2xl mb-16">
+        <div ref={header} className="reveal max-w-3xl mx-auto text-center mb-16">
           <p className="text-xs uppercase tracking-[0.2em] text-accent mb-5">How Ordering Works</p>
           <h2 className="font-serif text-4xl md:text-5xl font-bold leading-[1.05] tracking-tight mb-6">
             Five steps, no surprises.

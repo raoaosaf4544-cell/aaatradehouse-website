@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Shield, Leaf, FlaskConical, Building2 } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
+import { useSpotlight } from "@/hooks/use-spotlight";
 /* Real photograph, shot at the plant. Replaces salt-packing.webp, which
    was AI-looking AND technically worse: 900x600 landscape being cropped
    to a 4:5 portrait frame and upscaled. This one is natively 1200x1500. */
@@ -33,6 +34,7 @@ const features = [
 const About = () => {
   const header = useReveal<HTMLDivElement>();
   const grid = useReveal<HTMLDivElement>();
+  const spot = useSpotlight<HTMLDivElement>();
   const story = useReveal<HTMLDivElement>();
   const why = useReveal<HTMLDivElement>();
   const [imgLoaded, setImgLoaded] = useState(false);
@@ -49,12 +51,12 @@ const About = () => {
         {/* Left-aligned, like every other section header on the site. A
             centred header over a dead-even four-column grid is the most
             generic composition available and it was the only one here. */}
-        <div ref={header} className="reveal max-w-2xl mb-16">
+        <div ref={header} className="reveal max-w-3xl mx-auto text-center mb-16">
           <p className="text-xs uppercase tracking-[0.2em] text-accent mb-5">Why AAA Trade House</p>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.05] tracking-tight mb-6">
             Our Heritage & Strength
           </h2>
-          <p className="text-muted-foreground text-lg leading-relaxed">
+          <p className="text-muted-foreground text-lg leading-relaxed max-w-2xl mx-auto">
             Family experience in Pakistan's salt trade since 1994, operating as the export
             brand of AAA General Trading.
           </p>
@@ -67,11 +69,11 @@ const About = () => {
             - no gradient meshes, no blobs - and it did not match Products
             or Industries, which both use a hairline gap-px grid. Now it
             does, so the three read as one system. */}
-        <div ref={grid} className="reveal-group grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border rounded-lg overflow-hidden mb-20">
+        <div onPointerMove={spot.onPointerMove} ref={grid} className="reveal-group grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border rounded-lg overflow-hidden mb-20">
           {features.map((feature, index) => (
             <div
               key={feature.title}
-              className="bg-card p-8 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40"
+              className="spot border border-transparent bg-card p-8 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40"
               style={{ "--reveal-delay": `${Math.min(index, 3) * 60}ms` } as React.CSSProperties}
             >
               <feature.icon className="w-5 h-5 text-accent mb-6" aria-hidden="true" strokeWidth={1.5} />

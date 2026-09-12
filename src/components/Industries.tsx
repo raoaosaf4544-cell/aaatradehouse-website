@@ -1,5 +1,6 @@
 import { Factory, ChefHat, Beaker, Tags } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
+import { useSpotlight } from "@/hooks/use-spotlight";
 import saltPacking from "@/assets/salt-packing.webp";
 
 const industries = [
@@ -32,6 +33,7 @@ const industries = [
 const Industries = () => {
   const header = useReveal<HTMLDivElement>();
   const grid = useReveal<HTMLDivElement>();
+  const spot = useSpotlight<HTMLDivElement>();
 
   return (
     <section id="industries" className="py-24 md:py-32 bg-secondary">
@@ -64,12 +66,12 @@ const Industries = () => {
           </div>
         </div>
 
-        <div ref={grid} className="reveal-group grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border rounded-lg overflow-hidden">
+        <div onPointerMove={spot.onPointerMove} ref={grid} className="reveal-group grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border rounded-lg overflow-hidden">
           {industries.map((industry, index) => (
             <div
               key={industry.title}
               style={{ "--reveal-delay": `${Math.min(index, 3) * 60}ms` } as React.CSSProperties}
-              className="bg-card p-8 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40"
+              className="spot border border-transparent bg-card p-8 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40"
             >
               <industry.icon className="w-5 h-5 text-accent mb-6" />
               <h3 className="font-serif text-xl font-bold text-foreground mb-3 leading-tight">

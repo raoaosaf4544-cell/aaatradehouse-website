@@ -284,8 +284,16 @@ describe("H5 - react-router is gone", () => {
 
   it("still resolves unknown paths to a 404", () => {
     history.pushState({}, "", "/no-such-page");
-    render(<App />);
-    expect(screen.getByRole("heading", { level: 1, name: "404" })).toBeInTheDocument();
+    const { container } = render(<App />);
+    // The heading is no longer the literal string "404" - it reads
+    // "This page isn't here." with the code as an eyebrow above it, so
+    // this asserts the page rather than one phrasing of it.
+    expect(screen.getByText(/error 404/i)).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { level: 1, name: /this page isn't here/i }),
+    ).toBeInTheDocument();
+    // It should offer a way onward, not just an apology.
+    expect(container.querySelectorAll('a[href^="/#"]').length).toBeGreaterThan(2);
   });
 
   it("no longer ships the ungated tracking script in the markup", () => {
