@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Mountain } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import heroStill from "@/assets/hero-salt.webp";
 import { CountUp } from "@/components/CountUp";
 
@@ -66,12 +66,16 @@ const Hero = () => {
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* ── Left: display type ── */}
           <div className="lg:col-span-7">
-            <div className="inline-flex items-center gap-2.5 mb-8 animate-fade-in">
-              <Mountain size={16} className="text-accent" />
-              <span className="text-xs uppercase tracking-[0.2em] text-primary-foreground/70">
-                Primarily direct from PMDC — no trading layer
-              </span>
-            </div>
+            {/* Was an icon + pill badge reading "Primarily direct from PMDC
+                - no trading layer". Two problems: the paragraph four lines
+                below says the same thing in better English, so the hedge
+                was being made twice; and an icon-pill above the H1 is the
+                single most recognisable generated-landing-page tell. This
+                is now the same eyebrow treatment every other section uses,
+                and it orients rather than claims. */}
+            <p className="text-xs uppercase tracking-[0.2em] text-accent mb-8 animate-fade-in">
+              Bulk export · Lahore, Pakistan
+            </p>
 
             <h1
               className="font-serif text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-primary-foreground leading-[0.95] tracking-tight mb-8 animate-fade-in"
@@ -142,16 +146,6 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll indicator - purely decorative, and it announces as nothing
-          useful, so it stays out of the accessibility tree. */}
-      <div
-        aria-hidden="true"
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce"
-      >
-        <div className="w-7 h-12 rounded-full border border-primary-foreground/25 flex items-start justify-center p-2">
-          <div className="w-1 h-2.5 rounded-full bg-accent animate-pulse" />
-        </div>
-      </div>
     </section>
   );
 };

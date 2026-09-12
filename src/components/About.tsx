@@ -36,7 +36,7 @@ const About = () => {
   const [imgLoaded, setImgLoaded] = useState(false);
 
   return (
-    <section id="about" className="py-28 md:py-36 bg-salt-cream relative overflow-hidden">
+    <section id="about" className="py-24 md:py-32 bg-salt-cream relative overflow-hidden">
       {/* Decorative Background */}
       <div className="absolute top-0 right-0 w-1/2 h-full opacity-5">
         <img src={bannerImage} alt="" className="w-full h-full object-cover" />

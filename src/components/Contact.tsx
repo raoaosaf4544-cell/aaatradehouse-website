@@ -206,7 +206,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-28 md:py-36 bg-salt-cream">
+    <section id="contact" className="py-32 md:py-44 bg-salt-cream">
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Contact Info */}

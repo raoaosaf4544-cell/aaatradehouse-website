@@ -1,92 +1,154 @@
-import { Mountain, Factory, FileCheck, Package } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
 
-const exportFeatures = [
+/**
+ * The physical route the salt takes, replacing what used to be three
+ * concentric circles, a mountain icon and four floating pills.
+ *
+ * The old right column carried no information: the pills repeated facts
+ * already on the page ("100+ t / month" and "4 grades" are in the hero spec
+ * column; "PCSIR on request" sat two inches to their left), and it ran five
+ * infinite animations to do it. A procurement buyer reads a supply chain,
+ * not a pulsing circle.
+ *
+ * Deliberately NOT a numbered timeline. Ordering already owns that pattern
+ * further down the page, and two numbered-step sections would compete
+ * rather than reinforce. This is geography - where the salt goes; Ordering
+ * is process - what the buyer does.
+ *
+ * Every fact here is confirmed. Two things are deliberately absent: no port
+ * is named, and no shipment count is given.
+ */
+const route = [
   {
-    icon: Mountain,
-    title: "Direct Sourcing",
-    description: "Primarily direct from PMDC. Where we use other local suppliers we test the material and keep you informed.",
+    place: "PMDC-leased mines",
+    region: "Khewra and other Pakistani mines",
+    detail:
+      "Sourced primarily direct from PMDC. Where we draw on other local suppliers, the material is tested and you are told.",
   },
   {
-    icon: Factory,
-    title: "In-House Processing",
-    description: "Our Khanewal facility is operational, handling crushing and grading in-house.",
+    place: "Khanewal",
+    region: "Near Kot Abbas Shaheed",
+    detail:
+      "Crushing and grading handled in-house at our own plant, not subcontracted.",
   },
   {
-    icon: FileCheck,
-    title: "Certification",
-    description: "PMDC certification on the edible grade, PCSIR-tested batches, and the certifications your order requires.",
+    place: "Lahore",
+    region: "Valencia Town",
+    detail:
+      "Contracts and invoices issued by AAA General Trading, a registered Chamber of Commerce member.",
   },
   {
-    icon: Package,
-    title: "Bulk Supply",
-    description: "Over 100 tonnes a month across four grades, packed to your specification.",
+    place: "Your container",
+    region: "Four grades, packed to specification",
+    detail:
+      "Over 100 tonnes a month across coarse, fine, edible and chunk, in the packaging your market needs.",
   },
+];
+
+/* Incoterms are among the first things an importer looks for and the site
+   did not state them anywhere. FOB is our usual basis; the rest are
+   quotable. No port is named here - that is a per-order detail and naming
+   one we have not confirmed would be the same error as naming a lead time. */
+const terms = [
+  { code: "FOB", note: "Our usual basis" },
+  { code: "CIF", note: "Available on request" },
+  { code: "Other", note: "Quoted to your requirement" },
 ];
 
 const GlobalReach = () => {
   const intro = useReveal<HTMLDivElement>();
-  const feats = useReveal<HTMLDivElement>();
+  const rail = useReveal<HTMLOListElement>();
 
   return (
-    <section id="global" className="py-28 md:py-36 bg-salt-dark text-primary-foreground overflow-hidden">
+    <section
+      id="global"
+      className="pt-16 md:pt-20 pb-32 md:pb-44 bg-salt-dark text-primary-foreground overflow-hidden"
+    >
       <div className="container mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Content */}
-          <div ref={intro} className="reveal">
-            <p className="text-xs uppercase tracking-[0.2em] text-accent mb-5">Export Capability</p>
+        <div className="grid lg:grid-cols-12 gap-x-16 gap-y-16">
+          {/* Left: the claim and the commercial terms behind it. */}
+          <div ref={intro} className="reveal lg:col-span-5">
+            <p className="text-xs uppercase tracking-[0.2em] text-accent mb-5">
+              Export Capability
+            </p>
             <h2 className="font-serif text-4xl md:text-5xl font-bold leading-[1.05] tracking-tight mb-6">
               From the mine to your container.
             </h2>
             <p className="text-primary-foreground/60 text-base md:text-lg leading-relaxed mb-12">
-              We source primarily direct from PMDC, grade to order, and pack for bulk
-              shipment. There is no trading layer, so the people arranging your container
-              are the people who know the mine — and batches are PCSIR tested either way.
+              We source primarily direct from PMDC, grade to order, and pack for
+              bulk shipment. There is no trading layer, so the people arranging
+              your container are the people who know the mine — and batches are
+              PCSIR tested either way.
             </p>
 
-            <div ref={feats} className="reveal-group grid sm:grid-cols-2 gap-6">
-              {exportFeatures.map((feature, index) => (
-                <div
-                  key={feature.title}
-                  style={{ "--reveal-delay": `${Math.min(index, 3) * 60}ms` } as React.CSSProperties}
-                  className="flex gap-4"
-                >
-                  <div className="w-11 h-11 rounded-md bg-primary-foreground/5 border border-primary-foreground/10 flex items-center justify-center flex-shrink-0">
-                    <feature.icon className="w-5 h-5 text-accent" />
-                  </div>
-                  <div>
-                    <h3 className="font-medium mb-1.5">{feature.title}</h3>
-                    <p className="text-sm text-primary-foreground/50 leading-relaxed">{feature.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <dl className="border-t border-primary-foreground/15">
+              <div className="py-4 border-b border-primary-foreground/15">
+                <dt className="text-xs uppercase tracking-[0.16em] text-primary-foreground/45 mb-3">
+                  Shipping terms
+                </dt>
+                <dd className="flex flex-wrap items-baseline gap-x-6 gap-y-3">
+                  {terms.map((t) => (
+                    <span key={t.code} className="flex items-baseline gap-2">
+                      <span className="font-serif text-2xl font-bold text-primary-foreground">
+                        {t.code}
+                      </span>
+                      <span className="text-xs text-primary-foreground/50">
+                        {t.note}
+                      </span>
+                    </span>
+                  ))}
+                </dd>
+              </div>
+              <div className="py-4 border-b border-primary-foreground/15">
+                <dt className="text-xs uppercase tracking-[0.16em] text-primary-foreground/45 mb-1.5">
+                  Certification
+                </dt>
+                <dd className="text-sm text-primary-foreground/60 leading-relaxed">
+                  PMDC certification on the edible grade, PCSIR-tested batches,
+                  and the certifications your order requires.
+                </dd>
+              </div>
+            </dl>
           </div>
 
-          {/* Map/Visual */}
-          <div className="relative">
-            <div className="aspect-square rounded-full border border-primary-foreground/10 flex items-center justify-center">
-              <div className="w-3/4 h-3/4 rounded-full border border-primary-foreground/15 flex items-center justify-center animate-pulse">
-                <div className="w-1/2 h-1/2 rounded-full bg-gradient-accent flex items-center justify-center">
-                  <Mountain className="w-16 h-16 text-primary-foreground" />
-                </div>
-              </div>
-            </div>
-            
-            {/* Floating Fact Markers */}
-            <div className="absolute top-10 right-10 px-3 py-1.5 bg-primary-foreground/5 border border-primary-foreground/15 backdrop-blur-sm rounded-full text-xs uppercase tracking-wider text-primary-foreground/70 animate-float">
-              PMDC lease
-            </div>
-            <div className="absolute top-1/4 left-0 px-3 py-1.5 bg-primary-foreground/5 border border-primary-foreground/15 backdrop-blur-sm rounded-full text-xs uppercase tracking-wider text-primary-foreground/70 animate-float" style={{ animationDelay: "1s" }}>
-              100+ t / month
-            </div>
-            <div className="absolute bottom-1/4 right-0 px-3 py-1.5 bg-primary-foreground/5 border border-primary-foreground/15 backdrop-blur-sm rounded-full text-xs uppercase tracking-wider text-primary-foreground/70 animate-float" style={{ animationDelay: "2s" }}>
-              4 grades
-            </div>
-            <div className="absolute bottom-10 left-10 px-3 py-1.5 bg-primary-foreground/5 border border-primary-foreground/15 backdrop-blur-sm rounded-full text-xs uppercase tracking-wider text-primary-foreground/70 animate-float" style={{ animationDelay: "0.5s" }}>
-              PCSIR on request
-            </div>
-          </div>
+          {/* Right: the route. A hairline rail with a node per stage - the
+              same vocabulary as the Ordering strip and the Products grid,
+              so it reads as part of the site rather than a widget. */}
+          <ol ref={rail} className="reveal-group lg:col-span-6 lg:col-start-7">
+            {route.map((stop, i) => {
+              const last = i === route.length - 1;
+              return (
+                <li
+                  key={stop.place}
+                  style={{ "--reveal-delay": `${i * 70}ms` } as React.CSSProperties}
+                  className={`relative pl-8 ${last ? "" : "pb-10 border-l"} border-primary-foreground/15`}
+                >
+                  {/* The rail stops at the last node, but its marker still
+                      needs the same offset, so the border is dropped rather
+                      than the padding. */}
+                  {last && (
+                    <span
+                      aria-hidden="true"
+                      className="absolute left-0 top-0 h-3 w-px bg-primary-foreground/15"
+                    />
+                  )}
+                  <span
+                    aria-hidden="true"
+                    className="absolute -left-[4.5px] top-1.5 h-2 w-2 rounded-full bg-accent ring-4 ring-salt-dark"
+                  />
+                  <p className="text-[11px] uppercase tracking-[0.18em] text-accent mb-2">
+                    {stop.region}
+                  </p>
+                  <h3 className="font-serif text-2xl md:text-3xl font-bold leading-tight mb-2">
+                    {stop.place}
+                  </h3>
+                  <p className="text-sm text-primary-foreground/55 leading-relaxed max-w-md">
+                    {stop.detail}
+                  </p>
+                </li>
+              );
+            })}
+          </ol>
         </div>
       </div>
     </section>

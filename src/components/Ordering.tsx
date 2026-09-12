@@ -28,7 +28,7 @@ const Ordering = () => {
   const strip = useReveal<HTMLOListElement>();
 
   return (
-    <section id="ordering" className="py-28 md:py-36 bg-salt-dark text-primary-foreground">
+    <section id="ordering" className="py-24 md:py-32 bg-salt-dark text-primary-foreground">
       <div className="container mx-auto px-6">
         <div ref={header} className="reveal max-w-2xl mb-16">
           <p className="text-xs uppercase tracking-[0.2em] text-accent mb-5">How Ordering Works</p>

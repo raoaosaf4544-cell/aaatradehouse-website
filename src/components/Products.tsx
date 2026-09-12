@@ -69,7 +69,7 @@ const Products = () => {
   const packs = useReveal<HTMLDivElement>();
 
   return (
-    <section id="products" className="py-28 md:py-36 bg-background relative">
+    <section id="products" className="py-24 md:py-32 bg-background relative">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-[0.02]" style={{
         backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--foreground)) 1px, transparent 0)`,

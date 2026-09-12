@@ -33,7 +33,7 @@ const Industries = () => {
   const grid = useReveal<HTMLDivElement>();
 
   return (
-    <section id="industries" className="py-28 md:py-36 bg-secondary">
+    <section id="industries" className="py-24 md:py-32 bg-secondary">
       <div className="container mx-auto px-6">
         <div ref={header} className="reveal max-w-2xl mb-16">
           <p className="text-xs uppercase tracking-[0.2em] text-primary mb-5">Industries We Serve</p>

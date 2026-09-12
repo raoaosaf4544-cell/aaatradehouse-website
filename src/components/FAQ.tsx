@@ -36,7 +36,7 @@ const FAQ = () => {
   const list = useReveal<HTMLDivElement>();
 
   return (
-    <section id="faq" className="py-28 md:py-36 bg-background">
+    <section id="faq" className="py-20 md:py-24 bg-background">
       <div className="container mx-auto px-6">
         <div ref={header} className="reveal max-w-3xl mb-16">
           <p className="text-xs uppercase tracking-[0.2em] text-primary mb-5">

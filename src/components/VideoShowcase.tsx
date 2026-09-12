@@ -52,7 +52,7 @@ const VideoShowcase = () => {
   };
 
   return (
-    <section id="video-section" className="py-28 md:py-36 bg-salt-dark relative overflow-hidden">
+    <section id="video-section" className="pt-24 md:pt-32 pb-16 md:pb-20 bg-salt-dark relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
