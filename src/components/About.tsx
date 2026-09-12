@@ -169,7 +169,7 @@ const About = () => {
               loading="lazy"
               width={1200}
               height={800}
-              className="w-full aspect-[3/2] md:aspect-[21/9] object-cover"
+              className="w-full aspect-[3/2] md:aspect-[16/9] object-cover object-center"
             />
           </div>
           <div className="max-w-3xl">
