@@ -53,14 +53,6 @@ const VideoShowcase = () => {
 
   return (
     <section id="video-section" className="pt-24 md:pt-32 pb-16 md:pb-20 bg-salt-dark relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, hsl(var(--salt-coral)) 1px, transparent 0)`,
-          backgroundSize: '50px 50px',
-        }} />
-      </div>
-
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div ref={header} className="reveal max-w-3xl mb-14">

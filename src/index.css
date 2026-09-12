@@ -39,7 +39,10 @@ All colors MUST be HSL.
     --input: 30 10% 87%;
     --ring: 214 42% 34%;
 
-    --radius: 0.25rem;
+    /* 4px read as rigid. Softer corners are the single largest lever
+       on perceived smoothness, and this token drives every card,
+       panel and image frame on the site. */
+    --radius: 0.75rem;
 
     /* Custom tokens */
     --salt-pink: 8 50% 74%;

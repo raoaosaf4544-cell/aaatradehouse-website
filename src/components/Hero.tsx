@@ -87,14 +87,6 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-salt-dark via-salt-dark/75 to-salt-dark/25" />
       </div>
 
-      {/* Film grain */}
-      <div
-        className="absolute inset-0 opacity-[0.15] pointer-events-none"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-        }}
-      />
-
       <div className="container mx-auto px-6 relative z-10 pt-32 pb-20">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* ── Left: display type ── */}
@@ -124,7 +116,7 @@ const Hero = () => {
                 </span>
               </span>
               <span className="line-mask">
-                <span className="line-in text-accent" style={{ "--line-delay": "320ms" } as React.CSSProperties}>
+                <span className="line-in text-accent italic" style={{ "--line-delay": "320ms" } as React.CSSProperties}>
                   Experts
                 </span>
               </span>

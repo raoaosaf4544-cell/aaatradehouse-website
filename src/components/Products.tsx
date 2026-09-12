@@ -87,12 +87,6 @@ const Products = () => {
 
   return (
     <section id="products" className="py-24 md:py-32 bg-background relative">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.02]" style={{
-        backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--foreground)) 1px, transparent 0)`,
-        backgroundSize: '40px 40px',
-      }} />
-      
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div ref={header} className="reveal text-center max-w-3xl mx-auto mb-20">
@@ -182,33 +176,48 @@ const Products = () => {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-12 gap-8 items-start">
-            {/* A real photograph of the actual goods, next to the actual
-                lab figures. The pairing is the point: a buyer can see the
-                material the numbers describe. */}
-            <div className="lg:col-span-4 rounded-lg overflow-hidden border border-border">
-              <img
-                src={saltRawClose}
-                alt="Raw Himalayan pink salt chunks at the AAA Trade House plant, showing natural colour variation from pale to deep pink"
-                loading="lazy"
-                width={1200}
-                height={1500}
-                className="w-full h-full object-cover aspect-[4/5]"
-              />
-            </div>
+          {/* One dark panel, photograph bleeding to its edge.
+              This was a white card grid sitting next to a photo, which
+              read as flat - black text on white with no relationship to
+              the image beside it. Putting both inside one dark surface
+              makes the figures feel like a datasheet rather than a table,
+              and gives the pink of the salt something to sit against
+              instead of competing with white. */}
+          <div className="rounded-xl overflow-hidden bg-salt-dark elev-dark">
+            <div className="grid lg:grid-cols-12">
+              <div className="lg:col-span-5 relative min-h-[280px] lg:min-h-0">
+                <img
+                  src={saltRawClose}
+                  alt="Raw Himalayan pink salt chunks at the AAA Trade House plant, showing natural colour variation from pale to deep pink"
+                  loading="lazy"
+                  width={1200}
+                  height={1500}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                {/* Only where the photo meets the panel, so the seam is a
+                    transition rather than a hard edge. */}
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-salt-dark lg:to-salt-dark"
+                />
+              </div>
 
-            <dl className="lg:col-span-8 grid sm:grid-cols-2 gap-px bg-border border border-border rounded-lg overflow-hidden">
-              {analysis.map((row) => (
-                <div key={row.name} className="bg-card p-6">
-                  <dt className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground mb-2">
-                    {row.name}
-                  </dt>
-                  <dd className="font-serif text-3xl font-bold text-foreground tabular-nums">
-                    {row.value}
-                  </dd>
-                </div>
-              ))}
-            </dl>
+              <dl className="lg:col-span-7 grid sm:grid-cols-2">
+                {analysis.map((row, i) => (
+                  <div
+                    key={row.name}
+                    className={`p-7 border-primary-foreground/10 ${i % 2 === 0 ? "sm:border-r" : ""} ${i < analysis.length - 2 ? "border-b" : "sm:border-b-0 border-b"}`}
+                  >
+                    <dt className="text-[11px] uppercase tracking-[0.16em] text-primary-foreground/45 mb-2">
+                      {row.name}
+                    </dt>
+                    <dd className="font-serif text-4xl font-bold text-primary-foreground tabular-nums leading-none">
+                      {row.value}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
           </div>
         </div>
 

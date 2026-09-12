@@ -1,5 +1,6 @@
 import { Factory, ChefHat, Beaker, Tags } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
+import saltPacking from "@/assets/salt-packing.webp";
 
 const industries = [
   {
@@ -35,7 +36,11 @@ const Industries = () => {
   return (
     <section id="industries" className="py-24 md:py-32 bg-secondary">
       <div className="container mx-auto px-6">
-        <div ref={header} className="reveal max-w-2xl mb-16">
+        {/* Header and photograph share the row. This section was the last
+            one on the page with no image at all, and "who we supply" reads
+            better next to the goods actually packed. */}
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center mb-16">
+        <div ref={header} className="reveal lg:col-span-6">
           <p className="text-xs uppercase tracking-[0.2em] text-primary mb-5">Industries We Serve</p>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.05] tracking-tight mb-6">
             Who we supply.
@@ -45,6 +50,18 @@ const Industries = () => {
             packaging and the paperwork change with each. Tell us which of these you are
             and we will quote to it.
           </p>
+        </div>
+
+          <div className="lg:col-span-6 rounded-xl overflow-hidden border border-border">
+            <img
+              src={saltPacking}
+              alt="Himalayan pink salt packed into bulk export bags at AAA Trade House"
+              loading="lazy"
+              width={900}
+              height={600}
+              className="w-full aspect-[3/2] object-cover"
+            />
+          </div>
         </div>
 
         <div ref={grid} className="reveal-group grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border rounded-lg overflow-hidden">
