@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import GlobalReach from "@/components/GlobalReach";
+import Products from "@/components/Products";
 import Hero from "@/components/Hero";
 
 /**
@@ -74,6 +75,35 @@ describe("GlobalReach - the export route", () => {
     const s = src("src/components/GlobalReach.tsx");
     expect(s).not.toContain("animate-float");
     expect(s).not.toContain("animate-pulse");
+  });
+});
+
+describe("Products - the lab figures", () => {
+  it("publishes the analysis a bulk importer asks for first", () => {
+    const { container } = render(<Products />);
+    const text = container.textContent ?? "";
+    expect(text).toMatch(/98\.82%/);
+    expect(text).toMatch(/Sodium chloride/i);
+  });
+
+  it("calls it typical, never a guaranteed specification", () => {
+    // Salt is mined and varies batch to batch. "Typical" is a description;
+    // "guaranteed" is a contractual commitment a buyer can test the goods
+    // against and reject a container over. The trade states it the first
+    // way for exactly that reason.
+    const { container } = render(<Products />);
+    const text = container.textContent ?? "";
+    expect(text).toMatch(/typical/i);
+    expect(text).toMatch(/not a guaranteed specification/i);
+    expect(text).not.toMatch(/guaranteed (?:purity|analysis|NaCl)/i);
+  });
+
+  it("still withholds granulation, which is not confirmed", () => {
+    // One known figure does not license the rest of the row.
+    const { container } = render(<Products />);
+    const text = container.textContent ?? "";
+    expect(text).toMatch(/granulation on request/i);
+    expect(text).not.toMatch(/\d+\s*(?:mm|mesh|micron)/i);
   });
 });
 

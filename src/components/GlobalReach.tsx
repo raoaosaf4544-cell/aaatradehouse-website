@@ -127,8 +127,9 @@ const GlobalReach = () => {
                   Certification
                 </dt>
                 <dd className="text-sm text-primary-foreground/60 leading-relaxed">
-                  PMDC certification on the edible grade, PCSIR-tested batches,
-                  and the certifications your order requires.
+                  PMDC certification on the edible grade, halal certified,
+                  PCSIR-tested batches, and the certifications your order
+                  requires.
                 </dd>
               </div>
             </dl>

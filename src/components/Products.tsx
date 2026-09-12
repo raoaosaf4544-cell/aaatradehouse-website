@@ -16,8 +16,10 @@ const products: Product[] = [
     name: "Edible Salt",
     description:
       "Edible Himalayan pink salt in fine, coarse and granular grades for gourmet food brands and culinary applications.",
-    // Granulation figures are NOT on the site until a lab report exists.
-    specs: "High-purity, PCSIR-tested. Report and grades on request",
+    // NaCl is from the PCSIR report. GRANULATION still is not confirmed
+    // and stays off until it is - one known figure does not license the
+    // rest of the row.
+    specs: "98.82% NaCl typical, PCSIR-tested. Granulation on request",
     uses: "Gourmet food, table salt, seasoning, baking",
     icon: Utensils,
   },
@@ -63,10 +65,24 @@ const products: Product[] = [
   },
 ];
 
+/* Transcribed from the PCSIR figures printed on the 900g retail pack.
+   Do NOT edit these to look rounder or better - they are lab output, and
+   a buyer can test the goods against them. If a newer report supersedes
+   this one, replace the whole set rather than patching single rows. */
+const analysis = [
+  { name: "Sodium chloride (NaCl)", value: "98.82%" },
+  { name: "Water insoluble matter", value: "0.801%" },
+  { name: "Sulphate (SO₄)", value: "0.104%" },
+  { name: "Calcium (Ca)", value: "0.090%" },
+  { name: "Moisture", value: "0.076%" },
+  { name: "Magnesium (Mg)", value: "0.046%" },
+];
+
 const Products = () => {
   const header = useReveal<HTMLDivElement>();
   const grid = useReveal<HTMLDivElement>();
   const packs = useReveal<HTMLDivElement>();
+  const specs = useReveal<HTMLDivElement>();
 
   return (
     <section id="products" className="py-24 md:py-32 bg-background relative">
@@ -136,6 +152,47 @@ const Products = () => {
               </a>
             </div>
           ))}
+        </div>
+
+        {/* Typical analysis.
+            NaCl % is the first number a bulk importer looks for and the
+            site used to make them ask for it. These figures are already
+            printed on the 900g retail pack, so staying silent here did
+            not reduce exposure - it just meant the bag said more than the
+            website did.
+
+            Labelled TYPICAL, never "guaranteed specification". Salt is a
+            mined mineral and varies between batches; a guaranteed figure
+            is a contractual commitment, a typical one is a description,
+            and the trade states it the second way for that reason. */}
+        <div ref={specs} className="reveal mt-20">
+          <div className="max-w-2xl mb-10">
+            <p className="text-xs uppercase tracking-[0.2em] text-primary mb-5">
+              Typical Analysis
+            </p>
+            <h3 className="font-serif text-3xl md:text-4xl font-bold text-foreground leading-tight mb-4">
+              The numbers, before you ask.
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              From our PCSIR laboratory report, per 1 g. Figures are typical
+              for the edible grade and are not a guaranteed specification —
+              salt is mined, and it varies between batches. The report is
+              available on request.
+            </p>
+          </div>
+
+          <dl className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border rounded-lg overflow-hidden">
+            {analysis.map((row) => (
+              <div key={row.name} className="bg-card p-6">
+                <dt className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground mb-2">
+                  {row.name}
+                </dt>
+                <dd className="font-serif text-3xl font-bold text-foreground tabular-nums">
+                  {row.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
         </div>
 
         {/* Packaging Info */}

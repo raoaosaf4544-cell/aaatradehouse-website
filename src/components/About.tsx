@@ -18,7 +18,7 @@ const features = [
   {
     icon: FlaskConical,
     title: "Tested, Report on Request",
-    description: "High-purity salt, PCSIR tested. Independent laboratory report available on request, and required certifications provided for orders that need them.",
+    description: "High-purity salt, PCSIR tested and halal certified. Independent laboratory report available on request, and required certifications provided for orders that need them.",
   },
   {
     icon: Building2,

@@ -37,6 +37,14 @@ export const faqs = [
     q: "Is there a minimum order quantity?",
     a: "There is no fixed minimum. Tell us the volume, grade and packaging you need and we quote to it.",
   },
+  {
+    q: "What is the NaCl content of your Himalayan pink salt?",
+    a: "Typical analysis from our PCSIR laboratory report is 98.82% sodium chloride, with 0.801% water insoluble matter, 0.104% sulphate, 0.090% calcium, 0.076% moisture and 0.046% magnesium. These are typical figures for the edible grade, not a guaranteed specification - salt is mined and varies between batches. The report is available on request.",
+  },
+  {
+    q: "Is the salt halal certified?",
+    a: "Yes. The salt is halal certified, and the edible grade also carries PMDC certification.",
+  },
 ];
 
 const FAQ = () => {
