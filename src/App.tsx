@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import Index from "./pages/Index";
 import Privacy from "./pages/Privacy";
+import ProductsPage from "./pages/ProductsPage";
+import ExportPage from "./pages/ExportPage";
 import NotFound from "./pages/NotFound";
 import ConsentBanner from "@/components/ConsentBanner";
 import { applyConsent, readConsent } from "@/lib/consent";
@@ -26,6 +28,8 @@ import { applyConsent, readConsent } from "@/lib/consent";
  */
 const routes: Record<string, () => JSX.Element> = {
   "/": Index,
+  "/products": ProductsPage,
+  "/export": ExportPage,
   "/privacy": Privacy,
 };
 

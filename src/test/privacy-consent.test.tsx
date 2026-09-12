@@ -303,6 +303,73 @@ describe("H5 - react-router is gone", () => {
   });
 });
 
+describe("routing - the multi-page split", () => {
+  it.each([
+    ["/products", /every grade we supply/i],
+    ["/export", /how we trade/i],
+    ["/privacy", /privacy & cookies/i],
+  ])("serves %s", (path, heading) => {
+    history.pushState({}, "", path);
+    render(<App />);
+    expect(
+      screen.getByRole("heading", { level: 1, name: heading }),
+    ).toBeInTheDocument();
+  });
+
+  it("gives each page its own title and meta description", () => {
+    // Pages that inherit the homepage's description are the main reason a
+    // split into several routes fails to rank - Google sees near-duplicates
+    // and picks one.
+    // jsdom starts with a bare <head>; the real meta tag lives in
+    // index.html, which tests never load. Create it so PageShell has
+    // something to write to, exactly as it would in the browser.
+    const meta = document.createElement("meta");
+    meta.setAttribute("name", "description");
+    meta.setAttribute("content", "homepage default");
+    document.head.appendChild(meta);
+
+    const seen = new Set<string>();
+    for (const path of ["/products", "/export", "/privacy"]) {
+      history.pushState({}, "", path);
+      const { unmount } = render(<App />);
+      const desc = document
+        .querySelector('meta[name="description"]')
+        ?.getAttribute("content");
+      expect(document.title).toMatch(/AAA Trade House/);
+      expect(desc && desc.length).toBeGreaterThan(60);
+      expect(seen.has(document.title)).toBe(false);
+      seen.add(document.title);
+      unmount();
+      // PageShell restores the previous description on unmount, so one
+      // route's copy cannot leak onto the next.
+      expect(
+        document.querySelector('meta[name="description"]')?.getAttribute("content"),
+      ).toBe("homepage default");
+    }
+    meta.remove();
+  });
+
+  it("lists every real route in the sitemap", () => {
+    const xml = read("public/sitemap.xml");
+    for (const path of ["/", "/products", "/export", "/privacy"]) {
+      const loc = `https://www.aaatradehouse.com${path === "/" ? "/" : path}`;
+      expect(`${path}:${xml.includes(loc)}`).toBe(`${path}:true`);
+    }
+    // A 404 in the sitemap tells Google to index an error page.
+    expect(xml).not.toMatch(/404|not-found/);
+  });
+
+  it("keeps one skip link and one main landmark on every page", () => {
+    for (const path of ["/", "/products", "/export", "/privacy"]) {
+      history.pushState({}, "", path);
+      const { container, unmount } = render(<App />);
+      expect(`${path}:${container.querySelectorAll('a[href="#main"]').length}`).toBe(`${path}:1`);
+      expect(`${path}:${container.querySelectorAll("main#main").length}`).toBe(`${path}:1`);
+      unmount();
+    }
+  });
+});
+
 describe("M1 - security headers", () => {
   const vercel = JSON.parse(read("vercel.json"));
   const headers: { key: string; value: string }[] = vercel.headers[0].headers;

@@ -1,6 +1,4 @@
-import { useEffect } from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import PageShell from "@/components/PageShell";
 import { openConsentSettings } from "@/lib/consent";
 
 /**
@@ -28,25 +26,12 @@ const LAST_UPDATED = "12 September 2026";
 
 const TRANSFER_SOURCE = "https://legal.hubspot.com/eu-us-dpf";
 
-const Privacy = () => {
-  useEffect(() => {
-    document.title = "Privacy & Cookies | AAA Trade House";
-  }, []);
-
-  // No pb-14 on the wrapper, unlike Index: the mobile CTA bar is not
-  // rendered on this page, so reserving space for it would leave dead gap.
-  return (
-    <div className="min-h-screen bg-background">
-      <a
-        href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-6 focus:top-6 focus:z-[60] focus:rounded-md focus:bg-background focus:px-5 focus:py-3 focus:text-sm focus:font-medium focus:text-foreground focus:shadow-elevated"
-      >
-        Skip to main content
-      </a>
-      <Navbar />
-
-      <main id="main" tabIndex={-1} className="focus:outline-none">
-        {/* pt-32 clears the fixed navbar. */}
+const Privacy = () => (
+  <PageShell
+    title="Privacy & Cookies | AAA Trade House"
+    description="How AAA General Trading handles your data: what the contact form collects, the HubSpot transfer to the United States, how long we keep enquiries, and how to have your data deleted."
+    withMobileCta={false}
+  >
         <section className="bg-salt-cream pt-32 pb-20 md:pt-40 md:pb-24">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl">
@@ -272,12 +257,8 @@ const Privacy = () => {
             </div>
           </div>
         </section>
-      </main>
-
-      <Footer />
-    </div>
-  );
-};
+  </PageShell>
+);
 
 const linkClass =
   "text-accent underline underline-offset-4 hover:text-accent/80 transition-colors";

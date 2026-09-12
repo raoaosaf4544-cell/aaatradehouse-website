@@ -50,7 +50,8 @@ const FAQ = () => {
   return (
     <section id="faq" className="py-20 md:py-24 bg-background">
       <div className="container mx-auto px-6">
-        <div ref={header} className="reveal max-w-3xl mb-16">
+        <div className="grid lg:grid-cols-12 gap-x-16 gap-y-10">
+        <div ref={header} className="reveal lg:col-span-5 lg:sticky lg:top-28 lg:self-start">
           <p className="text-xs uppercase tracking-[0.2em] text-accent mb-5">
             Buyer Questions
           </p>
@@ -66,7 +67,7 @@ const FAQ = () => {
         {/* Native <details> - no JS, keyboard and screen-reader accessible
             by default, and the answer text stays in the DOM for crawlers
             even while collapsed. */}
-        <div ref={list} className="reveal-group max-w-3xl border-t border-border">
+        <div ref={list} className="reveal-group lg:col-span-7 border-t border-border">
           {faqs.map((item, index) => (
             <details
               key={item.q}
@@ -84,11 +85,12 @@ const FAQ = () => {
                   +
                 </span>
               </summary>
-              <p className="text-muted-foreground leading-relaxed pb-7 pr-12 max-w-2xl">
+              <p className="text-muted-foreground leading-relaxed pb-7 pr-12">
                 {item.a}
               </p>
             </details>
           ))}
+        </div>
         </div>
       </div>
     </section>
