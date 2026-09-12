@@ -52,7 +52,8 @@ const products: Product[] = [
     name: "Bulk & Raw Sourcing",
     description:
       "Direct supply of raw Himalayan pink salt rocks for large-scale importers and manufacturers.",
-    specs: "1000kg jumbo bags | 25kg/50kg PP bags",
+    // NO jumbo bags. 50kg is the largest we actually fill.
+    specs: "25kg and 50kg PP bags",
     uses: "Importers, wholesalers, private label brands",
     icon: Package,
   },
@@ -165,8 +166,8 @@ const Products = () => {
                 Any bulk size you need.
               </h3>
               <p className="text-muted-foreground leading-relaxed mb-10">
-                Standard export bags, jumbo bags, or a size you specify. Tell us what your
-                line runs and we pack to it.
+                PP export bags up to 50 kg, branded retail packs, or a size you
+                specify. Tell us what your line runs and we pack to it.
               </p>
 
               <div className="flex items-center gap-4 mb-6">
@@ -183,15 +184,15 @@ const Products = () => {
               >
                 <div className="spot tilt border border-transparent bg-card p-6 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40">
               <Package className="w-5 h-5 text-accent mb-5" aria-hidden="true" strokeWidth={1.5} />
-              <h4 className="font-serif text-xl font-bold text-foreground mb-1 leading-tight">25 / 50 kg</h4>
+              <h4 className="font-serif text-xl font-bold text-foreground mb-1 leading-tight">25 kg</h4>
               <p className="text-sm font-medium text-foreground/70 mb-2">PP export bags</p>
-              <p className="text-muted-foreground text-sm leading-relaxed">Standard distribution sizes.</p>
+              <p className="text-muted-foreground text-sm leading-relaxed">Standard distribution size.</p>
                 </div>
                 <div className="spot tilt border border-transparent bg-card p-6 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40">
               <Boxes className="w-5 h-5 text-accent mb-5" aria-hidden="true" strokeWidth={1.5} />
-              <h4 className="font-serif text-xl font-bold text-foreground mb-1 leading-tight">1000 kg</h4>
-              <p className="text-sm font-medium text-foreground/70 mb-2">Jumbo bags</p>
-              <p className="text-muted-foreground text-sm leading-relaxed">For large-scale operations.</p>
+              <h4 className="font-serif text-xl font-bold text-foreground mb-1 leading-tight">50 kg</h4>
+              <p className="text-sm font-medium text-foreground/70 mb-2">PP export bags</p>
+              <p className="text-muted-foreground text-sm leading-relaxed">Our largest bag.</p>
                 </div>
                 <div className="spot tilt border border-transparent bg-card p-6 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40">
               <Ruler className="w-5 h-5 text-accent mb-5" aria-hidden="true" strokeWidth={1.5} />
@@ -208,25 +209,51 @@ const Products = () => {
               </div>
             </div>
 
-            <figure className="lg:col-span-5 lg:sticky lg:top-28 lg:self-start">
-              <div className="rounded-xl overflow-hidden border border-border">
+            {/* The photograph matches the height of the column beside it
+                rather than holding a fixed 4:5, so its bottom edge lands
+                level with the Custom and 500g cards instead of hanging
+                below them. flex-1 gives the frame whatever height is
+                left after the caption, and object-cover crops rather
+                than distorts - the subject is a pile of rock, so there
+                is no composition to lose.
+
+                aspect-[4/5] survives below lg, where the columns stack
+                and there is no neighbour to match. */}
+            <figure className="relative lg:col-span-5 flex flex-col h-full">
+              {/* The image is absolutely positioned so it contributes NO
+                  height of its own. Left in flow it kept resolving to
+                  its 4:5 ratio and drove the row taller than the cards
+                  beside it - measured 58px of overhang. With the frame
+                  taking its height from flex-1 instead, the bottom edge
+                  lands level with the Custom and 500g row.
+
+                  min-h-0 is doing real work: a flex item defaults to
+                  min-height:auto, which refuses to shrink below its
+                  content and is what let the ratio win. */}
+              <div className="relative rounded-xl overflow-hidden border border-border aspect-[4/5] lg:aspect-auto lg:flex-1 lg:min-h-0">
                 <img
                   src={saltRawClose}
                   alt="Raw Himalayan pink salt chunks at the AAA Trade House plant, showing natural colour variation from pale to deep pink"
                   loading="lazy"
                   width={1200}
                   height={1500}
-                  className="w-full aspect-[4/5] object-cover"
+                  className="absolute inset-0 w-full h-full object-cover"
                 />
               </div>
-              <figcaption className="mt-3 text-sm text-muted-foreground">
+              {/* Lifted out of the flex flow at lg. Inside it, the caption
+                  ate 51px of the frame's height and the picture stopped
+                  short of the cards beside it; pinned to top-full it sits
+                  just under the image without contributing height, so the
+                  image bottom lands exactly on the card row. The CTA's
+                  margin below is widened to clear it. */}
+              <figcaption className="mt-3 text-sm text-muted-foreground lg:absolute lg:top-full lg:inset-x-0">
                 Raw salt at our Khanewal plant, before crushing and grading.
                 Colour varies naturally across the same seam.
               </figcaption>
             </figure>
           </div>
 
-          <div className="text-center mt-12">
+          <div className="text-center mt-12 lg:mt-24">
             <Button asChild variant="hero" size="xl">
               <a href="#contact">
                 Request Custom Quote

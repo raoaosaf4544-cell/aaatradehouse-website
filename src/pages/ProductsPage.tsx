@@ -19,7 +19,7 @@ import Contact from "@/components/Contact";
 const ProductsPage = () => (
   <PageShell
     title="Himalayan Pink Salt Products & Grades | AAA Trade House"
-    description="Bulk Himalayan pink salt in edible, industrial, animal lick, wellness and raw grades. PCSIR tested, PMDC certification on the edible grade, halal certified. Packed 25kg, 50kg, 1000kg jumbo or to your specification."
+    description="Bulk Himalayan pink salt in edible, industrial, animal lick, wellness and raw grades. PCSIR tested, PMDC certification on the edible grade, halal certified. Packed in 25kg and 50kg PP bags, retail packs, or to your specification."
   >
     <section className="pt-36 pb-4 md:pt-44">
       <div className="container mx-auto px-6">

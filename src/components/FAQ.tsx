@@ -23,7 +23,7 @@ export const faqs = [
   },
   {
     q: "What packaging sizes are available?",
-    a: "25 kg and 50 kg PP export bags, 1000 kg jumbo bags, 500 g and 1 kg branded retail packs, or a custom size you specify.",
+    a: "25 kg and 50 kg PP export bags, 500 g and 1 kg branded retail packs, or a custom size you specify. 50 kg is the largest bag we fill.",
   },
   {
     q: "Do you offer private label Himalayan pink salt?",

@@ -138,6 +138,16 @@ describe("site-wide", () => {
     }
   });
 
+  it("claims no packaging larger than 50kg", () => {
+    // Corrected by the business: there are no 1000kg jumbo bags. 50kg is
+    // the largest bag actually filled. A buyer who orders against a
+    // packaging size that does not exist finds out at the port.
+    for (const [name, s] of components) {
+      const hit = /jumbo|1000\s*kg|1\s*tonne bag|bulk bag/i.exec(s.replace(/\/\*[\s\S]*?\*\/|\/\/.*/g, ""));
+      expect(`${name}:${hit?.[0] ?? "clean"}`).toBe(`${name}:clean`);
+    }
+  });
+
   it("never colour-grades the product photography", () => {
     // Pink is the product. A duotone or grayscale pass over a Himalayan
     // salt photograph throws away the one thing a salt buyer is looking
