@@ -1,4 +1,7 @@
 {
+  "redirects": [
+    { "source": "/pack", "destination": "/", "permanent": false }
+  ],
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
   "headers": [
     {
