@@ -5,7 +5,6 @@ import { useReveal } from "@/hooks/use-reveal";
    was AI-looking AND technically worse: 900x600 landscape being cropped
    to a 4:5 portrait frame and upscaled. This one is natively 1200x1500. */
 import loading from "@/assets/loading.webp";
-import collecting from "@/assets/collecting.webp";
 import bannerImage from "@/assets/banner-clean.webp";
 
 const features = [
@@ -157,21 +156,11 @@ const About = () => {
         </div>
 
         {/* Why we do this.
-            Full-bleed photograph of the men working, above the passage.
-            This block was the longest stretch of unbroken text on the
-            page and the passage is about people, so the image belongs
-            with it rather than decorating somewhere else. */}
+            A full-bleed photograph sat here and was removed: cropped to a
+            band it showed a truck and an archway and almost nothing else,
+            taking a great deal of vertical space to say nothing. An image
+            that does not carry information is worse than no image. */}
         <div ref={why} className="reveal mt-24 pt-16 border-t border-border">
-          <div className="rounded-xl overflow-hidden border border-border mb-14">
-            <img
-              src={collecting}
-              alt="Workers loading raw Himalayan pink salt at the AAA Trade House plant near Kot Abbas Shaheed, Khanewal"
-              loading="lazy"
-              width={1200}
-              height={800}
-              className="w-full aspect-[3/2] md:aspect-[16/9] object-cover object-center"
-            />
-          </div>
           <div className="max-w-3xl">
             <p className="text-xs uppercase tracking-[0.2em] text-primary mb-5">Why We Do This</p>
             <p className="font-serif text-2xl md:text-3xl font-bold text-foreground leading-snug mb-7">
