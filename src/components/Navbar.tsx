@@ -32,13 +32,13 @@ const Navbar = () => {
   }, [isOpen]);
 
   const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Products", href: "#products" },
-    { name: "Industries", href: "#industries" },
-    { name: "Export", href: "#global" },
-    { name: "Ordering", href: "#ordering" },
-    { name: "Contact", href: "#contact" },
+    { name: "Home", href: "/#home" },
+    { name: "About", href: "/#about" },
+    { name: "Products", href: "/#products" },
+    { name: "Industries", href: "/#industries" },
+    { name: "Export", href: "/#global" },
+    { name: "Ordering", href: "/#ordering" },
+    { name: "Contact", href: "/#contact" },
   ];
 
   return (
@@ -50,7 +50,7 @@ const Navbar = () => {
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="#home" className="flex items-center gap-2">
+          <a href="/#home" className="flex items-center gap-2">
             <img
               src={scrolled ? logoDark : logoLight}
               width={240}
@@ -76,7 +76,7 @@ const Navbar = () => {
               </a>
             ))}
             <Button asChild variant="hero" size="lg" className="shadow-elevated">
-              <a href="#contact">Get Quote</a>
+              <a href="/#contact">Get Quote</a>
             </Button>
           </div>
 
@@ -113,7 +113,7 @@ const Navbar = () => {
               </a>
             ))}
             <Button asChild variant="hero" className="w-full mt-6" size="lg">
-              <a href="#contact" onClick={() => setIsOpen(false)}>Get Quote</a>
+              <a href="/#contact" onClick={() => setIsOpen(false)}>Get Quote</a>
             </Button>
           </div>
         )}

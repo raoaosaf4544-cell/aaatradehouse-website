@@ -1,12 +1,14 @@
-import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
 const NotFound = () => {
-  const location = useLocation();
-
   useEffect(() => {
-    console.error("404 Error: User attempted to access non-existent route:", location.pathname);
-  }, [location.pathname]);
+    // window.location rather than react-router's useLocation - the router
+    // is gone, and this only ever needs the path at mount.
+    console.error(
+      "404 Error: User attempted to access non-existent route:",
+      window.location.pathname,
+    );
+  }, []);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-muted">

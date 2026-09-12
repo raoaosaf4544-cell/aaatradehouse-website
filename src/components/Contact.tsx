@@ -1,16 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
 import { phones } from "@/lib/contact";
-
-// HubSpot Forms submission endpoint. Portal ID confirmed against
-// forms.hsforms.com (the 8-digit variant 404s; this one resolves).
-const HUBSPOT_PORTAL_ID = "246642088";
-const HUBSPOT_FORM_GUID = "c5c6ddcf-64b9-4848-aad7-727f44c62f46";
-const HUBSPOT_ENDPOINT = `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_GUID}`;
+import { HUBSPOT_ENDPOINT } from "@/lib/hubspot";
 
 type SubmitState = "idle" | "sending" | "sent" | "error";
 
@@ -32,18 +27,81 @@ const locations = [
   },
 ];
 
+/**
+ * A Google Maps iframe contacts Google the moment it renders, sending the
+ * visitor's IP address and setting Google's cookies before anyone has been
+ * asked. So it is not rendered until asked for: the button IS the consent,
+ * which keeps it specific to this one map rather than folded into a blanket
+ * banner yes. Per map - loading the office does not load the plant.
+ */
+const MapEmbed = ({ loc }: { loc: (typeof locations)[number] }) => {
+  const [loaded, setLoaded] = useState(false);
+
+  if (loaded) {
+    return (
+      <div className="rounded-lg overflow-hidden border border-border shadow-soft">
+        <iframe
+          src={loc.embed}
+          title={`Google Map showing ${loc.name} - ${loc.address}`}
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          allowFullScreen
+          className="w-full h-72 block border-0"
+        />
+      </div>
+    );
+  }
+
+  return (
+    <div className="rounded-lg border border-border bg-secondary/60 shadow-soft h-72 flex flex-col items-center justify-center gap-4 px-6 text-center">
+      <MapPin className="w-6 h-6 text-primary" aria-hidden="true" />
+      <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
+        Loading the map sends your IP address to Google.
+      </p>
+      <button
+        type="button"
+        onClick={() => setLoaded(true)}
+        className="rounded-md border border-primary bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+      >
+        Show map
+      </button>
+    </div>
+  );
+};
+
+/** A real person cannot read the form, think, and fill it in faster than
+ *  this. Scripted submissions routinely post within a few hundred ms. */
+const MIN_SECONDS_ON_FORM = 4;
+
 const Contact = () => {
   const info = useReveal<HTMLDivElement>();
   const formCard = useReveal<HTMLDivElement>();
   const maps = useReveal<HTMLDivElement>();
   const [state, setState] = useState<SubmitState>("idle");
   const [errorDetail, setErrorDetail] = useState("");
+  const mountedAt = useRef(Date.now());
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
     const get = (k: string) => String(data.get(k) ?? "").trim();
+
+    // Two cheap spam checks, no third-party captcha: nothing extra to load,
+    // nothing for a visitor to solve, and no new processor to disclose in
+    // the privacy notice.
+    //
+    // Both failures report success rather than an error. Telling a bot why
+    // it was rejected is how it learns to pass - and a false positive on a
+    // real person is better than a visible accusation, since they still have
+    // the email address and both WhatsApp numbers right beside the form.
+    const trap = get("website");
+    const tooFast = (Date.now() - mountedAt.current) / 1000 < MIN_SECONDS_ON_FORM;
+    if (trap !== "" || tooFast) {
+      form.reset();
+      setState("sent");
+      return;
+    }
 
     const [firstname, ...rest] = get("fullName").split(/\s+/);
     const interest = get("interest");
@@ -62,9 +120,10 @@ const Contact = () => {
       },
     ].filter((f) => f.value !== "");
 
-    // Set by the HubSpot tracking script in index.html. Absent on a first
-    // visit with no cookie yet, or if a consent tool blocks the script -
-    // omitted rather than sent empty, which HubSpot rejects.
+    // Set by the HubSpot tracking script, which now only loads once someone
+    // has accepted analytics cookies - so for anyone who declined, or who
+    // has not been asked yet, this is simply absent. Omitted rather than
+    // sent empty, which HubSpot rejects. The form itself works either way.
     const hutk = document.cookie.match(/(?:^|;\s*)hubspotutk=([^;]*)/)?.[1];
 
     setState("sending");
@@ -182,6 +241,24 @@ Office No. 42, Valencia Tower,<br />
               Request a Quote
             </h3>
             <form className="space-y-6" onSubmit={handleSubmit}>
+              {/* Honeypot. Hidden from sight, from the tab order and from
+                  the accessibility tree, so no real person can reach it -
+                  which is what makes a value in it conclusive. Not
+                  display:none, because some bots skip those; off-screen
+                  still reads as a fillable field to a naive scraper.
+                  autoComplete="off" keeps a browser from helpfully
+                  populating it and locking a genuine visitor out. */}
+              <div aria-hidden="true" className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden">
+                <label htmlFor="website">Leave this field blank</label>
+                <input
+                  id="website"
+                  name="website"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
+
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="fullName" className="block text-sm font-medium text-foreground mb-2">
@@ -236,6 +313,21 @@ Office No. 42, Valencia Tower,<br />
                 <Send size={18} />
               </Button>
 
+              {/* Transparency at the point of collection (Art. 13) - a link
+                  in the footer is not where someone about to press Send is
+                  looking. */}
+              <p className="text-xs leading-relaxed text-muted-foreground">
+                Your details go to us and to HubSpot (United States), and we use
+                them only to answer your enquiry. See our{" "}
+                <a
+                  href="/privacy"
+                  className="text-primary underline underline-offset-4"
+                >
+                  privacy notice
+                </a>
+                .
+              </p>
+
               <p aria-live="polite" className="text-sm">
                 {state === "sent" && (
                   <span className="text-foreground">
@@ -278,16 +370,7 @@ Office No. 42, Valencia Tower,<br />
                 <p className="text-sm text-muted-foreground leading-relaxed mb-4 min-h-[2.5rem]">
                   {loc.address}
                 </p>
-                <div className="rounded-lg overflow-hidden border border-border shadow-soft">
-                  <iframe
-                    src={loc.embed}
-                    title={`Google Map showing ${loc.name} - ${loc.address}`}
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    allowFullScreen
-                    className="w-full h-72 block border-0"
-                  />
-                </div>
+                <MapEmbed loc={loc} />
                 <a
                   href={loc.link}
                   target="_blank"

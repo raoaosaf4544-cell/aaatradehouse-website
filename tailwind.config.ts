@@ -73,7 +73,10 @@ export default {
       },
       fontFamily: {
         serif: ["Playfair Display", "Georgia", "serif"],
-        sans: ["Inter", "system-ui", "sans-serif"],
+        // "Inter Variable" is the family name the variable @fontsource
+        // package registers; plain "Inter" is kept behind it so a locally
+        // installed copy still wins over the system stack.
+        sans: ["Inter Variable", "Inter", "system-ui", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {

@@ -2,6 +2,7 @@ import logoLight from "@/assets/logo-light.webp";
 import footerBanner from "@/assets/banner-clean.webp";
 import { Facebook, Instagram, Linkedin, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { phones } from "@/lib/contact";
+import { openConsentSettings } from "@/lib/consent";
 
 const Footer = () => {
   return (
@@ -73,15 +74,15 @@ const Footer = () => {
             <h3 className="text-xs uppercase tracking-[0.2em] text-primary-foreground/55 mb-6">Quick Links</h3>
             <ul className="space-y-3">
               {[
-                { name: "Home", href: "#home" },
-                { name: "About", href: "#about" },
-                { name: "Products", href: "#products" },
-                { name: "Industries", href: "#industries" },
-                { name: "Process", href: "#video-section" },
-                { name: "Export", href: "#global" },
-                { name: "FAQ", href: "#faq" },
-                { name: "Ordering", href: "#ordering" },
-                { name: "Contact", href: "#contact" },
+                { name: "Home", href: "/#home" },
+                { name: "About", href: "/#about" },
+                { name: "Products", href: "/#products" },
+                { name: "Industries", href: "/#industries" },
+                { name: "Process", href: "/#video-section" },
+                { name: "Export", href: "/#global" },
+                { name: "FAQ", href: "/#faq" },
+                { name: "Ordering", href: "/#ordering" },
+                { name: "Contact", href: "/#contact" },
               ].map((link) => (
                 <li key={link.name}>
                   <a
@@ -101,7 +102,7 @@ const Footer = () => {
             <ul className="space-y-3">
               {["Edible Salt", "Industrial Salt", "Animal Lick Salt", "Wellness & Décor", "Bulk & Raw Sourcing", "Private Label"].map((product) => (
                 <li key={product}>
-                  <a href="#products" className="text-primary-foreground/55 hover:text-primary-foreground transition-colors text-sm">
+                  <a href="/#products" className="text-primary-foreground/55 hover:text-primary-foreground transition-colors text-sm">
                     {product}
                   </a>
                 </li>
@@ -154,6 +155,24 @@ Office No. 42, Valencia Tower,<br />Block K1, Valencia Town,<br />Lahore 54770, 
           <p className="text-primary-foreground/55 text-sm">
             © {new Date().getFullYear()} AAA Trade House. All rights reserved.
           </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+            <a
+              href="/privacy"
+              className="text-primary-foreground/55 hover:text-primary-foreground transition-colors text-sm"
+            >
+              Privacy &amp; cookies
+            </a>
+            {/* Art. 7(3): withdrawing consent has to be as easy as giving it,
+                which means a way back that does not depend on clearing
+                browser storage by hand. */}
+            <button
+              type="button"
+              onClick={openConsentSettings}
+              className="text-primary-foreground/55 hover:text-primary-foreground transition-colors text-sm"
+            >
+              Cookie settings
+            </button>
+          </div>
           <p className="text-primary-foreground/55 text-sm">
             AAA Trade House is the export brand of AAA General Trading, registered since 2009.
           </p>

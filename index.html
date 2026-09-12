@@ -37,28 +37,9 @@
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Loaded non-blocking: media="print" then swapped on load, so the
-         stylesheet never delays first paint. display=swap already prevents
-         invisible text while the faces download. -->
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap"
-      />
-    </noscript>
+    <!-- Fonts are self-hosted and imported from src/main.tsx. Nothing is
+         fetched from fonts.googleapis.com or fonts.gstatic.com, so no
+         visitor IP reaches Google just for opening a page. -->
 
     <!-- Structured data. Every value here is a confirmed fact - do not add
          geo coordinates, opening hours, ratings or certifications that have
@@ -204,12 +185,10 @@
          into context.hutk, which is what links a form submission to the
          existing contact record instead of stranding it. async+defer at end
          of body so it never blocks first paint. -->
-    <script
-      type="text/javascript"
-      id="hs-script-loader"
-      async
-      defer
-      src="https://js.hs-scripts.com/246642088.js"
-    ></script>
+    <!-- The HubSpot tracking script used to load here on every page view,
+         setting cookies before anyone was asked. It is now injected by
+         src/lib/consent.ts, and only once consent has been given. Do not
+         put it back in the markup: a script in the HTML has already run by
+         the time any banner renders. -->
   </body>
 </html>
