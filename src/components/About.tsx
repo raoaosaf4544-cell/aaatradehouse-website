@@ -69,14 +69,14 @@ const About = () => {
             - no gradient meshes, no blobs - and it did not match Products
             or Industries, which both use a hairline gap-px grid. Now it
             does, so the three read as one system. */}
-        <div onPointerMove={spot.onPointerMove} ref={grid} className="reveal-group grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border rounded-lg overflow-hidden mb-20">
+        <div onPointerMove={spot.onPointerMove} onPointerLeave={spot.onPointerLeave} ref={grid} className="stage reveal-group grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border rounded-lg overflow-hidden mb-20">
           {features.map((feature, index) => (
             <div
               key={feature.title}
-              className="spot border border-transparent bg-card p-8 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40"
+              className="spot tilt border border-transparent bg-card p-8 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40"
               style={{ "--reveal-delay": `${Math.min(index, 3) * 60}ms` } as React.CSSProperties}
             >
-              <feature.icon className="w-5 h-5 text-accent mb-6" aria-hidden="true" strokeWidth={1.5} />
+              <feature.icon className="lift w-5 h-5 text-accent mb-6" aria-hidden="true" strokeWidth={1.5} />
               <h3 className="font-serif text-xl font-bold text-foreground mb-3 leading-tight">
                 {feature.title}
               </h3>

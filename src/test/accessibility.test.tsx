@@ -342,3 +342,40 @@ describe("dark palette contrast", () => {
     expect(ratio("accent", "background")).toBeGreaterThan(4.5);
   });
 });
+
+describe("the motion system respects reduced motion", () => {
+  const reduceBlock = blockAfter("@media (prefers-reduced-motion: reduce)");
+
+  it("zeroes the card tilt outright, not just its transition", () => {
+    // .tilt is a transform, not an animation. The blanket flattens the
+    // transition to 0.01ms but would happily leave the card sitting at
+    // two degrees for ever, so it needs killing by name.
+    expect(reduceBlock).toMatch(/\.tilt\s*\{[^}]*transform:\s*none\s*!important/);
+  });
+
+  it("scales duration with mass rather than using one value everywhere", () => {
+    // "Don't present one duration as universal" - an arrow and a display
+    // heading do not weigh the same.
+    const durations = [...css.matchAll(/--dur-[a-z]+:\s*(\d+)ms/g)].map((m) => Number(m[1]));
+    expect(durations.length).toBeGreaterThanOrEqual(4);
+    expect(new Set(durations).size).toBe(durations.length);
+  });
+
+  it("keeps squash non-uniform, so it compresses rather than shrinks", () => {
+    // Uniform scale reads as "got smaller"; unequal scale reads as
+    // "got squashed", which is the entire principle.
+    const sq = blockAfter(".squash:active");
+    expect(sq).toMatch(/scale\(0?\.\d+,\s*0?\.\d+\)/);
+    const [x, y] = [...sq.matchAll(/0?\.\d+/g)].map((m) => Number(m[0]));
+    expect(x).not.toBe(y);
+    // And gentle enough to read as a control, not a toy.
+    expect(Math.min(x, y)).toBeGreaterThan(0.9);
+  });
+
+  it("dims unhovered cards only as far as they stay readable", () => {
+    // Staging must not make a side-by-side grade comparison unreadable.
+    const stage = blockAfter(".stage:hover .spot:not(:hover)");
+    const op = Number(stage.match(/opacity:\s*([\d.]+)/)?.[1]);
+    expect(op).toBeGreaterThanOrEqual(0.75); // measured floor: below this the dimmed body copy drops under 4.5:1
+  });
+});

@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-medium ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "squash inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-medium ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
@@ -15,7 +15,7 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        hero: "bg-foreground hover:bg-foreground/90 text-background font-semibold shadow-elevated hover:shadow-soft hover:scale-[1.02] active:scale-[0.98] relative overflow-hidden before:absolute before:inset-0 before:content-[''] before:pointer-events-none before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent hover:before:translate-x-full before:transition-transform before:duration-[600ms] before:ease-[var(--ease-out)]",
+        hero: "bg-foreground hover:bg-foreground/90 text-background font-semibold shadow-elevated hover:shadow-soft hover:scale-[1.02] active:scale-x-[0.985] active:scale-y-[0.96] relative overflow-hidden before:absolute before:inset-0 before:content-[''] before:pointer-events-none before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent hover:before:translate-x-full before:transition-transform before:duration-[600ms] before:ease-[var(--ease-out)]",
         heroOutline: "border border-foreground/25 text-foreground bg-transparent hover:bg-foreground/10 font-semibold",
       },
       size: {

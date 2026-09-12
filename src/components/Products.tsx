@@ -91,15 +91,15 @@ const Products = () => {
         </div>
 
         {/* Products Grid */}
-        <div onPointerMove={spot.onPointerMove} ref={grid} className="reveal-group grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border rounded-lg overflow-hidden">
+        <div onPointerMove={spot.onPointerMove} onPointerLeave={spot.onPointerLeave} ref={grid} className="stage reveal-group grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border rounded-lg overflow-hidden">
           {products.map((product, index) => (
             <div
               key={product.name}
               style={{ "--reveal-delay": `${Math.min(index, 3) * 60}ms` } as React.CSSProperties}
-              className="spot border border-transparent group relative bg-card p-8 lg:p-10 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40"
+              className="spot tilt border border-transparent group relative bg-card p-8 lg:p-10 flex flex-col transition-colors duration-[180ms] ease-[var(--ease-out)] hover:bg-secondary/40"
             >
               <div className="flex items-start justify-between mb-6">
-                <span className="font-serif text-3xl font-bold text-foreground/50 tabular-nums leading-none">
+                <span className="brighten font-serif text-3xl font-bold text-foreground/50 tabular-nums leading-none">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <product.icon className="w-5 h-5 text-accent/60 group-hover:text-accent transition-colors" />
@@ -132,7 +132,7 @@ const Products = () => {
                 className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:gap-3 transition-all duration-[180ms] ease-[var(--ease-out)]"
               >
                 Request samples
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="arc-arrow w-4 h-4" />
               </a>
             </div>
           ))}
