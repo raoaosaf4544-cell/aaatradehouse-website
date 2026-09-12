@@ -75,7 +75,7 @@ const MapEmbed = ({ loc }: { loc: (typeof locations)[number] }) => {
   }
 
   return (
-    <div className="relative h-72 overflow-hidden rounded-lg border border-border bg-salt-dark shadow-soft">
+    <div className="relative h-72 overflow-hidden rounded-lg border border-border bg-salt-dark elev-dark">
       {/* Survey-grid texture. Reads as a map before one loads, and costs no
           request - it is a CSS gradient, not an image, so it cannot leak an
           IP the way a static map preview from Google would. */}

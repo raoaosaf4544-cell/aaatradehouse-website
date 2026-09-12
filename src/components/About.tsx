@@ -133,7 +133,7 @@ const About = () => {
           </div>
           
           <div className="relative">
-            <div className="aspect-[4/5] rounded-lg overflow-hidden border border-border">
+            <div className="aspect-[4/5] rounded-lg overflow-hidden border border-border duotone">
               <img
                 src={saltPacking}
                 alt="Himalayan pink salt being packed into bulk export bags at AAA Trade House, Lahore"
@@ -142,7 +142,10 @@ const About = () => {
               />
             </div>
             {/* Floating Badge */}
-            <div className="absolute -bottom-6 -left-6 bg-card p-6 rounded-md shadow-elevated border border-border">
+            {/* shadow-elevated, not elev-dark: this card sits on cream, and
+                elev-dark's lift comes from a white inset highlight that is
+                invisible on a light surface. */}
+            <div className="absolute -bottom-6 -left-6 bg-card p-6 rounded-md border border-border shadow-elevated">
               <p className="font-serif text-2xl font-bold text-primary">PMDC</p>
               <p className="text-sm text-muted-foreground">Certified edible grade</p>
             </div>

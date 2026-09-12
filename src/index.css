@@ -146,6 +146,70 @@ All colors MUST be HSL.
     transform: translate3d(0, 0, 0);
   }
 
+  /* Display type revealed line by line from behind a mask.
+     Each line needs its own clipping parent, which is why this is two
+     classes rather than one - the mask cannot be the animated element. */
+  .line-mask {
+    display: block;
+    overflow: hidden;
+  }
+
+  .line-in {
+    display: block;
+    animation: line-in 900ms var(--ease-out) both;
+    animation-delay: var(--line-delay, 0ms);
+  }
+
+  @keyframes line-in {
+    from {
+      transform: translate3d(0, 105%, 0);
+    }
+    to {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  /* Duotone grade for stills.
+     The product photography reads as AI-generated and cannot be reshot
+     yet. Stripping it to luminance and pushing brand colour back through
+     it makes the frame read as art direction rather than as a stock
+     photograph - a deliberate treatment is more convincing than a
+     mediocre original. Applied to stills ONLY: the facility footage is
+     real and stays in full colour, because grading the one honest asset
+     on the site to look like the fake ones would be exactly backwards. */
+  .duotone {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .duotone > img {
+    filter: grayscale(1) contrast(1.08) brightness(0.95);
+  }
+
+  .duotone::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    mix-blend-mode: color;
+    background: linear-gradient(
+      145deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--salt-coral)) 100%
+    );
+  }
+
+  /* Depth on dark surfaces without blur or glass.
+     A hairline of light along the top edge is what makes a panel read as
+     raised under an overhead light source; a drop shadow alone does
+     nothing on near-black. */
+  .elev-dark {
+    box-shadow:
+      inset 0 1px 0 hsl(0 0% 100% / 0.06),
+      0 1px 2px hsl(0 0% 0% / 0.4),
+      0 8px 24px -8px hsl(0 0% 0% / 0.5);
+  }
+
   /* Media: blur-to-clear on load. */
   .media-load {
     filter: blur(12px);

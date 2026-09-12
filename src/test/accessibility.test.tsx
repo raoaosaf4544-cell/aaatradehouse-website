@@ -5,6 +5,8 @@ import path from "node:path";
 import Index from "@/pages/Index";
 import Navbar from "@/components/Navbar";
 import VideoShowcase from "@/components/VideoShowcase";
+import Hero from "@/components/Hero";
+import GlobalReach from "@/components/GlobalReach";
 
 /**
  * Covers the four accessibility fixes so a later edit cannot quietly undo
@@ -214,6 +216,60 @@ describe("P2 - video pause control", () => {
     } finally {
       window.matchMedia = original;
     }
+  });
+});
+
+describe("scroll-driven effects respect reduced motion", () => {
+  const withReducedMotion = (fn: () => void) => {
+    const original = window.matchMedia;
+    window.matchMedia = ((q: string) => ({
+      matches: q.includes("prefers-reduced-motion"),
+      media: q,
+      onchange: null,
+      addListener: () => {},
+      removeListener: () => {},
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      dispatchEvent: () => false,
+    })) as unknown as typeof window.matchMedia;
+    try {
+      fn();
+    } finally {
+      window.matchMedia = original;
+    }
+  };
+
+  it("leaves the hero backdrop exactly where it belongs", () => {
+    // The scroll hook pins progress at 1 under reduced motion, which is the
+    // right end state for a rail that draws itself but the WRONG one for a
+    // parallax offset - it would park the image at a permanent +45px.
+    withReducedMotion(() => {
+      const { container } = render(<Hero />);
+      const layer = container.querySelector<HTMLElement>(".will-change-transform");
+      expect(layer).not.toBeNull();
+      expect(layer!.style.transform).toBe("translate3d(0, 0px, 0)");
+    });
+  });
+
+  it("shows the export route already drawn rather than never drawn", () => {
+    withReducedMotion(() => {
+      const { container } = render(<GlobalReach />);
+      const lit = Array.from(container.querySelectorAll<HTMLElement>("span")).find(
+        (s) => s.style.transform.startsWith("scaleY"),
+      );
+      expect(lit).toBeDefined();
+      expect(lit!.style.transform).toBe("scaleY(1)");
+    });
+  });
+
+  it("attaches no scroll listener at all when motion is reduced", () => {
+    const add = vi.spyOn(window, "addEventListener");
+    withReducedMotion(() => {
+      render(<GlobalReach />);
+    });
+    const scrollListeners = add.mock.calls.filter(([type]) => type === "scroll");
+    expect(scrollListeners).toHaveLength(0);
+    add.mockRestore();
   });
 });
 

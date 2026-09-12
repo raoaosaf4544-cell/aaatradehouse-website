@@ -77,7 +77,7 @@ const VideoShowcase = () => {
         {/* Real facility footage. Below the fold, so preload="none"
             keeps it out of the hero's critical path. */}
         <div className="max-w-6xl mx-auto">
-          <div className="relative rounded-lg overflow-hidden border border-primary-foreground/10">
+          <div className="relative rounded-lg overflow-hidden border border-primary-foreground/10 elev-dark">
             {prefersReduced ? (
               <img
                 src={showcaseStill}
@@ -133,7 +133,7 @@ const VideoShowcase = () => {
         <div ref={feats} className="reveal-group grid sm:grid-cols-2 md:grid-cols-3 gap-x-10 gap-y-12 mt-16 max-w-6xl mx-auto border-t border-primary-foreground/10 pt-12">
           {features.map((f, i) => (
             <div key={f.title} className="text-left" style={{ "--reveal-delay": `${i * 60}ms` } as React.CSSProperties}>
-              <div className="w-11 h-11 rounded-md bg-primary-foreground/5 border border-primary-foreground/10 flex items-center justify-center mb-4">
+              <div className="w-11 h-11 rounded-md bg-primary-foreground/5 border border-primary-foreground/10 flex items-center justify-center mb-4 elev-dark">
                 <f.icon className="w-5 h-5 text-salt-coral" aria-hidden="true" strokeWidth={1.5} />
               </div>
               <h3 className="text-primary-foreground font-medium mb-2">{f.title}</h3>

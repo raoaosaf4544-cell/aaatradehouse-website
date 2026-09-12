@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import heroStill from "@/assets/hero-salt.webp";
 import { CountUp } from "@/components/CountUp";
+import { useScrollProgress } from "@/hooks/use-scroll-progress";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 
 /* Editorial spec column. Values are confirmed facts - do not invent rows.
    "0 Middlemen" used to sit in the third slot. It contradicted the
@@ -22,8 +24,22 @@ const specs = [
 ];
 
 const Hero = () => {
+  const [section, progress] = useScrollProgress<HTMLElement>();
+  const reduced = usePrefersReducedMotion();
+  /* Depth without a 3D engine: the backdrop rises at a fraction of scroll
+     speed while the type stays put. Capped small - past about 15% the two
+     planes visibly desync and it reads as a bug. Never applied to the
+     text, which would hurt reading and can provoke motion sickness.
+
+     The reduced check is not redundant. useScrollProgress pins progress
+     at 1 under reduced motion, which is the right end state for a rail
+     that draws itself but the wrong one here: it would park the image at
+     a permanent +45px offset rather than leaving it where it belongs. */
+  const drift = reduced ? 0 : (progress - 0.5) * 90;
+
   return (
     <section
+      ref={section}
       id="home"
       className="relative min-h-screen flex items-center overflow-hidden bg-salt-dark"
     >
@@ -41,14 +57,26 @@ const Hero = () => {
           ...and add: import heroVideo from "@/assets/<file>.mp4";
           Nothing else needs to change - the gradients sit above it.
           ───────────────────────────────────────────────────────────── */}
-      <div className="absolute inset-0">
-        <img
-          src={heroStill}
-          alt=""
-          aria-hidden="true"
-          fetchPriority="high"
-          className="w-full h-full object-cover scale-105"
-        />
+      {/* scale-110 rather than 105: the parallax drift would otherwise
+          expose the bottom edge as the layer rises. duotone strips the
+          still to luminance and pushes brand colour back through it, so
+          an AI-looking stock frame reads as a deliberate grade. */}
+      <div
+        className="absolute inset-0 will-change-transform"
+        style={{ transform: `translate3d(0, ${drift}px, 0)` }}
+      >
+        {/* duotone wraps the image ALONE. On the outer layer its
+            mix-blend-mode: color pass would sit above the two falloff
+            gradients below and tint those as well. */}
+        <div className="absolute inset-0 duotone">
+          <img
+            src={heroStill}
+            alt=""
+            aria-hidden="true"
+            fetchPriority="high"
+            className="w-full h-full object-cover scale-110"
+          />
+        </div>
         {/* Cinematic falloff - keeps display type crisp over any frame. */}
         <div className="absolute inset-0 bg-gradient-to-b from-salt-dark/85 via-salt-dark/70 to-salt-dark" />
         <div className="absolute inset-0 bg-gradient-to-r from-salt-dark via-salt-dark/75 to-salt-dark/25" />
@@ -78,14 +106,23 @@ const Hero = () => {
             </p>
 
             <h1
-              className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-primary-foreground leading-[0.88] tracking-[-0.02em] mb-8 animate-fade-in"
-              style={{ animationDelay: "0.1s" }}
+              className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-primary-foreground leading-[0.88] tracking-[-0.02em] mb-8"
             >
-              Himalayan
-              <br />
-              Salt
-              <br />
-              <span className="text-accent">Experts</span>
+              <span className="line-mask">
+                <span className="line-in" style={{ "--line-delay": "80ms" } as React.CSSProperties}>
+                  Himalayan
+                </span>
+              </span>
+              <span className="line-mask">
+                <span className="line-in" style={{ "--line-delay": "200ms" } as React.CSSProperties}>
+                  Salt
+                </span>
+              </span>
+              <span className="line-mask">
+                <span className="line-in text-accent" style={{ "--line-delay": "320ms" } as React.CSSProperties}>
+                  Experts
+                </span>
+              </span>
             </h1>
 
             <p

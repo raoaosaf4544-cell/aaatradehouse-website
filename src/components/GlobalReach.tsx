@@ -1,4 +1,5 @@
 import { useReveal } from "@/hooks/use-reveal";
+import { useScrollProgress } from "@/hooks/use-scroll-progress";
 
 /**
  * The physical route the salt takes, replacing what used to be three
@@ -65,6 +66,12 @@ const terms = [
 const GlobalReach = () => {
   const intro = useReveal<HTMLDivElement>();
   const rail = useReveal<HTMLOListElement>();
+  const [track, progress] = useScrollProgress<HTMLDivElement>();
+
+  /* Remap raw viewport progress so the rail finishes while the section is
+     still comfortably on screen. Left raw, it would only complete as the
+     block scrolled off the top, and nobody would see the last node light. */
+  const drawn = Math.min(1, Math.max(0, (progress - 0.12) / 0.45));
 
   return (
     <section
@@ -129,42 +136,57 @@ const GlobalReach = () => {
 
           {/* Right: the route. A hairline rail with a node per stage - the
               same vocabulary as the Ordering strip and the Products grid,
-              so it reads as part of the site rather than a widget. */}
-          <ol ref={rail} className="reveal-group lg:col-span-6 lg:col-start-7">
-            {route.map((stop, i) => {
-              const last = i === route.length - 1;
-              return (
-                <li
-                  key={stop.place}
-                  style={{ "--reveal-delay": `${i * 70}ms` } as React.CSSProperties}
-                  className={`relative pl-8 ${last ? "" : "pb-10 border-l"} border-primary-foreground/15`}
-                >
-                  {/* The rail stops at the last node, but its marker still
-                      needs the same offset, so the border is dropped rather
-                      than the padding. */}
-                  {last && (
+              so it reads as part of the site rather than a widget.
+
+              The rail draws itself as the section is read. The motion is
+              the one thing on this page that carries meaning rather than
+              decorating: it is the supply chain being traced. Under
+              reduced motion the hook pins progress at 1, so the rail is
+              simply already drawn - the end state, not a degraded one. */}
+          <div ref={track} className="relative lg:col-span-6 lg:col-start-7">
+            {/* Unlit track, full height. */}
+            <span
+              aria-hidden="true"
+              className="absolute left-0 top-1.5 bottom-6 w-px bg-primary-foreground/15"
+            />
+            {/* Lit portion. scaleY on a transform-only property, so this
+                never triggers layout while scrolling. */}
+            <span
+              aria-hidden="true"
+              className="absolute left-0 top-1.5 bottom-6 w-px origin-top bg-accent"
+              style={{ transform: `scaleY(${drawn})` }}
+            />
+
+            <ol ref={rail} className="reveal-group">
+              {route.map((stop, i) => {
+                // A node lights once the rail has reached it.
+                const reached = drawn >= (i + 0.35) / route.length;
+                return (
+                  <li
+                    key={stop.place}
+                    style={{ "--reveal-delay": `${i * 70}ms` } as React.CSSProperties}
+                    className="relative pl-8 pb-10 last:pb-0"
+                  >
                     <span
                       aria-hidden="true"
-                      className="absolute left-0 top-0 h-3 w-px bg-primary-foreground/15"
+                      className={`absolute -left-[4.5px] top-1.5 h-2 w-2 rounded-full ring-4 ring-salt-dark transition-colors duration-500 ${
+                        reached ? "bg-accent" : "bg-primary-foreground/25"
+                      }`}
                     />
-                  )}
-                  <span
-                    aria-hidden="true"
-                    className="absolute -left-[4.5px] top-1.5 h-2 w-2 rounded-full bg-accent ring-4 ring-salt-dark"
-                  />
-                  <p className="text-[11px] uppercase tracking-[0.18em] text-accent mb-2">
-                    {stop.region}
-                  </p>
-                  <h3 className="font-serif text-2xl md:text-3xl font-bold leading-tight mb-2">
-                    {stop.place}
-                  </h3>
-                  <p className="text-sm text-primary-foreground/55 leading-relaxed max-w-md">
-                    {stop.detail}
-                  </p>
-                </li>
-              );
-            })}
-          </ol>
+                    <p className="text-[11px] uppercase tracking-[0.18em] text-accent mb-2">
+                      {stop.region}
+                    </p>
+                    <h3 className="font-serif text-2xl md:text-3xl font-bold leading-tight mb-2">
+                      {stop.place}
+                    </h3>
+                    <p className="text-sm text-primary-foreground/55 leading-relaxed max-w-md">
+                      {stop.detail}
+                    </p>
+                  </li>
+                );
+              })}
+            </ol>
+          </div>
         </div>
       </div>
     </section>
