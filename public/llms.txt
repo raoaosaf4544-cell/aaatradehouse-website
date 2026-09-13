@@ -1,17 +1,34 @@
 # AAA Trade House
 
-> Bulk Himalayan pink salt exporter based in Lahore, Pakistan. Direct
-> sourcing from PMDC-leased mines with no trading layer, crushing and
-> grading in-house at our own plant near Kot Abbas Shaheed, Khanewal.
-> Capacity over 100 tonnes per month across coarse, fine, edible and
-> chunk grades. AAA Trade House is the Himalayan pink salt export brand
-> of AAA General Trading, a Chamber of Commerce member registered in
-> 2009. Family salt-trade experience since 1994.
+> AAA Trade House is the export brand of AAA General Trading, a general
+> trading and export company based in Lahore, Pakistan, registered in
+> 2009 and a registered Chamber of Commerce member. Contracts, invoices
+> and banking are in the AAA General Trading name.
+>
+> The company's current export line is Himalayan pink salt. It sources
+> primarily direct from PMDC-leased mines with no trading layer, and
+> crushes and grades in-house at its own plant near Kot Abbas Shaheed,
+> Khanewal, at over 100 tonnes per month across coarse, fine, edible and
+> chunk grades. Family salt-trade experience dates to 1994.
+>
+> Two locations: the office in Lahore and the crushing and grading plant
+> in Khanewal. Both addresses are below.
 
-This file exists because the site is a client-rendered application: the
-readable copy is assembled by JavaScript, which most AI crawlers do not
-execute. Everything an answer engine needs about this business is
-therefore stated here in plain text.
+Every page of the site is prerendered, so the HTML already carries the
+full copy without JavaScript. This file is the short version: what the
+business is, where it is, what it sells and on what terms, stated once
+in plain prose so an answer engine does not have to infer it from
+marketing pages.
+
+## What the business is
+
+A general trading and export company. Himalayan pink salt is the line it
+exports today and the whole of this site; it is the current focus rather
+than the limit of what the company is set up to trade. Enquiries about
+other categories go to the same address below.
+
+No claim is made here to an established export record in any category
+other than salt.
 
 ## What we supply
 

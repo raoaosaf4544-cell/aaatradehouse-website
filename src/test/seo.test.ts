@@ -102,3 +102,42 @@ describe("prerendering", () => {
     for (const r of routes) expect(script).toContain(`"${r}"`);
   });
 });
+
+describe("entity graph", () => {
+  const graph = () => {
+    const html = readFileSync("index.html", "utf8");
+    const m = html.match(
+      /<script type="application\/ld\+json">\s*(\{[\s\S]*?\})\s*<\/script>/,
+    );
+    return JSON.parse(m![1])["@graph"] as Record<string, unknown>[];
+  };
+  const node = (type: string) => graph().find((n) => n["@type"] === type)!;
+
+  it("says the company is a trading house, not only a salt brand", () => {
+    // An engine reading this page could previously only conclude "salt
+    // company": the trading-house relationship existed as a bare
+    // legalName and in no description anywhere.
+    const org = node("Organization") as Record<string, string>;
+    expect(org.legalName).toBe("AAA General Trading");
+    expect(org.description).toMatch(/general trading and export company/i);
+    expect(org.foundingDate).toBe("2009");
+  });
+
+  it("carries both real locations", () => {
+    const plant = node("Place") as Record<string, Record<string, string>>;
+    expect(plant.address.addressLocality).toBe("Khanewal");
+    const biz = node("LocalBusiness") as Record<string, Record<string, string>>;
+    expect(biz.address.addressLocality).toBe("Lahore");
+  });
+
+  it("claims no export record outside salt", () => {
+    // One completed export shipment. A broad capability claim is exactly
+    // what fails at due diligence, so it must not creep into the entity
+    // layer where nobody reads it back.
+    const blob = JSON.stringify(graph()) + readFileSync("public/llms.txt", "utf8");
+    expect(blob).not.toMatch(/years of export|established exporter|we export everything/i);
+    expect(readFileSync("public/llms.txt", "utf8")).toMatch(
+      /No claim is made here to an established export record/i,
+    );
+  });
+});
