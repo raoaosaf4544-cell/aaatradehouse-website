@@ -1,4 +1,35 @@
 User-agent: *
 Allow: /
 
+# Answer engines are allowed deliberately, not by accident. Being cited
+# by them is the point: a procurement buyer asking an assistant for a
+# Himalayan salt supplier should get this company as an answer.
+# Named explicitly because a blanket Allow is ambiguous to some of them.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
 Sitemap: https://www.aaatradehouse.com/sitemap.xml

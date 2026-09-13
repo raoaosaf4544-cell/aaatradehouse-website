@@ -41,3 +41,4 @@ dist-ssr
 # Local verification artifacts
 .playwright-mcp/
 *.local.png
+.tokensave

@@ -41,6 +41,30 @@ export const faqs = [
     q: "Is the salt halal certified?",
     a: "Yes. The salt is halal certified, and the edible grade also carries PMDC certification.",
   },
+  {
+    q: "Does Himalayan pink salt expire?",
+    a: "No. Salt cannot support microbial growth, so kept sealed and dry it keeps indefinitely. Codex CXS 1-1985 4.7.1(vii) lists non-iodised food grade salt among the foods that need no date of minimum durability, and EU Regulation 1169/2011 Annex X names cooking salt in the same terms. Our retail packs carry a packing date and a lot number rather than a best-before date.",
+  },
+  {
+    q: "What HS code does Himalayan salt export under?",
+    a: "Salt, including table salt and pure sodium chloride, sits under HS heading 2501. The national subheading differs by destination, so your customs broker confirms the exact classification. We issue the commercial invoice and packing list against whatever your import agent specifies.",
+  },
+  {
+    q: "Is the salt iodised?",
+    a: "No, it is supplied non-iodised. Iodine carries through into curing, pickling and fermenting, so buyers in those categories generally specify non-iodised salt. If you need an iodised grade, tell us and we quote it separately.",
+  },
+  {
+    q: "What is the difference between Himalayan pink salt and ordinary table salt?",
+    a: "Himalayan pink salt is mined rock salt that is crushed and graded rather than refined. The colour comes from the rock it is mined from, not from an added colourant, and no anti-caking agent is added. Chemically it is still predominantly sodium chloride and is used in the same quantities as any other salt.",
+  },
+  {
+    q: "Do you supply the domestic Pakistani market as well as exporting?",
+    a: "Yes. We ship to Karachi and across Pakistan under our own registered salt brand, alongside export orders.",
+  },
+  {
+    q: "What grain sizes do you supply?",
+    a: "Coarse, fine, edible and chunk grades, crushed and graded in-house at our Khanewal plant. Tell us the granulation your line needs and we confirm against your written specification before you commit.",
+  },
 ];
 
 const FAQ = () => {

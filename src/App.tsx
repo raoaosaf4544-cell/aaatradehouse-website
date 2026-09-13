@@ -6,6 +6,7 @@ import ExportPage from "./pages/ExportPage";
 import NotFound from "./pages/NotFound";
 import ConsentBanner from "@/components/ConsentBanner";
 import { applyConsent, readConsent } from "@/lib/consent";
+import { applyCanonical } from "@/lib/seo";
 
 /**
  * Routing, such as it is.
@@ -36,17 +37,27 @@ const routes: Record<string, () => JSX.Element> = {
 function resolve(pathname: string) {
   // Treat /privacy/ and /privacy as the same page, but keep bare "/" intact.
   const path = pathname.replace(/\/+$/, "") || "/";
-  return routes[path] ?? NotFound;
+  // The path comes back as well as the component: it is what the canonical
+  // is built from, and the router is the only place that knows it.
+  return { Page: routes[path] ?? NotFound, path, known: path in routes };
 }
 
 const App = () => {
-  const Page = resolve(window.location.pathname);
+  const { Page, path, known } = resolve(window.location.pathname);
 
   // Enforce a stored decision before first paint of any page, including
   // /privacy, so tracking state never depends on the banner being rendered.
   useEffect(() => {
     applyConsent(readConsent());
   }, []);
+
+  // Point the canonical at THIS page. index.html ships one hard-coded to
+  // the homepage and vercel.json serves that same file for every route,
+  // so without this /products and /export were telling Google they were
+  // duplicates of / and asking not to be indexed.
+  useEffect(() => {
+    applyCanonical(path, known);
+  }, [path, known]);
 
   return (
     <>

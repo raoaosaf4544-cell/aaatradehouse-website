@@ -1,6 +1,28 @@
 {
   "enabledPlugins": {
+    "github@claude-plugins-official": true,
+    "supabase@claude-plugins-official": true,
     "vercel@claude-plugins-official": true,
-    "supabase@claude-plugins-official": true
+    "figma@claude-plugins-official": true,
+    "claude-mem@thedotmack": true,
+    "ui-ux-pro-max@skills-dir": true,
+    "superpowers@claude-plugins-official": true,
+    "ponytail@ponytail": true,
+    "context7@claude-plugins-official": true,
+    "tokensave@claude-plugins-official": true,
+    "marketing-skills@skills-dir": false,
+    "code-review@claude-plugins-official": false,
+    "frontend-design@claude-plugins-official": false,
+    "skill-creator@claude-plugins-official": false,
+    "playwright@claude-plugins-official": false,
+    "code-simplifier@claude-plugins-official": false,
+    "google-calendar@claude-plugins-official": false,
+    "claude-md-management@claude-plugins-official": false,
+    "feature-dev@claude-plugins-official": false,
+    "typescript-lsp@claude-plugins-official": false,
+    "pyright-lsp@claude-plugins-official": false,
+    "chrome-devtools-mcp@claude-plugins-official": false,
+    "prisma@claude-plugins-official": false,
+    "superpowers@superpowers-marketplace": false
   }
 }
