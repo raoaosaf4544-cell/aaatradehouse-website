@@ -85,3 +85,20 @@ describe("answer-engine surface", () => {
     expect(t).toContain("Sitemap: https://www.aaatradehouse.com/sitemap.xml");
   });
 });
+
+describe("prerendering", () => {
+  it("the build actually runs the prerender step", () => {
+    // Without this the site silently reverts to shipping an empty
+    // <div id="root"> and every answer engine goes blind again.
+    const pkg = JSON.parse(readFileSync("package.json", "utf8"));
+    expect(pkg.scripts.build).toContain("scripts/prerender.mjs");
+  });
+
+  it("the prerender covers every route the router answers", () => {
+    const script = readFileSync("scripts/prerender.mjs", "utf8");
+    const app = readFileSync("src/App.tsx", "utf8");
+    const routes = [...app.matchAll(/^\s*"(\/[a-z]*)":/gm)].map((m) => m[1]);
+    expect(routes.length).toBeGreaterThan(1);
+    for (const r of routes) expect(script).toContain(`"${r}"`);
+  });
+});

@@ -74,6 +74,9 @@ function setName(name: string, content: string | null) {
  * @param known  false for a path that matched no route
  */
 export function applyCanonical(path: string, known: boolean) {
+  // The prerender writes these into the static HTML directly; there is
+  // no document to patch at build time.
+  if (typeof document === "undefined") return;
   if (!known) {
     setLink("canonical", null);
     setMeta("og:url", null);

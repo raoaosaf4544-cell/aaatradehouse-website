@@ -42,8 +42,13 @@ function resolve(pathname: string) {
   return { Page: routes[path] ?? NotFound, path, known: path in routes };
 }
 
-const App = () => {
-  const { Page, path, known } = resolve(window.location.pathname);
+/** `url` is supplied by the prerender; the browser reads its own location.
+ *  Reading window during render is what made this component impossible to
+ *  render on the server. */
+const App = ({ url }: { url?: string } = {}) => {
+  const { Page, path, known } = resolve(
+    url ?? (typeof window !== "undefined" ? window.location.pathname : "/"),
+  );
 
   // Enforce a stored decision before first paint of any page, including
   // /privacy, so tracking state never depends on the banner being rendered.

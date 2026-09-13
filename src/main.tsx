@@ -1,4 +1,4 @@
-import { createRoot } from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
 import App from "./App.tsx";
 
 /* Fonts are served from our own origin rather than fonts.googleapis.com.
@@ -20,4 +20,18 @@ import "@fontsource/playfair-display/latin-700.css";
 
 import "./index.css";
 
-createRoot(document.getElementById("root")!).render(<App />);
+const root = document.getElementById("root")!;
+
+/* The build prerenders every route to static HTML, so in production the
+   root already holds the page. Hydrating attaches to that markup instead
+   of throwing it away and painting the whole page a second time - which
+   is what createRoot would do, costing an extra render and a visible
+   flash on slow connections.
+
+   The fallback matters for `vite dev`, where nothing is prerendered and
+   the root really is empty. */
+if (root.firstElementChild) {
+  hydrateRoot(root, <App />);
+} else {
+  createRoot(root).render(<App />);
+}

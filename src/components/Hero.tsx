@@ -79,7 +79,10 @@ const Hero = () => {
           src={heroStill}
           alt=""
           aria-hidden="true"
-          fetchPriority="high"
+          /* lowercase: React 18 does not recognise the camelCase
+             prop, so it renders on the client but not in the
+             prerender - an attribute mismatch on hydration */
+          fetchpriority="high"
           className="w-full h-full object-cover scale-110"
         />
         {/* Cinematic falloff - keeps display type crisp over any frame. */}

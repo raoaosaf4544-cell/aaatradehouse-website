@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { collectHead } from "@/lib/head";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import MobileCTA from "@/components/MobileCTA";
@@ -26,6 +27,11 @@ const PageShell = ({
   children: React.ReactNode;
   withMobileCta?: boolean;
 }) => {
+  // Recorded during render, not in the effect below, because effects do
+  // not run during the prerender - without this every static page would
+  // ship the homepage's title. A no-op in the browser.
+  collectHead({ title, description });
+
   useEffect(() => {
     document.title = title;
     if (!description) return;

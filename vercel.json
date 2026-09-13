@@ -1,8 +1,19 @@
 {
+  "cleanUrls": true,
+  "trailingSlash": false,
   "redirects": [
-    { "source": "/pack", "destination": "/", "permanent": false }
+    {
+      "source": "/pack",
+      "destination": "/",
+      "permanent": false
+    }
   ],
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -11,14 +22,26 @@
           "key": "Content-Security-Policy-Report-Only",
           "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' https://js.hs-scripts.com https://js.hsforms.net https://js.hs-analytics.net https://js.hs-banner.com https://js.hsadspixel.net https://js.usemessages.com; connect-src 'self' https://api.hsforms.com https://forms.hsforms.com https://api.hubspot.com https://track.hubspot.com https://*.hubspot.com https://*.hs-analytics.net; frame-src https://maps.google.com https://www.google.com; img-src 'self' data: https://*.gstatic.com https://*.googleapis.com https://*.hubspot.com https://track.hubspot.com; style-src 'self' 'unsafe-inline'; font-src 'self'; upgrade-insecure-requests"
         },
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "X-Frame-Options", "value": "DENY" },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
         {
           "key": "Permissions-Policy",
           "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=(), interest-cohort=()"
         },
-        { "key": "Strict-Transport-Security", "value": "max-age=31536000" }
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000"
+        }
       ]
     }
   ]
